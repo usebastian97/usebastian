@@ -1,0 +1,26 @@
+---
+import Card from '@components/cards/Card.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.lang === 'en';
+});
+
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="projects-grid">
+  {
+    projects.map((project) => (
+      <div class="project-card" data-category={project.data.category}>
+        <Card
+          title={project.data.title}
+          description={project.data.description}
+          href={`/projects/${project.slug}`}
+          image={project.data.image ?? ''}
+          tags={project.data.tags}
+        />
+      </div>
+    ))
+  }
+</div>

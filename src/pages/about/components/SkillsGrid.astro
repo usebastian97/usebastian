@@ -1,0 +1,73 @@
+---
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+
+const skills = [
+  {
+    category: 'Cloud Platforms',
+    items: ['Microsoft Azure', 'Azure DevOps', 'Azure AI Services', 'Azure Kubernetes Service'],
+  },
+  {
+    category: 'Infrastructure as Code',
+    items: ['Terraform', 'Bicep', 'ARM Templates', 'Pulumi'],
+  },
+  {
+    category: 'Container Technologies',
+    items: ['Kubernetes', 'Docker', 'Helm', 'ArgoCD', 'Harbor'],
+  },
+  {
+    category: 'Programming',
+    items: ['Python', 'TypeScript', 'Go', 'PowerShell', 'Bash'],
+  },
+  {
+    category: 'AI & Machine Learning',
+    items: ['Azure OpenAI', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'LangChain'],
+  },
+  {
+    category: 'DevOps & Automation',
+    items: ['CI/CD Pipelines', 'GitOps', 'Ansible', 'Jenkins', 'GitHub Actions'],
+  },
+  {
+    category: 'Security',
+    items: ['Zero Trust Architecture', 'Azure AD', 'Key Vault', 'Defender for Cloud'],
+  },
+  {
+    category: 'Monitoring & Observability',
+    items: ['Azure Monitor', 'Prometheus', 'Grafana', 'ELK Stack', 'Application Insights'],
+  },
+];
+---
+
+<div class="mb-16">
+  <h2 class="mb-8 text-3xl font-bold">{t('about.skills')}</h2>
+  <div class="grid gap-8 sm:grid-cols-2">
+    {
+      skills.map((skillGroup) => (
+        <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
+          <h3 class="mb-4 text-lg font-semibold">{skillGroup.category}</h3>
+          <ul class="space-y-2">
+            {skillGroup.items.map((skill) => (
+              <li class="flex items-center text-gray-600 dark:text-gray-400">
+                <svg
+                  class="mr-2 h-5 w-5 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</div>

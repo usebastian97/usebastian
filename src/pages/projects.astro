@@ -1,93 +1,19 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import Card from '@components/cards/Card.astro';
+import ProjectsHero from './projects/components/ProjectsHero.astro';
+import FilterButtons from './projects/components/FilterButtons.astro';
+import ProjectsGrid from './projects/components/ProjectsGrid.astro';
 import { useTranslations } from '@i18n/utils';
-import { getCollection } from 'astro:content';
 
 const t = useTranslations('en');
-
-const allProjects = await getCollection('projects', ({ data }) => {
-  return data.lang === 'en';
-});
-
-const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
-
-const categories = ['all', 'cloud', 'ai', 'fullstack', 'tools'] as const;
 ---
 
 <MainLayout title={`${t('projects.title')} | Sebastian Georgian Utoiu`}>
   <section class="bg-white py-20 dark:bg-black">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h1 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">{t('projects.title')}</h1>
-      <p class="mb-12 max-w-3xl text-xl text-gray-600 dark:text-gray-400">
-        A selection of projects showcasing cloud architecture, AI integration, and DevOps
-        excellence.
-      </p>
-
-      <!-- Filter Buttons -->
-      <div class="mb-12 flex flex-wrap gap-2" id="filter-container">
-        {
-          categories.map((category) => (
-            <button
-              class="filter-btn rounded-lg border-2 border-gray-300 px-4 py-2 font-medium transition-all hover:border-blue-600 hover:text-blue-600 dark:border-gray-700"
-              data-category={category}
-            >
-              {category === 'all' ? t('projects.filter_all') : t(`projects.filter_${category}`)}
-            </button>
-          ))
-        }
-      </div>
-
-      <!-- Projects Grid -->
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="projects-grid">
-        {
-          projects.map((project) => (
-            <div class="project-card" data-category={project.data.category}>
-              <Card
-                title={project.data.title}
-                description={project.data.description}
-                href={`/projects/${project.slug}`}
-                image={project.data.image ?? ''}
-                tags={project.data.tags}
-              />
-            </div>
-          ))
-        }
-      </div>
+      <ProjectsHero />
+      <FilterButtons />
+      <ProjectsGrid />
     </div>
   </section>
 </MainLayout>
-
-<script>
-  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const category = button.getAttribute('data-category') ?? 'all';
-
-      // Update active button
-      filterButtons.forEach((btn) => {
-        btn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
-        btn.classList.add('border-gray-300', 'dark:border-gray-700');
-      });
-      button.classList.remove('border-gray-300', 'dark:border-gray-700');
-      button.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
-
-      // Filter projects
-      projectCards.forEach((card) => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Set initial active state
-  const firstButton = filterButtons[0];
-  if (firstButton) {
-    firstButton.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
-  }
-</script>

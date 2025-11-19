@@ -1,0 +1,19 @@
+---
+import Button from '@components/ui/Button.astro';
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<section class="bg-blue-600 py-24 text-white dark:bg-blue-700">
+  <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="mb-4 text-3xl font-bold sm:text-4xl">Ready to collaborate?</h2>
+    <p class="mb-8 text-xl opacity-90">
+      Let's discuss how I can help with your cloud infrastructure, AI solutions, or DevOps
+      transformation.
+    </p>
+    <Button href="/contact" variant="secondary">
+      {t('home.hero.cta_contact')}
+    </Button>
+  </div>
+</section>

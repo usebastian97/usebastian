@@ -1,0 +1,48 @@
+---
+import Button from '@components/ui/Button.astro';
+import Card from '@components/cards/Card.astro';
+import { useTranslations } from '@i18n/utils';
+import { getCollection } from 'astro:content';
+
+const t = useTranslations('en');
+
+// Get latest blog posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'en' && !data.draft;
+});
+const latestPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+---
+
+<section class="bg-white py-24 dark:bg-black">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t('home.latest_posts')}</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Thoughts on cloud architecture, AI, and modern development
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        latestPosts.map((post) => (
+          <Card
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.slug}`}
+            image={post.data.image ?? ''}
+            tags={post.data.tags}
+            date={post.data.publishDate}
+          />
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <Button href="/blog" variant="secondary">
+        Read All Posts
+      </Button>
+    </div>
+  </div>
+</section>

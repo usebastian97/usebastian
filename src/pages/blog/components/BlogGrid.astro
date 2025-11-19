@@ -1,0 +1,47 @@
+---
+import Card from '@components/cards/Card.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'en' && !data.draft;
+});
+
+const posts = allPosts.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+const postsPerPage = 9;
+const totalPages = Math.ceil(posts.length / postsPerPage);
+---
+
+<!-- Posts Grid -->
+<div class="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {
+    posts.slice(0, postsPerPage).map((post) => (
+      <Card
+        title={post.data.title}
+        description={post.data.description}
+        href={`/blog/${post.slug}`}
+        image={post.data.image ?? ''}
+        tags={post.data.tags}
+        date={post.data.publishDate}
+      />
+    ))
+  }
+</div>
+
+<!-- Pagination -->
+{
+  totalPages > 1 && (
+    <div class="flex justify-center gap-2">
+      {Array.from({ length: totalPages }, (_, i) => (
+        <a
+          href={i === 0 ? '/blog' : `/blog/${i + 1}`}
+          class="rounded-lg border border-gray-300 px-4 py-2 transition-colors hover:border-blue-600 hover:text-blue-600 dark:border-gray-700"
+        >
+          {i + 1}
+        </a>
+      ))}
+    </div>
+  )
+}

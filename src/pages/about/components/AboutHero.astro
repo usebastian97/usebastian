@@ -1,0 +1,14 @@
+---
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<section class="bg-gradient-to-b from-white to-gray-50 py-20 dark:from-black dark:to-gray-900">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h1 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">{t('about.title')}</h1>
+    <p class="text-xl leading-relaxed text-gray-600 dark:text-gray-400">
+      {t('about.bio')}
+    </p>
+  </div>
+</section>

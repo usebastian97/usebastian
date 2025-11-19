@@ -1,0 +1,36 @@
+---
+import TechCard from '@components/cards/TechCard.astro';
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+
+const technologies = [
+  { name: 'Azure', category: 'Cloud Platform', icon: '☁️' },
+  { name: 'Kubernetes', category: 'Container Orchestration', icon: '⎈' },
+  { name: 'Terraform', category: 'Infrastructure as Code', icon: '🏗️' },
+  { name: 'Docker', category: 'Containerization', icon: '🐳' },
+  { name: 'Python', category: 'Programming', icon: '🐍' },
+  { name: 'TypeScript', category: 'Programming', icon: '📘' },
+  { name: 'AI/ML', category: 'Artificial Intelligence', icon: '🤖' },
+  { name: 'DevOps', category: 'Methodology', icon: '🔄' },
+];
+---
+
+<section class="bg-gray-50 py-24 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t('home.tech_stack')}</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Technologies I work with on a daily basis
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+      {
+        technologies.map((tech) => (
+          <TechCard name={tech.name} category={tech.category} icon={tech.icon} />
+        ))
+      }
+    </div>
+  </div>
+</section>

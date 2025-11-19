@@ -1,0 +1,54 @@
+---
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+
+const categories = ['all', 'cloud', 'ai', 'fullstack', 'tools'] as const;
+---
+
+<div class="mb-12 flex flex-wrap gap-2" id="filter-container">
+  {
+    categories.map((category) => (
+      <button
+        class="filter-btn rounded-lg border-2 border-gray-300 px-4 py-2 font-medium transition-all hover:border-blue-600 hover:text-blue-600 dark:border-gray-700"
+        data-category={category}
+      >
+        {category === 'all' ? t('projects.filter_all') : t(`projects.filter_${category}`)}
+      </button>
+    ))
+  }
+</div>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category') ?? 'all';
+
+      // Update active button
+      filterButtons.forEach((btn) => {
+        btn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
+        btn.classList.add('border-gray-300', 'dark:border-gray-700');
+      });
+      button.classList.remove('border-gray-300', 'dark:border-gray-700');
+      button.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+
+      // Filter projects
+      projectCards.forEach((card) => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Set initial active state
+  const firstButton = filterButtons[0];
+  if (firstButton) {
+    firstButton.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+  }
+</script>

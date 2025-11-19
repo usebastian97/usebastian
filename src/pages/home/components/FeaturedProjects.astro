@@ -1,0 +1,45 @@
+---
+import Button from '@components/ui/Button.astro';
+import Card from '@components/cards/Card.astro';
+import { useTranslations } from '@i18n/utils';
+import { getCollection } from 'astro:content';
+
+const t = useTranslations('en');
+
+// Get featured projects
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.lang === 'en' && data.featured;
+});
+const featuredProjects = allProjects.sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+---
+
+<section class="bg-white py-24 dark:bg-black">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t('home.featured_projects')}</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Selected highlights from my portfolio
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        featuredProjects.map((project) => (
+          <Card
+            title={project.data.title}
+            description={project.data.description}
+            href={`/projects/${project.slug}`}
+            image={project.data.image ?? ''}
+            tags={project.data.tags}
+          />
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <Button href="/projects" variant="secondary">
+        View All Projects
+      </Button>
+    </div>
+  </div>
+</section>
