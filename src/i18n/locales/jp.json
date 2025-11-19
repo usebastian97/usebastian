@@ -7,6 +7,17 @@
     "contact": "お問い合わせ"
   },
   "home": {
+    "testimonials": {
+      "title": "業界リーダーから信頼されています",
+      "subtitle": "クラウド専門家との協働について、主要企業の声をご覧ください",
+      "stats": {
+        "users": "世界中で1億人以上のユーザー",
+        "knowledge_base": "3年連続ナレッジベース第1位",
+        "ai_search": "AIエンタープライズ検索第1位",
+        "ai_writing": "AI執筆第1位評価",
+        "fortune_100": "フォーチュン100の62%がNotionを使用"
+      }
+    },
     "hero": {
       "title": "こんにちは、Sebastianです",
       "subtitle": "Azure | AI | セキュリティ | IaC",

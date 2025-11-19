@@ -7,6 +7,17 @@
     "contact": "Contact"
   },
   "home": {
+    "testimonials": {
+      "title": "Vertrouwd door brancheleiders",
+      "subtitle": "Zie wat toonaangevende bedrijven zeggen over samenwerking met cloud-professionals",
+      "stats": {
+        "users": "Meer dan 100M gebruikers wereldwijd",
+        "knowledge_base": "#1 kennisbank 3 jaar op rij",
+        "ai_search": "#1 AI bedrijfszoeken",
+        "ai_writing": "#1 beoordeeld AI-schrijven",
+        "fortune_100": "62% van Fortune 100 gebruikt Notion"
+      }
+    },
     "hero": {
       "title": "Hallo, ik ben Sebastian",
       "subtitle": "Azure | AI | Beveiliging | IaC",

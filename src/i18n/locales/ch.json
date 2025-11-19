@@ -7,6 +7,17 @@
     "contact": "联系"
   },
   "home": {
+    "testimonials": {
+      "title": "深受行业领导者信赖",
+      "subtitle": "了解领先企业对云专业人员的评价",
+      "stats": {
+        "users": "全球超过1亿用户",
+        "knowledge_base": "连续3年排名第一的知识库",
+        "ai_search": "排名第一的AI企业搜索",
+        "ai_writing": "评分第一的AI写作",
+        "fortune_100": "62%的财富100强使用Notion"
+      }
+    },
     "hero": {
       "title": "你好，我是Sebastian",
       "subtitle": "Azure | 人工智能 | 安全 | IaC",

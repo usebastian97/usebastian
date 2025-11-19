@@ -1,0 +1,180 @@
+---
+import { useTranslations, defaultLang } from '@/i18n/utils';
+import type { Language } from '@/i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const safeLang = lang || defaultLang;
+const t = useTranslations(safeLang);
+
+// Testimonial data - company logos
+const testimonials = [
+  {
+    logo: '/stack-icons/docker.svg',
+    company: 'Docker',
+  },
+  {
+    logo: '/stack-icons/fast-api.svg',
+    company: 'FastAPI',
+  },
+  {
+    logo: '/stack-icons/github-actions.svg',
+    company: 'GitHub Actions',
+  },
+  {
+    logo: '/stack-icons/markdown.svg',
+    company: 'Markdown',
+  },
+  {
+    logo: '/stack-icons/docker.svg',
+    company: 'Docker',
+  },
+  {
+    logo: '/stack-icons/fast-api.svg',
+    company: 'FastAPI',
+  },
+];
+
+// Stats for the bottom section
+const stats = [
+  t('home.testimonials.stats.users'),
+  t('home.testimonials.stats.knowledge_base'),
+  t('home.testimonials.stats.ai_search'),
+  t('home.testimonials.stats.ai_writing'),
+  t('home.testimonials.stats.fortune_100'),
+];
+---
+
+<section class="border-b border-gray-200 bg-notion-bg py-16 dark:border-gray-800 dark:bg-gray-950 sm:py-20 lg:py-24">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-12 text-center">
+      <h2 class="mb-3 text-3xl font-semibold tracking-tight text-notion-text-primary dark:text-gray-100 sm:text-4xl">
+        {t('home.testimonials.title')}
+      </h2>
+    </div>
+
+    <!-- Testimonial Cards Grid (3x2) -->
+    <div class="mx-auto mb-12 grid max-w-7xl grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+      {testimonials.map((testimonial) => (
+        <div class="notion-card group flex items-center gap-3">
+          <!-- Company Logo -->
+          <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center">
+            <img 
+              src={testimonial.logo} 
+              alt={testimonial.company}
+              class="h-full w-full object-contain"
+            />
+          </div>
+          
+          <!-- Company Name -->
+          <h3 class="text-sm font-semibold tracking-tight text-notion-text-primary dark:text-gray-100">
+            {testimonial.company}
+          </h3>
+        </div>
+      ))}
+    </div>
+
+    <!-- Stats Section (Bottom Horizontal Strip) -->
+    <div class="border-t border-gray-200 pt-8 dark:border-gray-800">
+      <div class="mx-auto max-w-6xl">
+        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center">
+          {stats.map((stat) => (
+            <div class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-notion-text-secondary dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-xs font-medium text-notion-text-secondary dark:text-gray-500 sm:text-sm">
+                {stat}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Notion-specific color palette */
+  :root {
+    --notion-bg: #fafafa;
+    --notion-card-bg: #ffffff;
+    --notion-border: #ededed;
+    --notion-text-primary: #1a1a1a;
+    --notion-text-secondary: #555555;
+  }
+
+  .dark {
+    --notion-bg: #0a0a0a;
+    --notion-card-bg: #1a1a1a;
+    --notion-border: #2a2a2a;
+    --notion-text-primary: #f5f5f5;
+    --notion-text-secondary: #a0a0a0;
+  }
+
+  .bg-notion-bg {
+    background-color: var(--notion-bg);
+  }
+
+  .text-notion-text-primary {
+    color: var(--notion-text-primary);
+  }
+
+  .text-notion-text-secondary {
+    color: var(--notion-text-secondary);
+  }
+
+  /* Notion-style card */
+  .notion-card {
+    background-color: var(--notion-card-bg);
+    border: 1px solid var(--notion-border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .notion-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .dark .notion-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .notion-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Notion-style quote text */
+  .notion-quote {
+    color: var(--notion-text-secondary);
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  @media (min-width: 640px) {
+    .notion-card {
+      padding: 28px;
+      border-radius: 14px;
+    }
+
+    .notion-quote {
+      font-size: 1rem; /* 16px */
+      line-height: 1.65;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .notion-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+  }
+</style>

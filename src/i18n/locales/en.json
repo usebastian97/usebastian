@@ -19,7 +19,18 @@
     "about_preview": "About Me",
     "featured_projects": "Featured Projects",
     "latest_posts": "Latest Blog Posts",
-    "tech_stack": "Technology Stack"
+    "tech_stack": "Technology Stack",
+    "testimonials": {
+      "title": "Trusted by Industry Leaders",
+      "subtitle": "See what leading companies say about working with cloud professionals",
+      "stats": {
+        "users": "Over 100M users worldwide",
+        "knowledge_base": "#1 knowledge base 3 years running",
+        "ai_search": "#1 AI enterprise search",
+        "ai_writing": "#1 rated AI writing",
+        "fortune_100": "62% of Fortune 100 use Notion"
+      }
+    }
   },
   "about": {
     "title": "About Me",

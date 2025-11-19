@@ -7,6 +7,17 @@
     "contact": "Kontakt"
   },
   "home": {
+    "testimonials": {
+      "title": "Vertraut von Branchenführern",
+      "subtitle": "Sehen Sie, was führende Unternehmen über die Zusammenarbeit mit Cloud-Experten sagen",
+      "stats": {
+        "users": "Über 100 Millionen Nutzer weltweit",
+        "knowledge_base": "Nr. 1 Wissensdatenbank seit 3 Jahren",
+        "ai_search": "Nr. 1 KI-Unternehmenssuche",
+        "ai_writing": "Nr. 1 bewertetes KI-Schreiben",
+        "fortune_100": "62% der Fortune 100 nutzen Notion"
+      }
+    },
     "hero": {
       "title": "Hallo, ich bin Sebastian",
       "subtitle": "Azure | KI | Sicherheit | IaC",

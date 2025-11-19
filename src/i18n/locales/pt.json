@@ -7,6 +7,17 @@
     "contact": "Contacto"
   },
   "home": {
+    "testimonials": {
+      "title": "Confiado por líderes da indústria",
+      "subtitle": "Veja o que empresas líderes dizem sobre trabalhar com profissionais de nuvem",
+      "stats": {
+        "users": "Mais de 100M de usuários em todo o mundo",
+        "knowledge_base": "Base de conhecimento nº1 há 3 anos",
+        "ai_search": "Pesquisa empresarial de IA nº1",
+        "ai_writing": "Escrita de IA mais bem avaliada",
+        "fortune_100": "62% da Fortune 100 usa Notion"
+      }
+    },
     "hero": {
       "title": "Olá, sou o Sebastian",
       "subtitle": "Azure | IA | Segurança | IaC",
