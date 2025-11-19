@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+  tags?: string[];
+  date?: Date;
+}
+
+const { title, description, href, image, tags = [], date } = Astro.props;
+---
+
+<article
+  class="group relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
+>
+  {
+    image && (
+      <div class="aspect-video overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+
+  <div class="p-6">
+    {
+      date && (
+        <time class="text-sm text-gray-600 dark:text-gray-400">
+          {new Intl.DateTimeFormat('en', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }).format(date)}
+        </time>
+      )
+    }
+
+    <h3 class="mt-2 text-xl font-bold transition-colors group-hover:text-blue-600">
+      <a href={href} class="after:absolute after:inset-0">
+        {title}
+      </a>
+    </h3>
+
+    <p class="mt-2 line-clamp-3 text-gray-600 dark:text-gray-400">
+      {description}
+    </p>
+
+    {
+      tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium dark:bg-gray-800">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="mt-4 flex items-center text-sm font-medium text-blue-600">
+      Read more
+      <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </div>
+  </div>
+</article>

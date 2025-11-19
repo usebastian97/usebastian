@@ -1,0 +1,103 @@
+---
+title: 'Kubernetes Security Best Practices for Production'
+description: 'A deep dive into securing Kubernetes clusters in production environments, covering network policies, RBAC, secrets management, and more.'
+publishDate: 2024-11-05
+tags: ['Kubernetes', 'Security', 'DevOps', 'Cloud Native', 'Best Practices']
+image: '/images/blog/kubernetes-security.jpg'
+---
+
+## Introduction
+
+Kubernetes has become the de facto standard for container orchestration, but securing production clusters requires careful attention to multiple layers of defense.
+
+## Security Layers
+
+### 1. Network Security
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-ingress
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-specific-ingress
+spec:
+  podSelector:
+    matchLabels:
+      app: web
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend
+      ports:
+        - protocol: TCP
+          port: 8080
+```
+
+### 2. RBAC Configuration
+
+Implement least privilege access:
+
+- Service accounts for workloads
+- Role-based access for users
+- Regular permission audits
+- No cluster-admin for regular operations
+
+### 3. Secrets Management
+
+**Never** store secrets in plain text:
+
+```yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: app-secrets
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-keyvault
+    kind: SecretStore
+  target:
+    name: app-secrets
+  data:
+    - secretKey: database-password
+      remoteRef:
+        key: db-password
+```
+
+### 4. Pod Security Standards
+
+Use Pod Security Admission to enforce security policies:
+
+- **Privileged**: Unrestricted (avoid in production)
+- **Baseline**: Minimize known privilege escalations
+- **Restricted**: Heavily restricted, best practice
+
+## Additional Hardening
+
+1. **Image Security**
+   - Scan images for vulnerabilities
+   - Use minimal base images
+   - Sign images with Cosign
+
+2. **Runtime Security**
+   - Use Falco for runtime monitoring
+   - Implement admission controllers
+   - Regular security audits
+
+3. **Audit Logging**
+   - Enable Kubernetes audit logs
+   - Centralize logs with Azure Monitor
+   - Set up alerts for suspicious activity
+
+## Conclusion
+
+Kubernetes security is not a one-time task but an ongoing process. Regular reviews, updates, and monitoring are essential for maintaining a secure cluster.

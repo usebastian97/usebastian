@@ -1,16 +1,178 @@
 ---
+import MainLayout from '@layouts/MainLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Card from '@components/cards/Card.astro';
+import TechCard from '@components/cards/TechCard.astro';
+import { useTranslations } from '@i18n/utils';
+import { getCollection } from 'astro:content';
 
+const t = useTranslations('en');
+
+// Get featured projects
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.lang === 'en' && data.featured;
+});
+const featuredProjects = allProjects.sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+
+// Get latest blog posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'en' && !data.draft;
+});
+const latestPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+
+const technologies = [
+  { name: 'Azure', category: 'Cloud Platform', icon: '☁️' },
+  { name: 'Kubernetes', category: 'Container Orchestration', icon: '⎈' },
+  { name: 'Terraform', category: 'Infrastructure as Code', icon: '🏗️' },
+  { name: 'Docker', category: 'Containerization', icon: '🐳' },
+  { name: 'Python', category: 'Programming', icon: '🐍' },
+  { name: 'TypeScript', category: 'Programming', icon: '📘' },
+  { name: 'AI/ML', category: 'Artificial Intelligence', icon: '🤖' },
+  { name: 'DevOps', category: 'Methodology', icon: '🔄' },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+  <!-- Hero Section - Notion Style -->
+  <section class="relative overflow-hidden bg-white dark:bg-black">
+    <div class="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+      <div class="text-center">
+        <!-- Hero Icons -->
+        <div class="mb-8 flex justify-center sm:mb-12">
+          <img 
+            src="/home/hero-icons.png" 
+            alt="Hero Icons" 
+            class="h-20 w-auto sm:h-24 lg:h-28"
+            style="view-transition-name: hero-icons"
+          />
+        </div>
+
+        <!-- Main Heading -->
+        <h1
+          class="mb-6 text-5xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl"
+          style="view-transition-name: hero-title"
+        >
+          One workspace.<br />
+          <span class="block">Zero busywork.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xl lg:text-2xl">
+          {t('home.hero.subtitle')}
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button href="/projects" variant="primary" size="lg">
+            {t('home.hero.cta_projects')}
+          </Button>
+          <Button href="/contact" variant="outline" size="lg">
+            {t('home.hero.cta_contact')}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="bg-white py-24 dark:bg-black">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t('home.featured_projects')}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Selected highlights from my portfolio
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          featuredProjects.map((project) => (
+            <Card
+              title={project.data.title}
+              description={project.data.description}
+              href={`/projects/${project.slug}`}
+              image={project.data.image ?? ''}
+              tags={project.data.tags}
+            />
+          ))
+        }
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="/projects" variant="secondary">
+          View All Projects
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section class="bg-gray-50 py-24 dark:bg-gray-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t('home.tech_stack')}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Technologies I work with on a daily basis
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        {
+          technologies.map((tech) => (
+            <TechCard name={tech.name} category={tech.category} icon={tech.icon} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts Section -->
+  <section class="bg-white py-24 dark:bg-black">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t('home.latest_posts')}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Thoughts on cloud architecture, AI, and modern development
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          latestPosts.map((post) => (
+            <Card
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.slug}`}
+              image={post.data.image ?? ''}
+              tags={post.data.tags}
+              date={post.data.publishDate}
+            />
+          ))
+        }
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="/blog" variant="secondary">
+          Read All Posts
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-blue-600 py-24 text-white dark:bg-blue-700">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="mb-4 text-3xl font-bold sm:text-4xl">Ready to collaborate?</h2>
+      <p class="mb-8 text-xl opacity-90">
+        Let's discuss how I can help with your cloud infrastructure, AI solutions, or DevOps
+        transformation.
+      </p>
+      <Button href="/contact" variant="secondary">
+        {t('home.hero.cta_contact')}
+      </Button>
+    </div>
+  </section>
+</MainLayout>
+

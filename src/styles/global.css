@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+  
+  --color-primary: #000000;
+  --color-secondary: #ffffff;
+  --color-accent: #3b82f6;
+  --color-muted: #6b7280;
+  
+  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  :root {
+    --color-bg: 255 255 255;
+    --color-text: 0 0 0;
+    --color-border: 229 231 235;
+  }
+
+  .dark {
+    --color-bg: 0 0 0;
+    --color-text: 255 255 255;
+    --color-border: 38 38 38;
+  }
+
+  * {
+    @apply border-[rgb(var(--color-border))];
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    @apply bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))];
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .glow {
+    @apply shadow-[0_0_15px_rgba(59,130,246,0.5)];
+  }
+}

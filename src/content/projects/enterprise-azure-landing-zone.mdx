@@ -1,0 +1,69 @@
+---
+title: 'Enterprise Azure Landing Zone'
+description: 'Complete Azure Landing Zone implementation for a Fortune 500 company with multi-region deployment, hub-spoke networking, and comprehensive governance.'
+category: 'cloud'
+tags: ['Azure', 'Terraform', 'Enterprise', 'Governance', 'Networking']
+image: '/images/projects/azure-landing-zone.jpg'
+featured: true
+order: 1
+githubUrl: 'https://github.com/sgu/azure-landing-zone'
+---
+
+## Project Overview
+
+Designed and implemented a comprehensive Azure Landing Zone for a Fortune 500 financial services company, supporting 500+ applications across 12 business units.
+
+## Key Achievements
+
+- **Multi-Region Architecture**: Deployed across 4 Azure regions with automated failover
+- **Security Compliance**: Achieved SOC 2, PCI-DSS, and GDPR compliance
+- **Cost Optimization**: Reduced cloud spend by 35% through rightsizing and reservation purchases
+- **Automation**: 100% infrastructure as code using Terraform
+
+## Technical Architecture
+
+### Hub-Spoke Network Design
+
+- Centralized firewall and security services in hub VNet
+- Isolated spoke VNets for each business unit
+- Azure ExpressRoute for hybrid connectivity
+- Private endpoints for all PaaS services
+
+### Governance Framework
+
+```hcl
+resource "azurerm_policy_assignment" "deny_public_ip" {
+  name                 = "deny-public-ip"
+  scope                = azurerm_management_group.enterprise.id
+  policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/..."
+  
+  parameters = jsonencode({
+    effect = {
+      value = "Deny"
+    }
+  })
+}
+```
+
+### Security Controls
+
+- Azure AD Conditional Access for all resources
+- Just-in-time VM access
+- Microsoft Defender for Cloud (all workloads)
+- Centralized logging with 1-year retention
+- Automated threat detection and response
+
+## Technologies Used
+
+- Azure (100+ services)
+- Terraform for IaC
+- Azure DevOps for CI/CD
+- PowerShell and Python for automation
+- Azure Monitor and Log Analytics
+
+## Results
+
+- Zero security incidents in 18 months
+- 99.99% SLA achievement across all services
+- 40% reduction in deployment time
+- Successfully migrated 200+ applications to Azure

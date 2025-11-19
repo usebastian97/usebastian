@@ -1,43 +1,39 @@
-# Astro Starter Kit: Minimal
+# Sebastian Georgian Utoiu - Portfolio Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A modern, production-ready portfolio website built with Astro, TypeScript, and Tailwind CSS.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Features
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
+- **Modern Stack**: Astro 5.x, TypeScript (strictest mode), Tailwind CSS 4
+- **Multilingual**: i18n support for 5 languages (en, de, fr, ro, it)
+- **SEO Optimized**: Meta tags, OpenGraph, JSON-LD schema, sitemap
+- **Performance**: Image optimization, prefetching, compression
+- **Blog Engine**: MDX-powered with syntax highlighting
+- **Dark Mode**: Theme switcher with system preference detection
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+| Command | Action |
+|---------|--------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at localhost:3000 |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview build |
+| `npm run lint` | Lint code |
+| `npm run format` | Format code |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📝 Content Management
 
-## 👀 Want to learn more?
+- Blog posts: Create `.mdx` files in `src/content/blog/`
+- Projects: Create `.mdx` files in `src/content/projects/`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📦 Deployment
+
+Configured for Vercel. Can deploy to Netlify, Cloudflare Pages, or any static host.
+
+## 🤝 Contact
+
+- Website: www.sgu.com
+- Email: contact@sgu.com
+- GitHub: @sgu
+- LinkedIn: sebastian-utoiu

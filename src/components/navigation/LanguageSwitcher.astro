@@ -1,0 +1,59 @@
+---
+import { languages, type Language } from '@i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const currentPath = Astro.url.pathname.replace(`/${lang}`, '').replace(/^\//, '') || '/';
+---
+
+<div class="relative">
+  <button
+    id="language-button"
+    class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+    aria-label="Select language"
+  >
+    <span class="uppercase">{lang}</span>
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+      ></path>
+    </svg>
+  </button>
+
+  <div
+    id="language-menu"
+    class="absolute right-0 mt-2 hidden w-48 rounded-lg border border-gray-200 bg-white py-2 shadow-lg dark:border-gray-800 dark:bg-gray-900"
+  >
+    {
+      Object.entries(languages).map(([code, name]) => (
+        <a
+          href={code === 'en' ? `/${currentPath}` : `/${code}/${currentPath}`}
+          class:list={[
+            'block px-4 py-2 text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-800',
+            { 'font-bold text-blue-600': code === lang },
+          ]}
+        >
+          {name}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const languageButton = document.getElementById('language-button');
+  const languageMenu = document.getElementById('language-menu');
+
+  languageButton?.addEventListener('click', () => {
+    languageMenu?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!languageButton?.contains(event.target as Node)) {
+      languageMenu?.classList.add('hidden');
+    }
+  });
+</script>

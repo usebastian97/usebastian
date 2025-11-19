@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.sgu.com/sitemap-index.xml
