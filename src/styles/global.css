@@ -3,9 +3,17 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
+@font-face {
+  font-family: 'FuzzyBubbles';
+  src: url('/fonts/FuzzyBubbles-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', monospace;
+  --font-fuzzy: 'FuzzyBubbles', cursive;
   
   --color-primary: #000000;
   --color-secondary: #ffffff;
@@ -30,6 +38,7 @@
 
   * {
     @apply border-[rgb(var(--color-border))];
+    font-family: var(--font-sans) !important;
   }
 
   html {
@@ -40,6 +49,17 @@
   body {
     @apply bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))];
     @apply transition-colors duration-300;
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  p, span, a, button, label {
+    font-family: var(--font-sans);
   }
 }
 
@@ -50,5 +70,64 @@
 
   .glow {
     @apply shadow-[0_0_15px_rgba(59,130,246,0.5)];
+  }
+
+  .font-fuzzy {
+    font-family: var(--font-fuzzy);
+  }
+
+  /* Black and White Button Styles */
+  .btn-primary {
+    @apply bg-black text-white border border-black transition-all duration-200;
+  }
+
+  .btn-primary:hover {
+    @apply bg-white text-black border-black;
+  }
+
+  .btn-primary:active {
+    @apply bg-gray-800 text-white;
+  }
+
+  .btn-outline {
+    @apply bg-white text-black border-2 border-black transition-all duration-200;
+  }
+
+  .btn-outline:hover {
+    @apply bg-black text-white border-black;
+  }
+
+  .btn-outline:active {
+    @apply bg-gray-800 text-white border-gray-800;
+  }
+
+  /* Dark mode button styles */
+  .dark .btn-primary {
+    @apply bg-white text-black border-white;
+  }
+
+  .dark .btn-primary:hover {
+    @apply bg-black text-white border-white;
+  }
+
+  .dark .btn-outline {
+    @apply bg-black text-white border-white;
+  }
+
+  .dark .btn-outline:hover {
+    @apply bg-white text-black border-white;
+  }
+
+  /* Link hover states */
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-black;
+  }
+
+  .dark a:hover {
+    @apply text-white;
   }
 }

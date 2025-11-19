@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "projects": "项目",
+    "blog": "博客",
+    "contact": "联系"
+  },
+  "home": {
+    "hero": {
+      "title": "你好，我是Sebastian",
+      "subtitle": "云架构师 | 人工智能 | DevOps | Azure专家",
+      "description": "我是一名IT专业人士和开源爱好者，正在转型成为专注于Microsoft Azure、人工智能和云安全的云架构师。",
+      "cta": {
+        "primary": "查看教程",
+        "secondary": "阅读博客"
+      }
+    },
+    "about_preview": "关于我",
+    "featured_projects": "精选项目",
+    "latest_posts": "最新博文",
+    "tech_stack": "技术栈"
+  },
+  "about": {
+    "title": "关于我",
+    "bio": "经验丰富的云架构师，专注于Azure、人工智能解决方案和DevOps实践。热衷于构建可扩展、安全且高效的云基础设施。",
+    "skills": "技能与专长",
+    "download_cv": "下载简历"
+  },
+  "projects": {
+    "title": "项目",
+    "filter_all": "全部",
+    "filter_cloud": "云计算",
+    "filter_ai": "人工智能",
+    "filter_fullstack": "全栈",
+    "filter_tools": "工具"
+  },
+  "blog": {
+    "title": "博客",
+    "read_more": "阅读更多",
+    "reading_time": "分钟阅读",
+    "published": "发布于"
+  },
+  "contact": {
+    "title": "联系我",
+    "name": "姓名",
+    "email": "邮箱",
+    "message": "消息",
+    "send": "发送消息",
+    "success": "消息发送成功！",
+    "error": "发送失败，请重试。"
+  },
+  "footer": {
+    "rights": "版权所有。",
+    "social": "关注我"
+  }
+}

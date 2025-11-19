@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "blog": "Blog",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "hero": {
+      "title": "Hallo, ich bin Sebastian",
+      "subtitle": "Cloud-Architekt | KI | DevOps | Azure-Spezialist",
+      "description": "Ich bin ein IT-Fachmann und Open-Source-Enthusiast, der in eine Karriere als Cloud-Architekt mit Fokus auf Microsoft Azure, KI und Cloud-Sicherheit übergeht.",
+      "cta": {
+        "primary": "Tutorials ansehen",
+        "secondary": "Blog lesen"
+      }
+    },
+    "about_preview": "Über mich",
+    "featured_projects": "Ausgewählte Projekte",
+    "latest_posts": "Neueste Blog-Beiträge",
+    "tech_stack": "Technologie-Stack"
+  },
+  "about": {
+    "title": "Über mich",
+    "bio": "Erfahrener Cloud-Architekt mit Schwerpunkt auf Azure, KI-Lösungen und DevOps-Praktiken. Leidenschaftlich daran interessiert, skalierbare, sichere und effiziente Cloud-Infrastrukturen aufzubauen.",
+    "skills": "Fähigkeiten & Expertise",
+    "download_cv": "Lebenslauf herunterladen"
+  },
+  "projects": {
+    "title": "Projekte",
+    "filter_all": "Alle",
+    "filter_cloud": "Cloud",
+    "filter_ai": "KI",
+    "filter_fullstack": "Full-stack",
+    "filter_tools": "Tools"
+  },
+  "blog": {
+    "title": "Blog",
+    "read_more": "Weiterlesen",
+    "reading_time": "Min. Lesezeit",
+    "published": "Veröffentlicht am"
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "send": "Nachricht senden",
+    "success": "Nachricht erfolgreich gesendet!",
+    "error": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "social": "Verbinden Sie sich mit mir"
+  }
+}

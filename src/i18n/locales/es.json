@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "home": {
+    "hero": {
+      "title": "Hola, soy Sebastian",
+      "subtitle": "Arquitecto Cloud | IA | DevOps | Especialista Azure",
+      "description": "Soy un profesional de TI y entusiasta del código abierto en transición hacia una carrera como Arquitecto Cloud con enfoque en Microsoft Azure, IA y Seguridad en la Nube.",
+      "cta": {
+        "primary": "Ver Tutoriales",
+        "secondary": "Leer Blog"
+      }
+    },
+    "about_preview": "Sobre mí",
+    "featured_projects": "Proyectos Destacados",
+    "latest_posts": "Últimas Publicaciones",
+    "tech_stack": "Stack Tecnológico"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "bio": "Arquitecto Cloud experimentado especializado en Azure, soluciones de IA y prácticas DevOps. Apasionado por construir infraestructuras cloud escalables, seguras y eficientes.",
+    "skills": "Habilidades y Experiencia",
+    "download_cv": "Descargar CV"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "filter_all": "Todos",
+    "filter_cloud": "Cloud",
+    "filter_ai": "IA",
+    "filter_fullstack": "Full-stack",
+    "filter_tools": "Herramientas"
+  },
+  "blog": {
+    "title": "Blog",
+    "read_more": "Leer más",
+    "reading_time": "min de lectura",
+    "published": "Publicado el"
+  },
+  "contact": {
+    "title": "Contactar",
+    "name": "Nombre",
+    "email": "Correo",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "success": "¡Mensaje enviado con éxito!",
+    "error": "Error al enviar. Por favor, inténtalo de nuevo."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "social": "Conecta conmigo"
+  }
+}

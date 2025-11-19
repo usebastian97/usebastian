@@ -1,46 +1,115 @@
 ---
-import Button from '@components/ui/Button.astro';
-import { useTranslations } from '@i18n/utils';
+import { useTranslations, defaultLang } from '@/i18n/utils';
+import type { Language } from '@/i18n/utils';
+import { Icon } from 'astro-icon/components';
+interface Props {
+  lang: Language;
+}
 
-const t = useTranslations('en');
+const { lang } = Astro.props;
+// Fallback to default language if lang is undefined or invalid
+const safeLang = lang || defaultLang;
+const t = useTranslations(safeLang);
+
+// Additional safety check to ensure t function exists
+if (!t) {
+  throw new Error(`Translation function not available for language: ${safeLang}`);
+}
 ---
 
-<section class="relative overflow-hidden bg-white dark:bg-black">
-  <div class="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
-    <div class="text-center">
-      <!-- Hero Icons -->
-      <div class="mb-8 flex justify-center sm:mb-12">
-        <img 
-          src="/home/hero-icons.png" 
-          alt="Hero Icons" 
-          class="h-20 w-auto sm:h-24 lg:h-28"
-          style="view-transition-name: hero-icons"
+<section
+  class="relative overflow-hidden border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+>
+  <!-- Minimalist grid background -->
+  <div
+    class="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.03] dark:opacity-[0.05]"
+  >
+    <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="hero-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path
+            d="M 32 0 L 0 0 0 32"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.5"
+            class="text-gray-900 dark:text-gray-100"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hero-grid)"></rect>
+    </svg>
+  </div>
+
+  <div class="container relative mx-auto px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+    <!-- Single column centered layout -->
+    <div class="mx-auto max-w-4xl text-center">
+      <!-- Hero Image -->
+      <div class="fade-in mb-8">
+        <img
+          src="/home/hero-icons.png"
+          alt="Cloud Computing Icons"
+          class="mx-auto h-auto w-full max-w-xl"
+          loading="eager"
         />
       </div>
 
-      <!-- Main Heading -->
+      <!-- Main headline -->
       <h1
-        class="mb-6 text-5xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl"
-        style="view-transition-name: hero-title"
+        class="slide-in-up mb-4 text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl lg:text-6xl"
       >
-        One workspace.<br />
-        <span class="block">Zero busywork.</span>
+        {t('home.hero.title')}
       </h1>
 
       <!-- Subtitle -->
-      <p class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xl lg:text-2xl">
+      <p class="font-fuzzy slide-in-up mb-4 text-xl font-normal text-gray-600 dark:text-gray-400 sm:text-2xl">
         {t('home.hero.subtitle')}
       </p>
 
+      <!-- Description -->
+      <p
+        class="slide-in-up mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-500 dark:text-gray-400"
+      >
+        {t('home.hero.description')}
+      </p>
+
       <!-- CTA Buttons -->
-      <div class="flex flex-wrap justify-center gap-4">
-        <Button href="/projects" variant="primary" size="lg">
-          {t('home.hero.cta_projects')}
-        </Button>
-        <Button href="/contact" variant="outline" size="lg">
-          {t('home.hero.cta_contact')}
-        </Button>
+      <div class="slide-in-up mb-10 flex flex-row items-center justify-center gap-3">
+        <a href="/tutorials" class="btn-primary group inline-flex items-center space-x-1 px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base">
+          <span>{t('home.hero.cta.primary')}</span>
+          <Icon
+            name="lucide:arrow-right"
+            class="h-3 w-3 stroke-[1.5] transition-transform duration-200 group-hover:translate-x-1 sm:h-4 sm:w-4"
+          />
+        </a>
+
+        <a href="/blog" class="btn-outline inline-flex items-center space-x-1 px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base">
+          <span>{t('home.hero.cta.secondary')}</span>
+        </a>
       </div>
+
+      <!-- Trusted Companies Scroller -->
+      <!-- <div class="slide-in-up">
+        <TrustedCompaniesScroller />
+      </div> -->
     </div>
   </div>
 </section>
+
+<script>
+  // Prevent unwanted clicks on the hero section
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroSection = document.querySelector('section');
+    if (heroSection) {
+      heroSection.addEventListener('click', (e) => {
+        // Only allow clicks on links and buttons
+        const target = e.target as HTMLElement;
+        const isClickableElement = target.closest('a') || target.closest('button');
+        
+        if (!isClickableElement) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        }
+      });
+    }
+  });
+</script>

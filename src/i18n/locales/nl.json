@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Over mij",
+    "projects": "Projecten",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Hallo, ik ben Sebastian",
+      "subtitle": "Cloud Architect | AI | DevOps | Azure Specialist",
+      "description": "Ik ben een IT-professional en open-source enthusiast die overschakelt naar een carrière als Cloud Architect met focus op Microsoft Azure, AI en Cloud Security.",
+      "cta": {
+        "primary": "Bekijk Tutorials",
+        "secondary": "Lees Blog"
+      }
+    },
+    "about_preview": "Over mij",
+    "featured_projects": "Uitgelichte Projecten",
+    "latest_posts": "Laatste Blogposts",
+    "tech_stack": "Technology Stack"
+  },
+  "about": {
+    "title": "Over mij",
+    "bio": "Ervaren Cloud Architect gespecialiseerd in Azure, AI-oplossingen en DevOps-praktijken. Gepassioneerd over het bouwen van schaalbare, veilige en efficiënte cloud-infrastructuur.",
+    "skills": "Vaardigheden & Expertise",
+    "download_cv": "Download CV"
+  },
+  "projects": {
+    "title": "Projecten",
+    "filter_all": "Alle",
+    "filter_cloud": "Cloud",
+    "filter_ai": "AI",
+    "filter_fullstack": "Full-stack",
+    "filter_tools": "Tools"
+  },
+  "blog": {
+    "title": "Blog",
+    "read_more": "Lees meer",
+    "reading_time": "min leestijd",
+    "published": "Gepubliceerd op"
+  },
+  "contact": {
+    "title": "Neem Contact Op",
+    "name": "Naam",
+    "email": "E-mail",
+    "message": "Bericht",
+    "send": "Verstuur Bericht",
+    "success": "Bericht succesvol verzonden!",
+    "error": "Verzenden mislukt. Probeer het opnieuw."
+  },
+  "footer": {
+    "rights": "Alle rechten voorbehouden.",
+    "social": "Verbind met mij"
+  }
+}

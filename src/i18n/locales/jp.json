@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "私について",
+    "projects": "プロジェクト",
+    "blog": "ブログ",
+    "contact": "お問い合わせ"
+  },
+  "home": {
+    "hero": {
+      "title": "こんにちは、Sebastianです",
+      "subtitle": "クラウドアーキテクト | AI | DevOps | Azure スペシャリスト",
+      "description": "IT専門家でありオープンソース愛好家として、Microsoft Azure、AI、クラウドセキュリティに焦点を当てたクラウドアーキテクトへのキャリアに転身しています。",
+      "cta": {
+        "primary": "チュートリアルを見る",
+        "secondary": "ブログを読む"
+      }
+    },
+    "about_preview": "私について",
+    "featured_projects": "注目プロジェクト",
+    "latest_posts": "最新記事",
+    "tech_stack": "テクノロジースタック"
+  },
+  "about": {
+    "title": "私について",
+    "bio": "Azure、AIソリューション、DevOpsプラクティスを専門とする経験豊富なクラウドアーキテクト。スケーラブルで安全かつ効率的なクラウドインフラストラクチャの構築に情熱を注いでいます。",
+    "skills": "スキルと専門知識",
+    "download_cv": "履歴書をダウンロード"
+  },
+  "projects": {
+    "title": "プロジェクト",
+    "filter_all": "すべて",
+    "filter_cloud": "クラウド",
+    "filter_ai": "AI",
+    "filter_fullstack": "フルスタック",
+    "filter_tools": "ツール"
+  },
+  "blog": {
+    "title": "ブログ",
+    "read_more": "続きを読む",
+    "reading_time": "分で読める",
+    "published": "公開日"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "name": "名前",
+    "email": "メールアドレス",
+    "message": "メッセージ",
+    "send": "送信",
+    "success": "メッセージが正常に送信されました！",
+    "error": "送信に失敗しました。もう一度お試しください。"
+  },
+  "footer": {
+    "rights": "全著作権所有。",
+    "social": "つながる"
+  }
+}
