@@ -1,0 +1,321 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// Technology tabs data
+const techTabs = [
+  {
+    id: 'cloud',
+    name: 'Cloud & Infrastructure',
+    technologies: [
+      { name: 'Azure', icon: 'simple-icons:microsoftazure', level: 'Advanced' },
+      { name: 'AWS', icon: 'simple-icons:amazonaws', level: 'Intermediate' },
+      { name: 'Google Cloud', icon: 'simple-icons:googlecloud', level: 'Intermediate' },
+      { name: 'Terraform', icon: 'simple-icons:terraform', level: 'Advanced' },
+      { name: 'Pulumi', icon: 'simple-icons:pulumi', level: 'Intermediate' },
+      { name: 'ARM Templates', icon: 'lucide:file-code', level: 'Advanced' },
+    ]
+  },
+  {
+    id: 'containers',
+    name: 'Containers & Orchestration',
+    technologies: [
+      { name: 'Kubernetes', icon: 'simple-icons:kubernetes', level: 'Advanced' },
+      { name: 'Docker', icon: 'simple-icons:docker', level: 'Advanced' },
+      { name: 'Helm', icon: 'simple-icons:helm', level: 'Advanced' },
+      { name: 'AKS', icon: 'simple-icons:microsoftazure', level: 'Advanced' },
+      { name: 'EKS', icon: 'simple-icons:amazonaws', level: 'Intermediate' },
+      { name: 'GKE', icon: 'simple-icons:googlecloud', level: 'Intermediate' },
+    ]
+  },
+  {
+    id: 'devops',
+    name: 'DevOps & CI/CD',
+    technologies: [
+      { name: 'Azure DevOps', icon: 'simple-icons:azuredevops', level: 'Advanced' },
+      { name: 'GitHub Actions', icon: 'simple-icons:githubactions', level: 'Advanced' },
+      { name: 'GitLab CI', icon: 'simple-icons:gitlab', level: 'Intermediate' },
+      { name: 'Jenkins', icon: 'simple-icons:jenkins', level: 'Intermediate' },
+      { name: 'ArgoCD', icon: 'simple-icons:argo', level: 'Advanced' },
+      { name: 'Ansible', icon: 'simple-icons:ansible', level: 'Intermediate' },
+    ]
+  },
+  {
+    id: 'programming',
+    name: 'Programming',
+    technologies: [
+      { name: 'Python', icon: 'simple-icons:python', level: 'Advanced' },
+      { name: 'TypeScript', icon: 'simple-icons:typescript', level: 'Advanced' },
+      { name: 'JavaScript', icon: 'simple-icons:javascript', level: 'Advanced' },
+      { name: 'Go', icon: 'simple-icons:go', level: 'Intermediate' },
+      { name: 'Bash', icon: 'simple-icons:gnubash', level: 'Advanced' },
+      { name: 'PowerShell', icon: 'simple-icons:powershell', level: 'Advanced' },
+    ]
+  },
+  {
+    id: 'monitoring',
+    name: 'Monitoring & Observability',
+    technologies: [
+      { name: 'Prometheus', icon: 'simple-icons:prometheus', level: 'Advanced' },
+      { name: 'Grafana', icon: 'simple-icons:grafana', level: 'Advanced' },
+      { name: 'Azure Monitor', icon: 'simple-icons:microsoftazure', level: 'Advanced' },
+      { name: 'Datadog', icon: 'simple-icons:datadog', level: 'Intermediate' },
+      { name: 'ELK Stack', icon: 'simple-icons:elastic', level: 'Intermediate' },
+      { name: 'Splunk', icon: 'simple-icons:splunk', level: 'Basic' },
+    ]
+  },
+];
+---
+
+<section class="border-b border-gray-200 bg-notion-bg py-16 sm:py-20 lg:py-24">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-12 text-center">
+      <h2 class="mb-3 text-3xl font-semibold tracking-tight text-notion-text-primary sm:text-4xl">
+        Technology Stack
+      </h2>
+      <p class="text-notion-text-secondary">
+        Tools and technologies I use to build scalable cloud solutions
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mx-auto max-w-7xl">
+      <!-- Tab Navigation -->
+      <div class="mb-8 flex flex-wrap justify-center gap-2 border-b border-gray-200 pb-4">
+        {techTabs.map((tab, index) => (
+          <button
+            class="tech-tab rounded-lg px-4 py-2 text-sm font-medium transition-all sm:px-6 sm:text-base"
+            data-tab={tab.id}
+            data-active={index === 0 ? 'true' : 'false'}
+          >
+            {tab.name}
+          </button>
+        ))}
+      </div>
+
+      <!-- Tab Content -->
+      {techTabs.map((tab, index) => (
+        <div
+          class="tab-content"
+          data-tab-content={tab.id}
+          style={index === 0 ? '' : 'display: none;'}
+        >
+          <div class="grid grid-cols-3 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6">
+            {tab.technologies.map((tech) => (
+              <div class="tech-card group flex flex-col items-center justify-center gap-2 p-4 sm:p-5">
+                <div class="flex h-12 w-12 items-center justify-center sm:h-14 sm:w-14">
+                  <Icon name={tech.icon} class="h-10 w-10 sm:h-12 sm:w-12" />
+                </div>
+                <h3 class="text-center text-xs font-medium tracking-tight text-gray-900 sm:text-sm">
+                  {tech.name}
+                </h3>
+                <span class={`skill-level skill-level-${tech.level.toLowerCase()}`}>
+                  {tech.level}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initTabs() {
+    const tabButtons = document.querySelectorAll('.tech-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach((button) => {
+      // Set initial active state
+      const isActive = button.getAttribute('data-active') === 'true';
+      if (isActive) {
+        button.classList.add('bg-black', 'text-white');
+        button.classList.remove('bg-gray-100', 'text-gray-700');
+      } else {
+        button.classList.add('bg-gray-100', 'text-gray-700');
+        button.classList.remove('bg-black', 'text-white');
+      }
+
+      button.addEventListener('click', () => {
+        const targetTab = button.getAttribute('data-tab');
+
+        // Update button states
+        tabButtons.forEach((btn) => {
+          btn.classList.remove('bg-black', 'text-white');
+          btn.classList.add('bg-gray-100', 'text-gray-700');
+          btn.setAttribute('data-active', 'false');
+        });
+
+        button.classList.remove('bg-gray-100', 'text-gray-700');
+        button.classList.add('bg-black', 'text-white');
+        button.setAttribute('data-active', 'true');
+
+        // Update content visibility
+        tabContents.forEach((content) => {
+          const contentTab = content.getAttribute('data-tab-content');
+          if (contentTab === targetTab) {
+            (content as HTMLElement).style.display = 'block';
+          } else {
+            (content as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // Initialize on page load
+  initTabs();
+
+  // Reinitialize after view transitions
+  document.addEventListener('astro:page-load', initTabs);
+</script>
+
+<style>
+  /* Notion-specific color palette */
+  :root {
+    --notion-bg: #fafafa;
+    --notion-card-bg: #ffffff;
+    --notion-border: #ededed;
+    --notion-text-primary: #1a1a1a;
+    --notion-text-secondary: #555555;
+  }
+
+  .bg-notion-bg {
+    background-color: var(--notion-bg);
+  }
+
+  .text-notion-text-primary {
+    color: var(--notion-text-primary);
+  }
+
+  .text-notion-text-secondary {
+    color: var(--notion-text-secondary);
+  }
+
+  /* Tech card - compact style like image */
+  .tech-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    aspect-ratio: 1;
+    min-height: 100px;
+  }
+
+  .tech-card:hover {
+    border-color: #1b1c1c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Skill level badges */
+  .skill-level {
+    font-size: 0.625rem; /* 10px */
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  .skill-level-basic {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+
+  .skill-level-intermediate {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+
+  .skill-level-advanced {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+
+  @media (min-width: 640px) {
+    .skill-level {
+      font-size: 0.6875rem; /* 11px */
+      padding: 3px 10px;
+    }
+  }
+
+  /* Notion-style card */
+  .notion-card {
+    background-color: var(--notion-card-bg);
+    border: 1px solid var(--notion-border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    min-height: 140px;
+  }
+
+  .notion-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    border-color: #222222;
+  }
+
+  /* Tab styles */
+  .tech-tab {
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .tech-tab:hover {
+    border-color: #222222;
+  }
+
+  .tab-content {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Notion-style quote text */
+  .notion-quote {
+    color: var(--notion-text-secondary);
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  @media (min-width: 640px) {
+    .notion-card {
+      padding: 28px;
+      border-radius: 14px;
+    }
+
+    .tech-card {
+      min-height: 120px;
+    }
+
+    .notion-quote {
+      font-size: 1rem; /* 16px */
+      line-height: 1.65;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .notion-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    .tech-card {
+      min-height: 130px;
+    }
+  }
+</style>

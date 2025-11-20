@@ -73,7 +73,7 @@ if (!t) {
 
       <!-- CTA Buttons -->
       <div class="slide-in-up mb-10 flex flex-row items-center justify-center gap-3">
-        <a href="/projects" class="btn-primary group inline-flex items-center space-x-1 rounded-full px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base">
+        <a href="/projects" class="btn-primary group inline-flex items-center space-x-1 rounded-xl px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base">
           <span>{t('home.hero.cta.primary')}</span>
           <Icon
             name="lucide:arrow-right"
@@ -81,8 +81,57 @@ if (!t) {
           />
         </a>
 
-        <a href="#" download class="btn-outline inline-flex items-center space-x-1 rounded-full px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base">
+        <a href="#" download class="btn-outline inline-flex items-center space-x-1 rounded-xl px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base">
           <span>{t('home.hero.cta.secondary')}</span>
+        </a>
+      </div>
+
+      <!-- Social Media Icons -->
+      <div class="slide-in-up mb-10 flex items-center justify-center gap-4">
+        <a
+          href="https://linkedin.com/in/usebastian12"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon-link"
+          aria-label="LinkedIn"
+        >
+          <Icon name="simple-icons:linkedin" class="h-5 w-5 sm:h-6 sm:w-6" />
+        </a>
+        <a
+          href="https://github.com/usebastian97"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon-link"
+          aria-label="GitHub"
+        >
+          <Icon name="simple-icons:github" class="h-5 w-5 sm:h-6 sm:w-6" />
+        </a>
+        <a
+          href="https://substack.com/@yourprofile"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon-link"
+          aria-label="Substack"
+        >
+          <Icon name="simple-icons:substack" class="h-5 w-5 sm:h-6 sm:w-6" />
+        </a>
+        <a
+          href="https://x.com/sutoiu12"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon-link"
+          aria-label="X (Twitter)"
+        >
+          <Icon name="simple-icons:x" class="h-5 w-5 sm:h-6 sm:w-6" />
+        </a>
+        <a
+          href="https://instagram.com/usebastian12"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon-link"
+          aria-label="Instagram"
+        >
+          <Icon name="simple-icons:instagram" class="h-5 w-5 sm:h-6 sm:w-6" />
         </a>
       </div>
 
@@ -113,3 +162,29 @@ if (!t) {
     }
   });
 </script>
+
+<style>
+  .social-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    color: #6b7280;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .social-icon-link:hover {
+    color: #111827;
+    background-color: #f3f4f6;
+    border-color: #e5e7eb;
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 640px) {
+    .social-icon-link {
+      padding: 0.625rem;
+    }
+  }
+</style>
