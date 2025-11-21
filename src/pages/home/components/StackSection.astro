@@ -3,78 +3,86 @@ import { Icon } from 'astro-icon/components';
 
 // Technology tabs data
 const techTabs = [
+    {
+    id: 'programming',
+    name: 'Programming',
+    technologies: [
+      { name: 'Python', icon: 'simple-icons:python', level: 'Basic' },
+      {name: 'Next.js', icon: 'simple-icons:nextdotjs', level: 'Intermediate' },
+      { name: 'TypeScript', icon: 'simple-icons:typescript', level: 'Intermediate' },
+      { name: 'JavaScript', icon: 'simple-icons:javascript', level: 'Intermediate' },
+      { name: 'Kotlin', icon: 'simple-icons:kotlin', level: 'Intermediate' },
+      { name: 'Bash', icon: 'simple-icons:gnubash', level: 'Basic' },
+    ]
+  },
   {
     id: 'cloud',
     name: 'Cloud & Infrastructure',
     technologies: [
-      { name: 'Azure', icon: 'simple-icons:microsoftazure', level: 'Advanced' },
-      { name: 'AWS', icon: 'simple-icons:amazonaws', level: 'Intermediate' },
-      { name: 'Google Cloud', icon: 'simple-icons:googlecloud', level: 'Intermediate' },
-      { name: 'Terraform', icon: 'simple-icons:terraform', level: 'Advanced' },
-      { name: 'Pulumi', icon: 'simple-icons:pulumi', level: 'Intermediate' },
-      { name: 'ARM Templates', icon: 'lucide:file-code', level: 'Advanced' },
+      { name: 'Azure', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      {name: 'Azure Storage Services', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Networking Services', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Compute Services', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Management', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Governance', icon: 'simple-icons:microsoftazure', level: 'Basic' },
     ]
   },
   {
     id: 'containers',
     name: 'Containers & Orchestration',
     technologies: [
-      { name: 'Kubernetes', icon: 'simple-icons:kubernetes', level: 'Advanced' },
-      { name: 'Docker', icon: 'simple-icons:docker', level: 'Advanced' },
-      { name: 'Helm', icon: 'simple-icons:helm', level: 'Advanced' },
-      { name: 'AKS', icon: 'simple-icons:microsoftazure', level: 'Advanced' },
-      { name: 'EKS', icon: 'simple-icons:amazonaws', level: 'Intermediate' },
-      { name: 'GKE', icon: 'simple-icons:googlecloud', level: 'Intermediate' },
-    ]
+      { name: 'Azure Kubernetes Services', icon: '/stacks/kubernetes-services.svg', level: 'Basic', },
+      { name: 'Docker', icon: 'simple-icons:docker', level: 'Basic' },
+      { name: 'Azure Container Apps', icon: '/stacks/container-apps.svg', level: 'Basic' },
+      { name: 'Azure Batch', icon: 'simple-icons:microsoftazure', level: 'Basic' }, 
+      { name: 'Azure Container Instances (ACI)', icon: '/stacks/container-instances.svg', level: 'Basic'} ,
+      { name: 'Azure Container Registry', icon: '/stacks/container-registry.svg', level: 'Basic' } ]
   },
   {
     id: 'devops',
     name: 'DevOps & CI/CD',
     technologies: [
-      { name: 'Azure DevOps', icon: 'simple-icons:azuredevops', level: 'Advanced' },
-      { name: 'GitHub Actions', icon: 'simple-icons:githubactions', level: 'Advanced' },
-      { name: 'GitLab CI', icon: 'simple-icons:gitlab', level: 'Intermediate' },
-      { name: 'Jenkins', icon: 'simple-icons:jenkins', level: 'Intermediate' },
-      { name: 'ArgoCD', icon: 'simple-icons:argo', level: 'Advanced' },
-      { name: 'Ansible', icon: 'simple-icons:ansible', level: 'Intermediate' },
+      { name: 'GitHub Actions', icon: 'simple-icons:githubactions', level: 'Basic' },
+      { name: 'GitLab CI', icon: 'simple-icons:gitlab', level: 'Basic' },
     ]
   },
   {
-    id: 'programming',
-    name: 'Programming',
+    id: 'databases',
+    name: 'Databases & Storage',
     technologies: [
-      { name: 'Python', icon: 'simple-icons:python', level: 'Advanced' },
-      { name: 'TypeScript', icon: 'simple-icons:typescript', level: 'Advanced' },
-      { name: 'JavaScript', icon: 'simple-icons:javascript', level: 'Advanced' },
-      { name: 'Go', icon: 'simple-icons:go', level: 'Intermediate' },
-      { name: 'Bash', icon: 'simple-icons:gnubash', level: 'Advanced' },
-      { name: 'PowerShell', icon: 'simple-icons:powershell', level: 'Advanced' },
+      { name: 'Azure SQL Database', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Cosmos DB', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Blob Storage', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Azure Table Storage', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Supabase', icon: 'simple-icons:supabase', level: 'Intermediate' },
+      { name: 'Toad Oracle', icon: 'simple-icons:oracle', level: 'Intermediate' },
     ]
   },
   {
-    id: 'monitoring',
-    name: 'Monitoring & Observability',
+    id: 'ide',
+    name: 'IDE & Code Editors',
     technologies: [
-      { name: 'Prometheus', icon: 'simple-icons:prometheus', level: 'Advanced' },
-      { name: 'Grafana', icon: 'simple-icons:grafana', level: 'Advanced' },
-      { name: 'Azure Monitor', icon: 'simple-icons:microsoftazure', level: 'Advanced' },
-      { name: 'Datadog', icon: 'simple-icons:datadog', level: 'Intermediate' },
-      { name: 'ELK Stack', icon: 'simple-icons:elastic', level: 'Intermediate' },
-      { name: 'Splunk', icon: 'simple-icons:splunk', level: 'Basic' },
+      { name: 'IntelliJ IDEA', icon: 'simple-icons:intellijidea', level: 'Advanced' },
+      { name: 'PyCharm', icon: 'simple-icons:pycharm', level: 'Intermediate' },
+      { name: 'Visual Studio Code', icon: 'simple-icons:visualstudiocode', level: 'Advanced' },
+      { name: 'Android Studio', icon: 'simple-icons:androidstudio', level: 'Advanced' },
+      { name: 'Atom', icon: 'simple-icons:atom', level: 'Intermediate' },
+      { name: 'Cursor IDE', icon: 'simple-icons:cursor', level: 'Basic' },
     ]
   },
 ];
 ---
 
-<section class="border-b border-gray-200 bg-notion-bg py-16 sm:py-20 lg:py-24">
+<section class="relative overflow-hidden border-b border-gray-200 bg-white py-10 sm:py-10 lg:py-10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="mb-12 text-center">
+      <img src="/stacks/stack-face.png" alt="Stack" class="mx-auto mb-6 h-auto w-24 sm:w-24" loading="lazy" />
       <h2 class="mb-3 text-3xl font-semibold tracking-tight text-notion-text-primary sm:text-4xl">
         Technology Stack
       </h2>
-      <p class="text-notion-text-secondary">
-        Tools and technologies I use to build scalable cloud solutions
+      <p class="text-notion-text-secondary max-w-2xl mx-auto">
+        I work with a focused set of tools and technologies that allow me to deliver modern, resilient and scalable solutions.
       </p>
     </div>
 
@@ -104,7 +112,11 @@ const techTabs = [
             {tab.technologies.map((tech) => (
               <div class="tech-card group flex flex-col items-center justify-center gap-2 p-4 sm:p-5">
                 <div class="flex h-12 w-12 items-center justify-center sm:h-14 sm:w-14">
-                  <Icon name={tech.icon} class="h-10 w-10 sm:h-12 sm:w-12" />
+                  {tech.icon.startsWith('/') || tech.icon.startsWith('./') ? (
+                    <img src={tech.icon} alt={tech.name} class="h-10 w-10 sm:h-12 sm:w-12" />
+                  ) : (
+                    <Icon name={tech.icon} class="h-10 w-10 sm:h-12 sm:w-12" />
+                  )}
                 </div>
                 <h3 class="text-center text-xs font-medium tracking-tight text-gray-900 sm:text-sm">
                   {tech.name}

@@ -7,17 +7,6 @@
     "contact": "Contacto"
   },
   "home": {
-    "testimonials": {
-      "title": "Confiado por líderes de la industria",
-      "subtitle": "Vea lo que las empresas líderes dicen sobre trabajar con profesionales en la nube",
-      "stats": {
-        "users": "Más de 100M de usuarios en todo el mundo",
-        "knowledge_base": "Base de conocimientos #1 durante 3 años",
-        "ai_search": "Búsqueda empresarial de IA #1",
-        "ai_writing": "Escritura de IA mejor calificada",
-        "fortune_100": "El 62% de Fortune 100 usa Notion"
-      }
-    },
     "hero": {
       "title": "Hola, soy Sebastian",
       "subtitle": "Azure | IA | Seguridad | IaC",
@@ -30,9 +19,31 @@
     "about_preview": "Sobre mí",
     "featured_projects": "Proyectos Destacados",
     "latest_posts": "Últimas Publicaciones",
-    "tech_stack": "Stack Tecnológico"
-  },
-  "about": {
+    "tech_stack": "Stack Tecnológico",
+    "usecases": {
+      "title": "Aplicaciones Reales",
+      "description": "Vea cómo entrego soluciones en la nube que resuelven desafíos comerciales complejos",
+      "problem": "Desafío",
+      "solution": "Solución",
+      "result": "Resultado",
+      "viewProjects": "Ver todos los proyectos",
+      "enterprise-scale": {
+        "problem": "Las organizaciones luchan por gestionar entornos multinube mientras mantienen la seguridad, el cumplimiento y la eficiencia de costos a escala.",
+        "solution": "Diseñe e implemente zonas de aterrizaje de Azure de nivel empresarial con gobernanza adecuada, RBAC e infraestructura como código.",
+        "result": "Infraestructura en la nube segura, escalable y conforme que permite la transformación digital en toda la organización."
+      },
+      "ai-ops": {
+        "problem": "El análisis manual de registros y la supervisión consumen recursos significativos mientras se pierden problemas críticos en sistemas distribuidos complejos.",
+        "solution": "Implemente automatización DevOps impulsada por IA aprovechando los servicios de IA de Azure para análisis de registros, detección de anomalías y reparación automatizada.",
+        "result": "Reducción de gastos operativos, respuesta más rápida a incidentes y gestión proactiva de la salud del sistema."
+      },
+      "cloud-native": {
+        "problem": "Los equipos necesitan canalizaciones CI/CD modernas que se escalen en microservicios, contenedores y entornos de Kubernetes.",
+        "solution": "Construya plataformas CI/CD nativas de la nube utilizando containerización, orquestación de Kubernetes y estrategias de implementación automatizadas.",
+        "result": "Ciclos de liberación más rápidos, confiabilidad mejorada y escalabilidad perfecta para aplicaciones containerizadas."
+      }
+    },
+    "testimonials": {
     "title": "Sobre mí",
     "bio": "Arquitecto Cloud experimentado especializado en Azure, soluciones de IA y prácticas DevOps. Apasionado por construir infraestructuras cloud escalables, seguras y eficientes.",
     "skills": "Habilidades y Experiencia",
@@ -65,4 +76,5 @@
     "rights": "Todos los derechos reservados.",
     "social": "Conecta conmigo"
   }
+}
 }

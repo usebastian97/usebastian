@@ -7,17 +7,6 @@
     "contact": "Contact"
   },
   "home": {
-    "testimonials": {
-      "title": "Vertrouwd door brancheleiders",
-      "subtitle": "Zie wat toonaangevende bedrijven zeggen over samenwerking met cloud-professionals",
-      "stats": {
-        "users": "Meer dan 100M gebruikers wereldwijd",
-        "knowledge_base": "#1 kennisbank 3 jaar op rij",
-        "ai_search": "#1 AI bedrijfszoeken",
-        "ai_writing": "#1 beoordeeld AI-schrijven",
-        "fortune_100": "62% van Fortune 100 gebruikt Notion"
-      }
-    },
     "hero": {
       "title": "Hallo, ik ben Sebastian",
       "subtitle": "Azure | AI | Beveiliging | IaC",
@@ -30,9 +19,31 @@
     "about_preview": "Over mij",
     "featured_projects": "Uitgelichte Projecten",
     "latest_posts": "Laatste Blogposts",
-    "tech_stack": "Technology Stack"
-  },
-  "about": {
+    "tech_stack": "Technology Stack",
+    "usecases": {
+      "title": "Praktische Toepassingen",
+      "description": "Bekijk hoe ik cloudoplossingen lever die complexe zakelijke uitdagingen oplossen",
+      "problem": "Uitdaging",
+      "solution": "Oplossing",
+      "result": "Resultaat",
+      "viewProjects": "Bekijk alle projecten",
+      "enterprise-scale": {
+        "problem": "Organisaties worstelen met het beheren van multi-cloud-omgevingen terwijl ze beveiliging, compliance en kostenefficiëntie op schaal handhaven.",
+        "solution": "Ontwerp en implementeer Azure-landingszones van ondernemingskwaliteit met goede governance, RBAC en infrastructure-as-code.",
+        "result": "Veilige, schaalbare en compliant cloud-infrastructuur die digitale transformatie in de hele organisatie mogelijk maakt."
+      },
+      "ai-ops": {
+        "problem": "Handmatige loganalyse en monitoring verbruiken aanzienlijke resources en missen kritieke problemen in complexe gedistribueerde systemen.",
+        "solution": "Implementeer AI-gestuurde DevOps-automatisering met Azure AI Services voor loganalyse, anomaliedetectie en geautomatiseerde herstel.",
+        "result": "Verminderde operationele overhead, snellere incidentrespons en proactief systeemhealthbeheer."
+      },
+      "cloud-native": {
+        "problem": "Teams hebben moderne CI/CD-pipelines nodig die schalen over microservices, containers en Kubernetes-omgevingen.",
+        "solution": "Bouw cloud-native CI/CD-platforms met containerisatie, Kubernetes-orchestratie en geautomatiseerde implementatiestrategieën.",
+        "result": "Snellere release-cycli, verbeterde betrouwbaarheid en naadloze schaalbaarheid voor containerized-toepassingen."
+      }
+    },
+    "testimonials": {
     "title": "Over mij",
     "bio": "Ervaren Cloud Architect gespecialiseerd in Azure, AI-oplossingen en DevOps-praktijken. Gepassioneerd over het bouwen van schaalbare, veilige en efficiënte cloud-infrastructuur.",
     "skills": "Vaardigheden & Expertise",
@@ -65,4 +76,5 @@
     "rights": "Alle rechten voorbehouden.",
     "social": "Verbind met mij"
   }
+ }
 }

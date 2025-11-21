@@ -20,15 +20,27 @@
     "featured_projects": "Featured Projects",
     "latest_posts": "Latest Blog Posts",
     "tech_stack": "Technology Stack",
-    "testimonials": {
-      "title": "Trusted by Industry Leaders",
-      "subtitle": "See what leading companies say about working with cloud professionals",
-      "stats": {
-        "users": "Over 100M users worldwide",
-        "knowledge_base": "#1 knowledge base 3 years running",
-        "ai_search": "#1 AI enterprise search",
-        "ai_writing": "#1 rated AI writing",
-        "fortune_100": "62% of Fortune 100 use Notion"
+    "usecases": {
+      "title": "Real-World Applications",
+      "description": "See how I deliver cloud solutions that solve complex business challenges",
+      "problem": "Challenge",
+      "solution": "Solution",
+      "result": "Outcome",
+      "viewProjects": "View All Projects",
+      "enterprise-scale": {
+        "problem": "Organizations struggle to manage multi-cloud environments while maintaining security, compliance, and cost efficiency at scale.",
+        "solution": "Design and deploy enterprise-grade Azure landing zones with proper governance, RBAC, and infrastructure-as-code for standardized deployments.",
+        "result": "Secure, scalable, and compliant cloud infrastructure enabling digital transformation across the organization."
+      },
+      "ai-ops": {
+        "problem": "Manual log analysis and monitoring consume significant resources while missing critical issues in complex distributed systems.",
+        "solution": "Implement AI-powered DevOps automation leveraging Azure AI Services to analyze logs, detect anomalies, and automate remediation workflows.",
+        "result": "Reduced operational overhead, faster incident response, and proactive system health management."
+      },
+      "cloud-native": {
+        "problem": "Teams need modern CI/CD pipelines that scale across microservices, containers, and Kubernetes environments without managing infrastructure.",
+        "solution": "Build cloud-native CI/CD platforms using containerization, Kubernetes orchestration, and automated deployment strategies.",
+        "result": "Faster release cycles, improved reliability, and seamless scalability for containerized applications."
       }
     }
   },

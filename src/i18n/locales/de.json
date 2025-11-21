@@ -7,17 +7,6 @@
     "contact": "Kontakt"
   },
   "home": {
-    "testimonials": {
-      "title": "Vertraut von Branchenführern",
-      "subtitle": "Sehen Sie, was führende Unternehmen über die Zusammenarbeit mit Cloud-Experten sagen",
-      "stats": {
-        "users": "Über 100 Millionen Nutzer weltweit",
-        "knowledge_base": "Nr. 1 Wissensdatenbank seit 3 Jahren",
-        "ai_search": "Nr. 1 KI-Unternehmenssuche",
-        "ai_writing": "Nr. 1 bewertetes KI-Schreiben",
-        "fortune_100": "62% der Fortune 100 nutzen Notion"
-      }
-    },
     "hero": {
       "title": "Hallo, ich bin Sebastian",
       "subtitle": "Azure | KI | Sicherheit | IaC",
@@ -30,9 +19,31 @@
     "about_preview": "Über mich",
     "featured_projects": "Ausgewählte Projekte",
     "latest_posts": "Neueste Blog-Beiträge",
-    "tech_stack": "Technologie-Stack"
-  },
-  "about": {
+    "tech_stack": "Technologie-Stack",
+    "usecases": {
+      "title": "Echte Anwendungsfälle",
+      "description": "Sehen Sie, wie ich Cloud-Lösungen bereitstelle, die komplexe geschäftliche Herausforderungen lösen",
+      "problem": "Herausforderung",
+      "solution": "Lösung",
+      "result": "Ergebnis",
+      "viewProjects": "Alle Projekte anzeigen",
+      "enterprise-scale": {
+        "problem": "Organisationen kämpfen damit, Multi-Cloud-Umgebungen zu verwalten und gleichzeitig Sicherheit, Compliance und Kosteneffizienz zu wahren.",
+        "solution": "Entwerfen und bereitellen Sie Azure-Landing-Zones in Enterprise-Qualität mit ordnungsgemäßer Governance, RBAC und Infrastructure-as-Code.",
+        "result": "Sichere, skalierbare und konforme Cloud-Infrastruktur, die digitale Transformation in der gesamten Organisation ermöglicht."
+      },
+      "ai-ops": {
+        "problem": "Die manuelle Loganalyse und Überwachung erfordern erhebliche Ressourcen und verpassen kritische Probleme in komplexen verteilten Systemen.",
+        "solution": "Implementieren Sie KI-gestützte DevOps-Automatisierung mit Azure AI Services für Loganalyse, Anomalieerkennung und automatisierte Behebung.",
+        "result": "Reduzierter Betriebsaufwand, schnellere Vorfallbehebung und proaktive Systemzustandsverwaltung."
+      },
+      "cloud-native": {
+        "problem": "Teams benötigen moderne CI/CD-Pipelines, die über Microservices, Container und Kubernetes-Umgebungen skalieren.",
+        "solution": "Erstellen Sie Cloud-native CI/CD-Plattformen mit Containerisierung, Kubernetes-Orchestrierung und automatisierten Bereitstellungsstrategien.",
+        "result": "Schnellere Release-Zyklen, verbesserte Zuverlässigkeit und nahtlose Skalierbarkeit für containerisierte Anwendungen."
+      }
+    },
+    "testimonials": {
     "title": "Über mich",
     "bio": "Erfahrener Cloud-Architekt mit Schwerpunkt auf Azure, KI-Lösungen und DevOps-Praktiken. Leidenschaftlich daran interessiert, skalierbare, sichere und effiziente Cloud-Infrastrukturen aufzubauen.",
     "skills": "Fähigkeiten & Expertise",
@@ -65,4 +76,5 @@
     "rights": "Alle Rechte vorbehalten.",
     "social": "Verbinden Sie sich mit mir"
   }
+}
 }
