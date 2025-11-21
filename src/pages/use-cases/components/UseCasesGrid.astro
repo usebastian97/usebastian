@@ -1,16 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import { useTranslations, type Language } from '@i18n/utils';
+import { useTranslations } from '@i18n/utils';
 
-interface Props {
-  lang: Language;
-}
+const t = useTranslations('en');
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
-// Fetch all use cases for the current language
-const allUseCases = await getCollection('use-cases', ({ data }) => data.lang === lang);
+// Fetch all use cases for English
+const allUseCases = await getCollection('use-cases');
 
 // Sort by order field
 const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
@@ -90,7 +85,7 @@ const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
       <!-- View Details Button -->
       <div class="mt-auto pt-4">
         <a
-          href={`/${lang === 'en' ? '' : lang + '/'}use-cases/${useCase.slug}`}
+          href={`/use-cases/${useCase.slug}`}
           class="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-gray-900 px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-900 hover:text-white"
         >
           {t('usecases.viewDetails')}

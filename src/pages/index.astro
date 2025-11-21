@@ -6,16 +6,14 @@ import UseCasesSection from './home/components/UseCasesSection.astro';
 import FeaturedProjects from './home/components/FeaturedProjects.astro';
 import LatestBlogPosts from './home/components/LatestBlogPosts.astro';
 import CTASection from './home/components/CTASection.astro';
-
-const lang = 'en';
 ---
 
-<MainLayout lang={lang}>
-  <HeroSection lang={lang} />
-  <StackSection lang={lang} />
-  <UseCasesSection lang={lang} />
-  <FeaturedProjects lang={lang} />
-  <LatestBlogPosts lang={lang} />
-  <CTASection lang={lang} />
+<MainLayout>
+  <HeroSection />
+  <StackSection />
+  <UseCasesSection />
+  <FeaturedProjects />
+  <LatestBlogPosts />
+  <CTASection />
 </MainLayout>
 

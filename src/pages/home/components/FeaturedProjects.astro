@@ -8,7 +8,7 @@ const t = useTranslations('en');
 
 // Get featured projects
 const allProjects = await getCollection('projects', ({ data }) => {
-  return data.lang === 'en' && data.featured;
+  return data.featured;
 });
 const featuredProjects = allProjects.sort((a, b) => a.data.order - b.data.order).slice(0, 3);
 ---

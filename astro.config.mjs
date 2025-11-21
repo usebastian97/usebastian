@@ -24,13 +24,6 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: true,
   },
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'de', 'fr', 'it', 'nl', 'ch', 'jp', 'es', 'pt', 'pt-br'],
-    routing: {
-      prefixDefaultLocale: false,
-    },
-  },
   vite: {
     plugins: [tailwindcss()],
     ssr: {
@@ -43,23 +36,7 @@ export default defineConfig({
     },
   }),
   integrations: [
-    sitemap({
-      i18n: {
-        defaultLocale: 'en',
-        locales: {
-          en: 'en',
-          de: 'de',
-          fr: 'fr',
-          it: 'it',
-          nl: 'nl',
-          ch: 'zh-Hans',
-          jp: 'ja',
-          es: 'es',
-          pt: 'pt',
-          'pt-br': 'pt-BR',
-        },
-      },
-    }),
+    sitemap(),
     mdx({
       syntaxHighlight: 'shiki',
       shikiConfig: {

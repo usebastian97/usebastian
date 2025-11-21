@@ -5,16 +5,15 @@ import FilterButtons from './projects/components/FilterButtons.astro';
 import ProjectsGrid from './projects/components/ProjectsGrid.astro';
 import { useTranslations } from '@i18n/utils';
 
-const lang = 'en';
-const t = useTranslations(lang);
+const t = useTranslations('en');
 ---
 
-<MainLayout title={`${t('projects.title')} | Sebastian Georgian Utoiu`} lang={lang}>
+<MainLayout title={`${t('projects.title')} | Sebastian Georgian Utoiu`}>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <ProjectsHero lang={lang} />
-      <FilterButtons lang={lang} />
-      <ProjectsGrid lang={lang} />
+      <ProjectsHero />
+      <FilterButtons />
+      <ProjectsGrid />
     </div>
   </section>
 </MainLayout>

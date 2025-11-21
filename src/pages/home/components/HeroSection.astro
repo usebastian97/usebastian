@@ -1,20 +1,8 @@
 ---
-import { useTranslations, defaultLang } from '@/i18n/utils';
-import type { Language } from '@/i18n/utils';
+import { useTranslations } from '@/i18n/utils';
 import { Icon } from 'astro-icon/components';
-interface Props {
-  lang: Language;
-}
 
-const { lang } = Astro.props;
-// Fallback to default language if lang is undefined or invalid
-const safeLang = lang || defaultLang;
-const t = useTranslations(safeLang);
-
-// Additional safety check to ensure t function exists
-if (!t) {
-  throw new Error(`Translation function not available for language: ${safeLang}`);
-}
+const t = useTranslations('en');
 ---
 
 <section

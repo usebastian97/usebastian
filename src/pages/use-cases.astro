@@ -4,15 +4,14 @@ import UseCasesHero from './use-cases/components/UseCasesHero.astro';
 import UseCasesGrid from './use-cases/components/UseCasesGrid.astro';
 import { useTranslations } from '@i18n/utils';
 
-const lang = 'en';
-const t = useTranslations(lang);
+const t = useTranslations('en');
 ---
 
-<MainLayout title={`${t('usecases.title')} | Sebastian Georgian Utoiu`} lang={lang}>
+<MainLayout title={`${t('usecases.title')} | Sebastian Georgian Utoiu`}>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <UseCasesHero lang={lang} />
-      <UseCasesGrid lang={lang} />
+      <UseCasesHero />
+      <UseCasesGrid />
     </div>
   </section>
 </MainLayout>

@@ -2,24 +2,22 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '@components/navigation/Header.astro';
 import Footer from '@components/navigation/Footer.astro';
-import type { Language } from '@i18n/utils';
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
-  lang?: Language | undefined;
   children?: any;
 }
 
-const { title, description, lang = 'en' } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
-<BaseLayout {...({ title, description, lang } as any)}>
+<BaseLayout {...({ title, description } as any)}>
   <div class="flex min-h-screen flex-col">
-    <Header lang={lang} />
+    <Header />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer lang={lang} />
+    <Footer />
   </div>
 </BaseLayout>

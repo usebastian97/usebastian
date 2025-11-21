@@ -1,6 +1,5 @@
 ---
 import MainLayout from './MainLayout.astro';
-import type { Language } from '@i18n/utils';
 
 interface Props {
   title: string;
@@ -8,19 +7,18 @@ interface Props {
   publishDate: Date;
   readingTime: number;
   tags?: string[];
-  lang?: Language;
 }
 
-const { title, description, publishDate, readingTime, tags = [], lang = 'en' } = Astro.props;
+const { title, description, publishDate, readingTime, tags = [] } = Astro.props;
 
-const formattedDate = new Intl.DateTimeFormat(lang, {
+const formattedDate = new Intl.DateTimeFormat('en', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 }).format(publishDate);
 ---
 
-<MainLayout title={`${title} | Sebastian Georgian Utoiu`} description={description} lang={lang}>
+<MainLayout title={`${title} | Sebastian Georgian Utoiu`} description={description}>
   <article class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
     <header class="mb-12">
       <h1 class="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">{title}</h1>

@@ -1,12 +1,7 @@
 ---
-import { useTranslations, type Language } from '@i18n/utils';
+import { useTranslations } from '@i18n/utils';
 
-interface Props {
-  lang: Language;
-}
-
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const t = useTranslations('en');
 const currentYear = new Date().getFullYear();
 
 const socialLinks = [

@@ -8,7 +8,7 @@ const t = useTranslations('en');
 
 // Get latest blog posts
 const allPosts = await getCollection('blog', ({ data }) => {
-  return data.lang === 'en' && !data.draft;
+  return !data.draft;
 });
 const latestPosts = allPosts
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())

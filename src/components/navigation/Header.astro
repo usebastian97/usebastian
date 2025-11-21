@@ -1,22 +1,15 @@
 ---
-import { useTranslations, type Language } from '@i18n/utils';
-import LanguageSwitcher from './LanguageSwitcher.astro';
+import { useTranslations } from '@i18n/utils';
 
-interface Props {
-  lang: Language;
-}
+const t = useTranslations('en');
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
-const basePath = lang === 'en' ? '' : `/${lang}`;
 const navItems = [
-  { href: `${basePath}/`, label: t('nav.home') },
-  { href: `${basePath}/about`, label: t('nav.about') },
-  { href: `${basePath}/projects`, label: t('nav.projects') },
-  { href: `${basePath}/use-cases`, label: t('nav.useCases') },
-  { href: `${basePath}/blog`, label: t('nav.blog') },
-  { href: `${basePath}/contact`, label: t('nav.contact') },
+  { href: `/`, label: t('nav.home') },
+  { href: `/about`, label: t('nav.about') },
+  { href: `/projects`, label: t('nav.projects') },
+  { href: `/use-cases`, label: t('nav.useCases') },
+  { href: `/blog`, label: t('nav.blog') },
+  { href: `/contact`, label: t('nav.contact') },
 ];
 ---
 
@@ -44,8 +37,6 @@ const navItems = [
 
       <!-- Right Side Actions -->
       <div class="flex items-center gap-4">
-        <LanguageSwitcher lang={lang} />
-        
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-button"
