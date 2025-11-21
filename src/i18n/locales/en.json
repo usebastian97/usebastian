@@ -4,6 +4,7 @@
     "about": "About",
     "projects": "Projects",
     "useCases": "Use Cases",
+    "certifications": "Certifications",
     "blog": "Blog",
     "contact": "Contact"
   },
@@ -87,6 +88,10 @@
     "technologies": "Technologies",
     "viewDetails": "View Details",
     "noUseCases": "No use cases available for this language yet."
+  },
+  "certifications": {
+    "title": "Certifications",
+    "description": "My certification journey following Microsoft's structured roadmap, from fundamentals to expert level, specialized in Azure, AI, Security, and Infrastructure as Code."
   },
   "footer": {
     "rights": "All rights reserved.",

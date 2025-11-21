@@ -1,0 +1,41 @@
+---
+// Education Timeline Component
+
+const education = [
+  {
+    title: 'Computer Science Master\'s Degree',
+    institution: 'Politehnica University of Bucharest',
+    period: 'Sept 2021 - Jun 2024',
+    description:
+      'Specialized in software services and platforms. Key courses: Cloud Computing, Big Data, Internet Application Development, IT Service Consultancy. Acquired skills in business process modeling, software development, IT system auditing, and research.',
+  },
+  {
+    title: 'Bachelor of Business Management',
+    institution: 'University Artifex of Bucharest',
+    period: 'Oct 2018 - Jun 2021',
+    description:
+      'Focus areas: Consumer behavior analysis, market trends, digital marketing, brand management. Developed skills in data analysis and marketing strategy development.',
+  },
+];
+---
+
+<div class="mb-16">
+  <h2 class="mb-8 text-3xl font-bold">Education</h2>
+  <div class="space-y-8">
+    {
+      education.map((edu, index) => (
+        <div class="relative pl-8 before:absolute before:left-0 before:top-2 before:h-4 before:w-4 before:rounded-full before:bg-blue-600 before:ring-4 before:ring-blue-100">
+          {index !== education.length - 1 && (
+            <div class="absolute left-2 top-6 h-full w-0.5 bg-gray-200" />
+          )}
+          <div>
+            <h3 class="text-xl font-bold">{edu.title}</h3>
+            <p class="mt-1 text-black-600">{edu.institution}</p>
+            <p class="mt-1 text-sm text-gray-600">{edu.period}</p>
+            <p class="mt-3 text-gray-600">{edu.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

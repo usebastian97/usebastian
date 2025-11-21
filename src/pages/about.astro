@@ -2,9 +2,8 @@
 import MainLayout from '@layouts/MainLayout.astro';
 import AboutHero from './about/components/AboutHero.astro';
 import ProfessionalSummary from './about/components/ProfessionalSummary.astro';
-import SkillsGrid from './about/components/SkillsGrid.astro';
 import ExperienceTimeline from './about/components/ExperienceTimeline.astro';
-import Certifications from './about/components/Certifications.astro';
+import EducationTimeline from './about/components/EducationTimeline.astro';
 import { useTranslations } from '@i18n/utils';
 
 const t = useTranslations('en');
@@ -17,9 +16,8 @@ const t = useTranslations('en');
   <section class="bg-white py-16">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <ProfessionalSummary />
-      <SkillsGrid />
       <ExperienceTimeline />
-      <Certifications />
+      <EducationTimeline />
     </div>
   </section>
 </MainLayout>

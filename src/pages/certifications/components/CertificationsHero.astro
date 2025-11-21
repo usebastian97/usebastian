@@ -1,0 +1,15 @@
+---
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<div class="mb-6 text-center">
+<img src="/stacks/stack-face.png" alt="Stack" class="mx-auto mb-4 h-auto w-24 sm:w-24" loading="lazy" />
+  <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+    {t('certifications.title')}
+  </h1>
+  <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+    {t('certifications.description')}
+  </p>
+</div>
