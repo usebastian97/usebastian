@@ -8,7 +8,7 @@ const useCasesData = [
   {
     id: 'enterprise-scale',
     slug: 'enterprise-azure-landing-zone',
-    icon: 'simple-icons:microsoftazure',
+    icon: '/stacks/school.png',
     titleKey: 'home.usecases.enterprise-scale.problem',
     problemKey: 'home.usecases.enterprise-scale.problem',
     solutionKey: 'home.usecases.enterprise-scale.solution',
@@ -18,7 +18,7 @@ const useCasesData = [
   {
     id: 'ai-ops',
     slug: 'ai-powered-devops-automation',
-    icon: 'simple-icons:openai',
+    icon: '/stacks/stack-face.png',
     titleKey: 'home.usecases.ai-ops.problem',
     problemKey: 'home.usecases.ai-ops.problem',
     solutionKey: 'home.usecases.ai-ops.solution',
@@ -28,7 +28,7 @@ const useCasesData = [
   {
     id: 'cloud-native',
     slug: 'cloud-native-cicd-platform',
-    icon: 'simple-icons:kubernetes',
+    icon: '/stacks/school.png',
     titleKey: 'home.usecases.cloud-native.problem',
     problemKey: 'home.usecases.cloud-native.problem',
     solutionKey: 'home.usecases.cloud-native.solution',
@@ -52,59 +52,93 @@ const useCasesData = [
 
     <!-- Use Cases Grid -->
     <div class="mx-auto max-w-7xl">
-      <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-3">
-        {useCasesData.map((useCase) => (
-          <div class="usecase-card group rounded-lg border border-gray-200 bg-white p-6 sm:p-8 transition-all duration-200 hover:border-gray-900 hover:shadow-lg">
-            <!-- Icon -->
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-gray-900 transition-colors">
-              <svg class="h-6 w-6 text-gray-700 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
+      <!-- Carousel Container -->
+      <div class="relative">
+        <!-- Carousel Wrapper -->
+        <div class="overflow-hidden px-2 sm:px-0">
+          <div class="carousel-track flex gap-4 sm:gap-6 transition-transform duration-500 ease-out" id="usecase-carousel">
+            {useCasesData.map((useCase) => (
+              <div class="usecase-card group relative flex flex-col rounded-lg border-4 border-gray-200 bg-white p-4 sm:p-6 shadow-sm transition-all duration-200 hover:shadow-lg dark:bg-gray-800 flex-shrink-0 w-[85vw] sm:w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+                <!-- Icon Badge -->
+                <div class="mb-3 sm:mb-4">
+                  <div class="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
+                    <img src={useCase.icon} alt={useCase.id} class="h-8 w-8 sm:h-10 sm:w-10 object-cover" loading="lazy" />
+                  </div>
+                </div>
 
-            <!-- Problem -->
-            <div class="mb-6 pb-6 border-b border-gray-200">
-              <h3 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
-                {t('home.usecases.problem')}
-              </h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                {t(useCase.problemKey)}
-              </p>
-            </div>
+                <!-- Problem -->
+                <div class="mb-3 sm:mb-4">
+                  <h3 class="mb-1.5 sm:mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                    {t('home.usecases.problem')}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-600 leading-relaxed dark:text-gray-400">
+                    {t(useCase.problemKey)}
+                  </p>
+                </div>
 
-            <!-- Solution -->
-            <div class="mb-6 pb-6 border-b border-gray-200">
-              <h3 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
-                {t('home.usecases.solution')}
-              </h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                {t(useCase.solutionKey)}
-              </p>
-            </div>
+                <!-- Solution -->
+                <div class="mb-3 sm:mb-4">
+                  <h3 class="mb-1.5 sm:mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                    {t('home.usecases.solution')}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-600 leading-relaxed dark:text-gray-400">
+                    {t(useCase.solutionKey)}
+                  </p>
+                </div>
 
-            <!-- Result -->
-            <div class="mb-6">
-              <h3 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
-                {t('home.usecases.result')}
-              </h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                {t(useCase.resultKey)}
-              </p>
-            </div>
+                <!-- Result -->
+                <div class="mb-3 sm:mb-4 flex-grow">
+                  <h3 class="mb-1.5 sm:mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                    {t('home.usecases.result')}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-600 leading-relaxed dark:text-gray-400">
+                    {t(useCase.resultKey)}
+                  </p>
+                </div>
 
-            <!-- View Details Button -->
-            <div class="mt-auto pt-4">
-              <a
-                href={`/use-cases/${useCase.slug}`}
-                class="inline-flex items-center gap-2 rounded-lg border-2 border-gray-900 px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-900 hover:text-white"
-              >
-                {t('home.usecases.viewDetails')}
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
+                <!-- View Details Link -->
+                <div class="mt-auto flex items-center justify-end border-t border-gray-200 pt-3 sm:pt-4 dark:border-gray-700">
+                  <a href={`/use-cases/${useCase.slug}`} class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                    {t('home.usecases.viewDetails')}
+                    <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button
+          id="prev-btn"
+          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 lg:-translate-x-12 bg-white dark:bg-gray-800 rounded-full p-2 sm:p-3 shadow-lg border-2 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed z-10"
+          aria-label="Previous slide"
+        >
+          <svg class="h-4 w-4 sm:h-6 sm:w-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button
+          id="next-btn"
+          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 lg:translate-x-12 bg-white dark:bg-gray-800 rounded-full p-2 sm:p-3 shadow-lg border-2 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed z-10"
+          aria-label="Next slide"
+        >
+          <svg class="h-4 w-4 sm:h-6 sm:w-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Carousel Indicators -->
+      <div class="flex justify-center gap-2 mt-8">
+        {useCasesData.map((_, index) => (
+          <button
+            class="carousel-indicator h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-all"
+            data-index={index}
+            aria-label={`Go to slide ${index + 1}`}
+          />
         ))}
       </div>
     </div>
@@ -150,4 +184,99 @@ const useCasesData = [
   .usecase-card {
     animation: slideUp 0.3s ease-out;
   }
+
+  .carousel-indicator.active {
+    background-color: rgb(37 99 235);
+    width: 2rem;
+  }
+
+  :global(.dark) .carousel-indicator.active {
+    background-color: rgb(96 165 250);
+  }
 </style>
+
+<script>
+  function initUseCaseCarousel() {
+    const track = document.getElementById('usecase-carousel') as HTMLElement;
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+    const indicators = document.querySelectorAll('.carousel-indicator') as NodeListOf<HTMLButtonElement>;
+    
+    if (!track || !prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+    const totalSlides = indicators.length;
+
+    function getCardsPerView(): number {
+      if (window.innerWidth >= 1024) return 3; // lg
+      if (window.innerWidth >= 768) return 2;  // md
+      return 1; // mobile
+    }
+
+    function updateCarousel() {
+      const cardsPerView = getCardsPerView();
+      const maxIndex = Math.max(0, totalSlides - cardsPerView);
+      
+      // Constrain current index
+      currentIndex = Math.min(currentIndex, maxIndex);
+      
+      // Calculate translation
+      const cardWidth = track.children[0]?.clientWidth || 0;
+      const gap = window.innerWidth >= 640 ? 24 : 16; // 6 * 4px (gap-6) or 4 * 4px (gap-4)
+      const offset = currentIndex * (cardWidth + gap);
+      
+      track.style.transform = `translateX(-${offset}px)`;
+
+      // Update buttons
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= maxIndex;
+
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const cardsPerView = getCardsPerView();
+      const maxIndex = Math.max(0, totalSlides - cardsPerView);
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    // Handle window resize
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        updateCarousel();
+      }, 150);
+    });
+
+    // Initial update
+    updateCarousel();
+  }
+
+  // Initialize on page load
+  if (typeof document !== 'undefined') {
+    initUseCaseCarousel();
+    // Reinitialize after view transitions
+    document.addEventListener('astro:page-load', initUseCaseCarousel);
+  }
+</script>
