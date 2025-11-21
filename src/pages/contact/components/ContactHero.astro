@@ -4,10 +4,19 @@ import { useTranslations } from '@i18n/utils';
 const t = useTranslations('en');
 ---
 
-<div class="mb-12 text-center">
-  <h1 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">{t('contact.title')}</h1>
-  <p class="text-xl text-gray-600">
+<div class="mx-auto max-w-3xl text-center">
+  <h1 class="mb-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+    {t('contact.title')}
+  </h1>
+  <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600 sm:text-xl">
     Interested in collaborating? Let's discuss your cloud infrastructure, AI solutions, or
-    DevOps needs.
+    DevOps needs. I'm always open to new opportunities and challenges.
   </p>
+  <div class="mt-10 flex justify-center">
+    <img
+      src="/home/arrow-1.png"
+      alt="Arrow pointing down"
+      class="h-auto w-16 sm:w-20"
+    />
+  </div>
 </div>

@@ -15,7 +15,8 @@ const t = useTranslations('en');
         id="name"
         name="name"
         required
-        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full rounded-xl border-4 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder-gray-500 transition-colors focus:border-black focus:bg-white focus:outline-none focus:ring-1 focus:ring-black"
+        placeholder="John Doe"
       />
     </div>
 
@@ -28,7 +29,8 @@ const t = useTranslations('en');
         id="email"
         name="email"
         required
-        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full rounded-xl border-4 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder-gray-500 transition-colors focus:border-black focus:bg-white focus:outline-none focus:ring-1 focus:ring-black"
+        placeholder="john@example.com"
       />
     </div>
 
@@ -41,13 +43,14 @@ const t = useTranslations('en');
         name="message"
         rows="6"
         required
-        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full resize-none rounded-xl border-4 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder-gray-500 transition-colors focus:border-black focus:bg-white focus:outline-none focus:ring-1 focus:ring-black"
+        placeholder="How can I help you?"
       ></textarea>
     </div>
 
     <button
       type="submit"
-      class="w-full rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+      class="btn-primary w-full rounded-xl px-6 py-3.5 text-base font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
     >
       {t('contact.send')}
     </button>
