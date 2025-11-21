@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "Chi sono",
     "projects": "Progetti",
+    "useCases": "Casi d'uso",
     "blog": "Blog",
     "contact": "Contatti"
   },
@@ -27,6 +28,7 @@
       "solution": "Soluzione",
       "result": "Risultato",
       "viewProjects": "Vedi tutti i progetti",
+      "viewDetails": "Vedi dettagli",
       "enterprise-scale": {
         "problem": "Le organizzazioni faticano a gestire ambienti multi-cloud mantenendo sicurezza, conformità ed efficienza dei costi.",
         "solution": "Progetta e distribuisci zone di atterraggio Azure di livello enterprise con governance appropriata, RBAC e infrastructure-as-code.",
@@ -74,7 +76,17 @@
   },
   "footer": {
     "rights": "Tutti i diritti riservati.",
-    "social": "Connettiti con me"
+    "social": "Collegati con me"
+  },
+  "usecases": {
+    "title": "Casi d'uso",
+    "description": "Esplora applicazioni e soluzioni del mondo reale che dimostrano come risolvo sfide aziendali complesse con architettura cloud, IA e pratiche DevOps.",
+    "problem": "Sfida",
+    "solution": "Soluzione",
+    "result": "Risultato",
+    "technologies": "Tecnologie",
+    "viewDetails": "Visualizza dettagli",
+    "noUseCases": "Nessun caso d'uso disponibile per questa lingua al momento."
   }
 }
 }

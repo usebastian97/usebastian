@@ -1,8 +1,9 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Sobre mí",
+    "about": "Acerca de",
     "projects": "Proyectos",
+    "useCases": "Casos de uso",
     "blog": "Blog",
     "contact": "Contacto"
   },
@@ -27,6 +28,8 @@
       "solution": "Solución",
       "result": "Resultado",
       "viewProjects": "Ver todos los proyectos",
+      "viewAllUseCases": "Ver todos los casos de uso",
+      "viewDetails": "Ver detalles",
       "enterprise-scale": {
         "problem": "Las organizaciones luchan por gestionar entornos multinube mientras mantienen la seguridad, el cumplimiento y la eficiencia de costos a escala.",
         "solution": "Diseñe e implemente zonas de aterrizaje de Azure de nivel empresarial con gobernanza adecuada, RBAC e infraestructura como código.",
@@ -74,7 +77,17 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
-    "social": "Conecta conmigo"
+    "social": "Conéctate conmigo"
+  },
+  "usecases": {
+    "title": "Casos de uso",
+    "description": "Explora aplicaciones y soluciones del mundo real que demuestran cómo resuelvo desafíos empresariales complejos con arquitectura en la nube, IA y prácticas DevOps.",
+    "problem": "Desafío",
+    "solution": "Solución",
+    "result": "Resultado",
+    "technologies": "Tecnologías",
+    "viewDetails": "Ver detalles",
+    "noUseCases": "Aún no hay casos de uso disponibles para este idioma."
   }
 }
 }

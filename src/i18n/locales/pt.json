@@ -3,6 +3,7 @@
     "home": "Início",
     "about": "Sobre mim",
     "projects": "Projetos",
+    "useCases": "Casos de uso",
     "blog": "Blog",
     "contact": "Contacto"
   },
@@ -27,6 +28,8 @@
       "solution": "Solução",
       "result": "Resultado",
       "viewProjects": "Ver todos os projetos",
+      "viewAllUseCases": "Ver todos os casos de uso",
+      "viewDetails": "Ver detalhes",
       "enterprise-scale": {
         "problem": "As organizações lutam para gerenciar ambientes de múltiplas nuvens enquanto mantêm a segurança, conformidade e eficiência de custos em escala.",
         "solution": "Projete e implante zonas de aterragem do Azure de nível empresarial com governança adequada, RBAC e infraestrutura como código.",
@@ -44,6 +47,10 @@
       }
     },
     "testimonials": {
+      "title": "Depoimentos"
+    }
+  },
+  "about": {
     "title": "Sobre mim",
     "bio": "Arquiteto Cloud experiente especializado em Azure, soluções de IA e práticas DevOps. Apaixonado por construir infraestruturas cloud escaláveis, seguras e eficientes.",
     "skills": "Competências e Experiência",
@@ -75,6 +82,15 @@
   "footer": {
     "rights": "Todos os direitos reservados.",
     "social": "Conecte-se comigo"
+  },
+  "usecases": {
+    "title": "Casos de uso",
+    "description": "Explore aplicações e soluções do mundo real que demonstram como resolvo desafios empresariais complexos com arquitetura em nuvem, IA e práticas DevOps.",
+    "problem": "Desafio",
+    "solution": "Solução",
+    "result": "Resultado",
+    "technologies": "Tecnologias",
+    "viewDetails": "Ver detalhes",
+    "noUseCases": "Ainda não há casos de uso disponíveis para este idioma."
   }
- }
 }

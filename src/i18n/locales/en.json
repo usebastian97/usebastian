@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
+    "useCases": "Use Cases",
     "blog": "Blog",
     "contact": "Contact"
   },
@@ -27,6 +28,8 @@
       "solution": "Solution",
       "result": "Outcome",
       "viewProjects": "View All Projects",
+      "viewAllUseCases": "View All Use Cases",
+      "viewDetails": "View Details",
       "enterprise-scale": {
         "problem": "Organizations struggle to manage multi-cloud environments while maintaining security, compliance, and cost efficiency at scale.",
         "solution": "Design and deploy enterprise-grade Azure landing zones with proper governance, RBAC, and infrastructure-as-code for standardized deployments.",
@@ -72,6 +75,16 @@
     "send": "Send Message",
     "success": "Message sent successfully!",
     "error": "Failed to send message. Please try again."
+  },
+  "usecases": {
+    "title": "Use Cases",
+    "description": "Explore real-world applications and solutions that demonstrate how I solve complex business challenges with cloud architecture, AI, and DevOps practices.",
+    "problem": "Challenge",
+    "solution": "Solution",
+    "result": "Outcome",
+    "technologies": "Technologies",
+    "viewDetails": "View Details",
+    "noUseCases": "No use cases available for this language yet."
   },
   "footer": {
     "rights": "All rights reserved.",

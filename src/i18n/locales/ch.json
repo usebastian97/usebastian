@@ -3,6 +3,7 @@
     "home": "首页",
     "about": "关于",
     "projects": "项目",
+    "useCases": "用例",
     "blog": "博客",
     "contact": "联系"
   },
@@ -27,6 +28,8 @@
       "solution": "解决方案",
       "result": "结果",
       "viewProjects": "查看所有项目",
+      "viewAllUseCases": "查看所有用例",
+      "viewDetails": "查看详情",
       "enterprise-scale": {
         "problem": "组织在管理多云环境时努力保持安全性、合规性和成本效益。",
         "solution": "设计和部署企业级Azure登陆区，具有适当的治理、RBAC和基础设施即代码。",
@@ -44,6 +47,10 @@
       }
     },
     "testimonials": {
+      "title": "客户评价"
+    }
+  },
+  "about": {
     "title": "关于我",
     "bio": "经验丰富的云架构师，专注于Azure、人工智能解决方案和DevOps实践。热衷于构建可扩展、安全且高效的云基础设施。",
     "skills": "技能与专长",
@@ -75,7 +82,16 @@
   "footer": {
     "rights": "版权所有。",
     "social": "关注我"
+  },
+  "usecases": {
+    "title": "用例",
+    "description": "探索真实世界的应用和解决方案，展示我如何通过云架构、人工智能和DevOps实践解决复杂的业务挑战。",
+    "problem": "挑战",
+    "solution": "解决方案",
+    "result": "成果",
+    "technologies": "技术",
+    "viewDetails": "查看详情",
+    "noUseCases": "此语言暂无可用用例。"
   }
- }
 } 
 

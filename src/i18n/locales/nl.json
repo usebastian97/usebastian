@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "Over mij",
     "projects": "Projecten",
+    "useCases": "Gebruiksgevallen",
     "blog": "Blog",
     "contact": "Contact"
   },
@@ -27,6 +28,8 @@
       "solution": "Oplossing",
       "result": "Resultaat",
       "viewProjects": "Bekijk alle projecten",
+      "viewAllUseCases": "Bekijk alle gebruiksgevallen",
+      "viewDetails": "Bekijk details",
       "enterprise-scale": {
         "problem": "Organisaties worstelen met het beheren van multi-cloud-omgevingen terwijl ze beveiliging, compliance en kostenefficiëntie op schaal handhaven.",
         "solution": "Ontwerp en implementeer Azure-landingszones van ondernemingskwaliteit met goede governance, RBAC en infrastructure-as-code.",
@@ -44,6 +47,10 @@
       }
     },
     "testimonials": {
+      "title": "Getuigenissen"
+    }
+  },
+  "about": {
     "title": "Over mij",
     "bio": "Ervaren Cloud Architect gespecialiseerd in Azure, AI-oplossingen en DevOps-praktijken. Gepassioneerd over het bouwen van schaalbare, veilige en efficiënte cloud-infrastructuur.",
     "skills": "Vaardigheden & Expertise",
@@ -75,6 +82,15 @@
   "footer": {
     "rights": "Alle rechten voorbehouden.",
     "social": "Verbind met mij"
+  },
+  "usecases": {
+    "title": "Gebruiksgevallen",
+    "description": "Ontdek praktische toepassingen en oplossingen die aantonen hoe ik complexe zakelijke uitdagingen oplos met cloudarchitectuur, AI en DevOps-praktijken.",
+    "problem": "Uitdaging",
+    "solution": "Oplossing",
+    "result": "Resultaat",
+    "technologies": "Technologieën",
+    "viewDetails": "Bekijk details",
+    "noUseCases": "Nog geen gebruiksgevallen beschikbaar voor deze taal."
   }
- }
 }

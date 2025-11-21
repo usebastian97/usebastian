@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations, type Language } from '@i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Fetch all use cases for the current language
+const allUseCases = await getCollection('use-cases', ({ data }) => data.lang === lang);
+
+// Sort by order field
+const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="grid gap-8 md:grid-cols-1 lg:grid-cols-3">
+  {sortedUseCases.map((useCase) => (
+    <div class="usecase-card group flex flex-col rounded-lg border border-gray-200 bg-white p-6 sm:p-8 transition-all duration-200 hover:border-gray-900 hover:shadow-lg">
+      <!-- Category Badge -->
+      <div class="mb-4">
+        <span class="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800 group-hover:bg-gray-900 group-hover:text-white transition-colors">
+          {useCase.data.category}
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h3 class="mb-4 text-xl font-bold text-gray-900 sm:text-2xl">
+        {useCase.data.title}
+      </h3>
+
+      <!-- Description -->
+      <p class="mb-6 text-sm text-gray-600 leading-relaxed">
+        {useCase.data.description}
+      </p>
+
+      <!-- Problem -->
+      <div class="mb-6 pb-6 border-b border-gray-200">
+        <h4 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
+          {t('usecases.problem')}
+        </h4>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          {useCase.data.problem}
+        </p>
+      </div>
+
+      <!-- Solution -->
+      <div class="mb-6 pb-6 border-b border-gray-200">
+        <h4 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
+          {t('usecases.solution')}
+        </h4>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          {useCase.data.solution}
+        </p>
+      </div>
+
+      <!-- Result -->
+      <div class="mb-6">
+        <h4 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
+          {t('usecases.result')}
+        </h4>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          {useCase.data.result}
+        </p>
+      </div>
+
+      <!-- Technologies -->
+      {useCase.data.technologies.length > 0 && (
+        <div class="mb-6">
+          <h4 class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
+            {t('usecases.technologies')}
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {useCase.data.technologies.slice(0, 5).map((tech) => (
+              <span class="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700">
+                {tech}
+              </span>
+            ))}
+            {useCase.data.technologies.length > 5 && (
+              <span class="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700">
+                +{useCase.data.technologies.length - 5} more
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      <!-- View Details Button -->
+      <div class="mt-auto pt-4">
+        <a
+          href={`/${lang === 'en' ? '' : lang + '/'}use-cases/${useCase.slug}`}
+          class="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-gray-900 px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-900 hover:text-white"
+        >
+          {t('usecases.viewDetails')}
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  ))}
+</div>
+
+{sortedUseCases.length === 0 && (
+  <div class="col-span-full py-12 text-center">
+    <p class="text-gray-600">{t('usecases.noUseCases')}</p>
+  </div>
+)}
+
+<style>
+  .usecase-card {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

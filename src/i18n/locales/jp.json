@@ -3,6 +3,7 @@
     "home": "ホーム",
     "about": "私について",
     "projects": "プロジェクト",
+    "useCases": "ユースケース",
     "blog": "ブログ",
     "contact": "お問い合わせ"
   },
@@ -26,7 +27,9 @@
       "problem": "課題",
       "solution": "ソリューション",
       "result": "成果",
-      "viewProjects": "すべてのプロジェクトを表示",
+      "viewProjects": "すべてのプロジェクトを見る",
+      "viewAllUseCases": "すべてのユースケースを見る",
+      "viewDetails": "詳細を見る",
       "enterprise-scale": {
         "problem": "組織はマルチクラウド環境を管理しながら、セキュリティ、コンプライアンス、コスト効率を規模で維持するのに苦労しています。",
         "solution": "適切なガバナンス、RBAC、インフラストラクチャ・アズ・コードを備えたエンタープライズグレードのAzureランディングゾーンを設計・展開します。",
@@ -74,7 +77,17 @@
   },
   "footer": {
     "rights": "全著作権所有。",
-    "social": "つながる"
+    "social": "私とつながる"
+  },
+  "usecases": {
+    "title": "ユースケース",
+    "description": "クラウドアーキテクチャ、AI、DevOpsプラクティスを使用して、複雑なビジネス課題を解決する方法を示す実際のアプリケーションとソリューションをご覧ください。",
+    "problem": "課題",
+    "solution": "ソリューション",
+    "result": "成果",
+    "technologies": "テクノロジー",
+    "viewDetails": "詳細を見る",
+    "noUseCases": "この言語のユースケースはまだ利用できません。"
   }
 }
 }

@@ -30,7 +30,25 @@ const projects = defineCollection({
   }),
 });
 
+const useCases = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.enum(['enterprise', 'ai-ops', 'cloud-native', 'security', 'automation']),
+    problem: z.string(),
+    solution: z.string(),
+    result: z.string(),
+    technologies: z.array(z.string()).default([]),
+    relatedProjects: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    order: z.number().default(0),
+    lang: z.enum(['en', 'de', 'fr', 'it', 'nl', 'ch', 'jp', 'es', 'pt', 'pt-br']).default('en'),
+  }),
+});
+
 export const collections = {
   blog,
   projects,
+  'use-cases': useCases,
 };

@@ -3,6 +3,7 @@
     "home": "Startseite",
     "about": "Über mich",
     "projects": "Projekte",
+    "useCases": "Anwendungsfälle",
     "blog": "Blog",
     "contact": "Kontakt"
   },
@@ -27,6 +28,8 @@
       "solution": "Lösung",
       "result": "Ergebnis",
       "viewProjects": "Alle Projekte anzeigen",
+      "viewAllUseCases": "Alle Anwendungsfälle anzeigen",
+      "viewDetails": "Details anzeigen",
       "enterprise-scale": {
         "problem": "Organisationen kämpfen damit, Multi-Cloud-Umgebungen zu verwalten und gleichzeitig Sicherheit, Compliance und Kosteneffizienz zu wahren.",
         "solution": "Entwerfen und bereitellen Sie Azure-Landing-Zones in Enterprise-Qualität mit ordnungsgemäßer Governance, RBAC und Infrastructure-as-Code.",
@@ -74,7 +77,17 @@
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",
-    "social": "Verbinden Sie sich mit mir"
+    "social": "Vernetzen Sie sich mit mir"
+  },
+  "usecases": {
+    "title": "Anwendungsfälle",
+    "description": "Entdecken Sie praxisnahe Anwendungen und Lösungen, die zeigen, wie ich komplexe Geschäftsherausforderungen mit Cloud-Architektur, KI und DevOps-Praktiken löse.",
+    "problem": "Herausforderung",
+    "solution": "Lösung",
+    "result": "Ergebnis",
+    "technologies": "Technologien",
+    "viewDetails": "Details anzeigen",
+    "noUseCases": "Noch keine Anwendungsfälle für diese Sprache verfügbar."
   }
 }
 }

@@ -3,6 +3,7 @@
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
+    "useCases": "Cas d'usage",
     "blog": "Blog",
     "contact": "Contact"
   },
@@ -27,6 +28,8 @@
       "solution": "Solution",
       "result": "Résultat",
       "viewProjects": "Voir tous les projets",
+      "viewAllUseCases": "Voir tous les cas d'usage",
+      "viewDetails": "Voir les détails",
       "enterprise-scale": {
         "problem": "Les organisations ont du mal à gérer les environnements multi-cloud tout en maintenant la sécurité, la conformité et l'efficacité des coûts.",
         "solution": "Concevez et déployez des zones d'atterrissage Azure de qualité entreprise avec gouvernance appropriée, RBAC et infrastructure-as-code.",
@@ -75,6 +78,16 @@
   "footer": {
     "rights": "Tous droits réservés.",
     "social": "Connectez-vous avec moi"
+  },
+  "usecases": {
+    "title": "Cas d'usage",
+    "description": "Explorez des applications et des solutions concrètes qui démontrent comment je résous des défis commerciaux complexes avec l'architecture cloud, l'IA et les pratiques DevOps.",
+    "problem": "Défi",
+    "solution": "Solution",
+    "result": "Résultat",
+    "technologies": "Technologies",
+    "viewDetails": "Voir les détails",
+    "noUseCases": "Aucun cas d'usage disponible pour cette langue pour le moment."
   }
 }
 }
