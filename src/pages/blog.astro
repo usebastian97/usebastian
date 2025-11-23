@@ -8,12 +8,12 @@ const t = useTranslations('en');
 ---
 
 <MainLayout title={`${t('blog.title')} | Sebastian Georgian Utoiu`}>
-  <section class="bg-white py-20 dark:bg-gray-900">
+  <section class="bg-white py-20">
     <div class="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
       <BlogHero />
 
       <!-- Separator -->
-      <div class="my-12 border-t border-gray-200 dark:border-gray-800"></div>
+      <div class="my-12 border-t border-gray-200"></div>
 
       <!-- Sidebar + Content Layout -->
       <div class="flex flex-col gap-6 lg:flex-row lg:gap-8">
@@ -22,11 +22,11 @@ const t = useTranslations('en');
           <div class="sticky top-8 space-y-4">
             <!-- Categories -->
             <div>
-              <h2 class="mb-2 text-sm font-bold text-gray-900 dark:text-white">Latest</h2>
+              <h2 class="mb-2 text-sm font-bold text-gray-900">Latest</h2>
               <nav class="space-y-1">
                 <a
                   href="/blog"
-                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100"
                 >
                   All Posts
                 </a>
@@ -35,29 +35,29 @@ const t = useTranslations('en');
 
             <!-- Topics -->
             <div>
-              <h2 class="mb-2 text-sm font-bold text-gray-900 dark:text-white">Topics</h2>
+              <h2 class="mb-2 text-sm font-bold text-gray-900">Topics</h2>
               <nav class="space-y-1">
                 <a
                   href="/blog?category=cloud"
-                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100"
                 >
                   Cloud Architecture
                 </a>
                 <a
                   href="/blog?category=ai"
-                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100"
                 >
                   AI & ML
                 </a>
                 <a
                   href="/blog?category=devops"
-                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100"
                 >
                   DevOps
                 </a>
                 <a
                   href="/blog?category=security"
-                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100"
                 >
                   Security
                 </a>

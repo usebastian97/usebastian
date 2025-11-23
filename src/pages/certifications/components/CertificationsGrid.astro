@@ -139,10 +139,10 @@ const certifications: Certification[] = [
 ];
 
 const statusColors: Record<CertStatus, string> = {
-  'In Progress': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  'Planned': 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
-  'Completed': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  'Next': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+  'In Progress': 'bg-blue-100 text-blue-800',
+  'Planned': 'bg-gray-100 text-gray-800',
+  'Completed': 'bg-green-100 text-green-800',
+  'Next': 'bg-yellow-100 text-yellow-800',
 };
 
 const categoryColors: Record<CertCategory, string> = {
@@ -157,31 +157,31 @@ const categoryColors: Record<CertCategory, string> = {
   <div class="mb-8 flex flex-wrap justify-start gap-3">
     <button
       data-filter="all"
-      class="filter-btn active rounded border-2 border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-900 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-gray-900"
+      class="filter-btn active rounded border-2 border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-900 hover:text-white"
     >
       All
     </button>
     <button
       data-filter="Completed"
-      class="filter-btn rounded border-2 border-green-600 px-6 py-2 text-sm font-medium text-green-600 transition-all hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-600 dark:hover:text-white"
+      class="filter-btn rounded border-2 border-green-600 px-6 py-2 text-sm font-medium text-green-600 transition-all hover:bg-green-600 hover:text-white"
     >
       Completed
     </button>
     <button
       data-filter="In Progress"
-      class="filter-btn rounded border-2 border-blue-600 px-6 py-2 text-sm font-medium text-blue-600 transition-all hover:bg-blue-600 hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white"
+      class="filter-btn rounded border-2 border-blue-600 px-6 py-2 text-sm font-medium text-blue-600 transition-all hover:bg-blue-600 hover:text-white"
     >
       In Progress
     </button>
     <button
       data-filter="Next"
-      class="filter-btn rounded border-2 border-yellow-600 px-6 py-2 text-sm font-medium text-yellow-600 transition-all hover:bg-yellow-600 hover:text-white dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-yellow-600 dark:hover:text-white"
+      class="filter-btn rounded border-2 border-yellow-600 px-6 py-2 text-sm font-medium text-yellow-600 transition-all hover:bg-yellow-600 hover:text-white"
     >
       Next
     </button>
     <button
       data-filter="Planned"
-      class="filter-btn rounded border-2 border-gray-400 px-6 py-2 text-sm font-medium text-gray-600 transition-all hover:bg-gray-400 hover:text-white dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+      class="filter-btn rounded border-2 border-gray-400 px-6 py-2 text-sm font-medium text-gray-600 transition-all hover:bg-gray-400 hover:text-white"
     >
       Planned
     </button>
@@ -190,14 +190,14 @@ const categoryColors: Record<CertCategory, string> = {
   <!-- Certifications Grid -->
   <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="certifications-grid">
     {certifications.map((cert) => (
-      <div class={`cert-card group flex flex-col rounded-lg border-4 ${categoryColors[cert.category]} bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-lg dark:bg-gray-800`} data-status={cert.status}>
+      <div class={`cert-card group flex flex-col rounded-lg border-4 ${categoryColors[cert.category]} bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-lg`} data-status={cert.status}>
         <!-- Provider & Status -->
         <div class="mb-4 flex items-center justify-between">
           <div class="flex items-center gap-2">
             {cert.provider === 'Microsoft' && (
               <img src="/stack-icons/microsoft.svg" alt="Microsoft" class="h-5 w-5" />
             )}
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">{cert.provider}</span>
+            <span class="text-sm font-semibold text-gray-900">{cert.provider}</span>
             {cert.status === 'Completed' && (
               <img src="/stack-icons/verified-badge.svg" alt="Verified" class="h-6 w-6" loading="lazy" />
             )}
@@ -209,35 +209,35 @@ const categoryColors: Record<CertCategory, string> = {
 
         <!-- Badge -->
         <div class="mb-3">
-          <span class="inline-block rounded-md bg-gray-100 px-3 py-1.5 text-sm font-bold text-gray-900 dark:bg-gray-700 dark:text-white">
+          <span class="inline-block rounded-md bg-gray-100 px-3 py-1.5 text-sm font-bold text-gray-900">
             {cert.badge}
           </span>
         </div>
 
         <!-- Title -->
-        <h3 class="mb-3 text-lg font-bold text-gray-900 dark:text-white">
+        <h3 class="mb-3 text-lg font-bold text-gray-900">
           {cert.title}
         </h3>
 
         <!-- Description -->
-        <p class="mb-4 flex-grow text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+        <p class="mb-4 flex-grow text-sm leading-relaxed text-gray-600">
           {cert.description}
         </p>
 
         <!-- Date & Category -->
-        <div class="mt-auto flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
-          <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{cert.category}</span>
-          <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{cert.date}</span>
+        <div class="mt-auto flex items-center justify-between border-t border-gray-200 pt-4">
+          <span class="text-xs font-medium text-gray-500">{cert.category}</span>
+          <span class="text-xs font-medium text-gray-500">{cert.date}</span>
         </div>
 
         <!-- Credential Link -->
         {cert.credentialUrl && (
-          <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+          <div class="mt-3 pt-3 border-t border-gray-200">
             <a
               href={cert.credentialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700"
             >
               View Credential
               <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

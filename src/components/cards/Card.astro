@@ -21,11 +21,11 @@ const getTagColor = (tag: string) => {
     tagLower.includes('aws') ||
     tagLower.includes('gcp')
   ) {
-    return 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400';
+    return 'bg-blue-50 text-blue-600';
   }
   // AI/ML tags - Purple
   if (tagLower.includes('ai') || tagLower.includes('ml') || tagLower.includes('machine learning')) {
-    return 'bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400';
+    return 'bg-purple-50 text-purple-600';
   }
   // DevOps/CI/CD tags - Green
   if (
@@ -34,11 +34,11 @@ const getTagColor = (tag: string) => {
     tagLower.includes('automation') ||
     tagLower.includes('terraform')
   ) {
-    return 'bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400';
+    return 'bg-green-50 text-green-600';
   }
   // Security tags - Red
   if (tagLower.includes('security') || tagLower.includes('kubernetes')) {
-    return 'bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-400';
+    return 'bg-red-50 text-red-600';
   }
   // Architecture/Design tags - Orange
   if (
@@ -46,15 +46,15 @@ const getTagColor = (tag: string) => {
     tagLower.includes('design') ||
     tagLower.includes('scalability')
   ) {
-    return 'bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400';
+    return 'bg-orange-50 text-orange-600';
   }
   // Default - Gray
-  return 'bg-gray-50 text-gray-600 dark:bg-gray-900/30 dark:text-gray-400';
+  return 'bg-gray-50 text-gray-600';
 };
 ---
 
 <article
-  class="group relative flex flex-col rounded-lg border-4 border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-lg dark:bg-gray-800"
+  class="group relative flex flex-col rounded-lg border-4 border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-lg"
 >
   {
     image && (
@@ -83,10 +83,10 @@ const getTagColor = (tag: string) => {
   }
 
   <!-- Title -->
-  <h3 class="mb-3 text-lg font-bold text-gray-900 dark:text-white">
+  <h3 class="mb-3 text-lg font-bold text-gray-900">
     <a
       href={href}
-      class="transition-colors after:absolute after:inset-0 hover:text-blue-600 dark:hover:text-blue-400"
+      class="transition-colors after:absolute after:inset-0 hover:text-blue-600"
       aria-label={title}
     >
       {title}
@@ -94,22 +94,22 @@ const getTagColor = (tag: string) => {
   </h3>
 
   <!-- Description -->
-  <p class="mb-4 flex-grow text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+  <p class="mb-4 flex-grow text-sm leading-relaxed text-gray-600">
     {description}
   </p>
 
   <!-- Date & Read More -->
   {
     date && (
-      <div class="mt-auto flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
-        <time class="text-xs font-medium text-gray-500 dark:text-gray-400">
+      <div class="mt-auto flex items-center justify-between border-t border-gray-200 pt-4">
+        <time class="text-xs font-medium text-gray-500">
           {new Intl.DateTimeFormat('en', {
             year: 'numeric',
             month: 'short',
             day: 'numeric',
           }).format(date)}
         </time>
-        <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+        <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700">
           Read more
           <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path

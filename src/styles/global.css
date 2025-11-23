@@ -71,12 +71,12 @@
   }
 
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth bg-white;
     font-family: var(--font-sans);
   }
 
   body {
-    @apply transition-colors duration-300;
+    @apply bg-white text-gray-900 transition-colors duration-300;
     font-family: var(--font-sans);
     font-weight: 400;
   }
@@ -87,8 +87,10 @@
   h4,
   h5,
   h6 {
+    @apply text-gray-900;
     font-family: var(--font-sans);
     font-weight: 600;
+    color: #111827 !important; /* Force dark color */
   }
 
   p,
@@ -97,6 +99,55 @@
   button,
   label {
     font-family: var(--font-sans);
+  }
+
+  p {
+    @apply text-gray-700;
+    color: #374151 !important; /* gray-700 */
+  }
+
+  /* Force all prose headings to be dark */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: #111827 !important; /* gray-900 */
+  }
+
+  .prose p,
+  .prose li,
+  .prose td,
+  .prose th {
+    color: #111827 !important; /* gray-900 */
+  }
+
+  .prose strong,
+  .prose em,
+  .prose blockquote {
+    color: #111827 !important; /* gray-900 */
+  }
+
+  /* Force article and header elements */
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6,
+  header h1,
+  header h2,
+  header h3,
+  header h4,
+  header h5,
+  header h6 {
+    color: #111827 !important; /* gray-900 */
+  }
+
+  article p,
+  header p {
+    color: #111827 !important; /* gray-900 */
   }
 }
 
