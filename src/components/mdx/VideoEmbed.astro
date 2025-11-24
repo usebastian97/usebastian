@@ -1,0 +1,37 @@
+---
+interface Props {
+  type?: 'youtube' | 'vimeo' | 'custom';
+  videoId?: string;
+  src?: string;
+  title?: string;
+  aspectRatio?: '16/9' | '4/3' | '1/1';
+}
+
+const { type = 'custom', videoId, src, title = 'Video', aspectRatio = '16/9' } = Astro.props;
+
+let embedUrl = src;
+if (type === 'youtube' && videoId) {
+  embedUrl = `https://www.youtube.com/embed/${videoId}`;
+} else if (type === 'vimeo' && videoId) {
+  embedUrl = `https://player.vimeo.com/video/${videoId}`;
+}
+
+const aspectRatioClass = {
+  '16/9': 'aspect-video',
+  '4/3': 'aspect-[4/3]',
+  '1/1': 'aspect-square',
+}[aspectRatio];
+---
+
+<div class="not-prose my-8">
+  <div class={`overflow-hidden rounded-lg border border-gray-200 ${aspectRatioClass}`}>
+    <iframe
+      src={embedUrl}
+      title={title}
+      class="h-full w-full"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>

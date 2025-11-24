@@ -1,0 +1,35 @@
+---
+interface Props {
+  title?: string;
+  icon?: string;
+  variant?: 'default' | 'highlight' | 'gradient';
+}
+
+const { title, icon, variant = 'default' } = Astro.props;
+
+const variants = {
+  default: 'bg-white border border-gray-200',
+  highlight: 'bg-gradient-to-br from-gray-50 to-white border border-gray-300 shadow-sm',
+  gradient: 'bg-gradient-to-br from-blue-50 via-white to-purple-50 border border-blue-200',
+};
+---
+
+<div class={`not-prose my-6 rounded-lg p-6 ${variants[variant]}`}>
+  {
+    (title || icon) && (
+      <div class="mb-4 flex items-center gap-3">
+        {icon && (
+          <span class="text-2xl" aria-hidden="true">
+            {icon}
+          </span>
+        )}
+        {title && (
+          <h4 class="text-lg font-semibold text-gray-900">{title}</h4>
+        )}
+      </div>
+    )
+  }
+  <div class="text-gray-700 leading-relaxed">
+    <slot />
+  </div>
+</div>

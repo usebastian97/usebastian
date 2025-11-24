@@ -1,0 +1,61 @@
+---
+interface Props {
+  title?: string;
+  lang?: string;
+  showLineNumbers?: boolean;
+}
+
+const { title, lang = 'text', showLineNumbers = false } = Astro.props;
+---
+
+<div class="not-prose my-6">
+  {
+    title && (
+      <div class="rounded-t-lg bg-gray-800 px-4 py-2 text-sm font-medium text-gray-300">
+        {title}
+      </div>
+    )
+  }
+  <div class="group relative">
+    <button
+      class="copy-button absolute right-3 top-3 rounded bg-gray-700 px-3 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity hover:bg-gray-600 group-hover:opacity-100"
+      data-copy-button
+      aria-label="Copy code to clipboard"
+    >
+      <span class="copy-text">Copy</span>
+      <span class="copied-text hidden">Copied!</span>
+    </button>
+    <pre
+      class={`overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm ${title ? 'rounded-t-none' : ''} ${showLineNumbers ? 'line-numbers' : ''}`}
+      data-lang={lang}><code class="text-gray-100"><slot /></code></pre>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const copyButtons = document.querySelectorAll('[data-copy-button]');
+
+    copyButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const codeBlock = button.parentElement?.querySelector('code');
+        if (!codeBlock) return;
+
+        const code = codeBlock.textContent || '';
+        await navigator.clipboard.writeText(code);
+
+        const copyText = button.querySelector('.copy-text');
+        const copiedText = button.querySelector('.copied-text');
+
+        if (copyText && copiedText) {
+          copyText.classList.add('hidden');
+          copiedText.classList.remove('hidden');
+
+          setTimeout(() => {
+            copyText.classList.remove('hidden');
+            copiedText.classList.add('hidden');
+          }, 2000);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,44 @@
+---
+interface Tab {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  tabs: Tab[];
+}
+
+const { tabs } = Astro.props;
+const defaultTab = tabs[0]?.value || '';
+---
+
+<div class="not-prose my-8" x-data={`{ activeTab: '${defaultTab}' }`}>
+  <!-- Tab Headers -->
+  <div class="flex gap-2 border-b border-gray-200" role="tablist">
+    {
+      tabs.map((tab) => (
+        <button
+          type="button"
+          role="tab"
+          class="px-4 py-2 text-sm font-medium transition-colors border-b-2"
+          x-on:click={`activeTab = '${tab.value}'`}
+          x-bind:class={`activeTab === '${tab.value}' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-600 hover:text-gray-900'`}
+          x-bind:aria-selected={`activeTab === '${tab.value}'`}
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Tab Panels -->
+  <div class="mt-4">
+    <slot />
+  </div>
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+  window.Alpine = Alpine;
+  Alpine.start();
+</script>

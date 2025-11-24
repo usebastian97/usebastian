@@ -59,6 +59,20 @@ export default defineConfig({
           },
         ],
       ],
+      components: {
+        Callout: './src/components/mdx/Callout.astro',
+        CodeBlock: './src/components/mdx/CodeBlock.astro',
+        Card: './src/components/mdx/Card.astro',
+        Diagram: './src/components/mdx/Diagram.astro',
+        Quote: './src/components/mdx/Quote.astro',
+        Steps: './src/components/mdx/Steps.astro',
+        Step: './src/components/mdx/Step.astro',
+        Tabs: './src/components/mdx/Tabs.astro',
+        TabPanel: './src/components/mdx/TabPanel.astro',
+        TOC: './src/components/mdx/TOC.astro',
+        Checklist: './src/components/mdx/Checklist.astro',
+        VideoEmbed: './src/components/mdx/VideoEmbed.astro',
+      },
     }),
     icon({
       include: {
