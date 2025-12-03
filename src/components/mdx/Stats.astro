@@ -1,0 +1,35 @@
+---
+interface Props {
+  data: {
+    label: string;
+    value: number | string;
+    suffix?: string;
+    color?: 'blue' | 'green' | 'purple' | 'red' | 'yellow';
+  }[];
+}
+
+const { data } = Astro.props;
+
+const colors = {
+  blue: 'from-blue-500 to-blue-600',
+  green: 'from-emerald-500 to-emerald-600',
+  purple: 'from-purple-500 to-purple-600',
+  red: 'from-red-500 to-red-600',
+  yellow: 'from-amber-500 to-amber-600',
+};
+---
+
+<div class="not-prose my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  {
+    data.map((item) => (
+      <div class="relative overflow-hidden rounded-xl border border-gray-200 bg-white p-5">
+        <div class={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${colors[item.color || 'blue']}`} />
+        <p class="text-sm font-medium text-gray-500">{item.label}</p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900">
+          {item.value}
+          {item.suffix && <span class="text-lg font-normal text-gray-500">{item.suffix}</span>}
+        </p>
+      </div>
+    ))
+  }
+</div>

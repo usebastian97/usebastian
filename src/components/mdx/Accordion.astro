@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  defaultOpen?: boolean;
+}
+
+const { title, defaultOpen = false } = Astro.props;
+const id = `accordion-${Math.random().toString(36).substring(7)}`;
+---
+
+<div class="not-prose my-4 rounded-lg border border-gray-200 bg-white overflow-hidden">
+  <button
+    type="button"
+    class="accordion-trigger flex w-full items-center justify-between px-4 py-3 text-left font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+    aria-expanded={defaultOpen ? 'true' : 'false'}
+    aria-controls={id}
+  >
+    <span>{title}</span>
+    <svg
+      class="accordion-icon h-5 w-5 text-gray-500 transition-transform duration-200"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  <div
+    id={id}
+    class="accordion-content overflow-hidden transition-all duration-200"
+    style={defaultOpen ? '' : 'max-height: 0;'}
+  >
+    <div class="px-4 pb-4 pt-2 text-gray-600 leading-relaxed">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .accordion-trigger[aria-expanded='true'] .accordion-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const triggers = document.querySelectorAll('.accordion-trigger');
+    
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        const contentId = trigger.getAttribute('aria-controls');
+        const content = document.getElementById(contentId || '');
+        
+        if (content) {
+          trigger.setAttribute('aria-expanded', (!expanded).toString());
+          if (expanded) {
+            content.style.maxHeight = '0';
+          } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        }
+      });
+    });
+  });
+</script>

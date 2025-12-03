@@ -1,0 +1,5 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0078D4"/>
+  <text x="600" y="300" font-family="system-ui, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">Azure Landing Zone</text>
+  <text x="600" y="360" font-family="system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.8)" text-anchor="middle">Enterprise Cloud Architecture</text>
+</svg>

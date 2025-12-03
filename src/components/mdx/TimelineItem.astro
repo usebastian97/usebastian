@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  icon?: string;
+  status?: 'completed' | 'in-progress' | 'upcoming';
+}
+
+const { title, icon, status } = Astro.props;
+
+const statusColors = {
+  completed: 'bg-emerald-500',
+  'in-progress': 'bg-blue-500',
+  upcoming: 'bg-gray-300',
+};
+---
+
+<div class="not-prose relative flex gap-4 pb-8 last:pb-0">
+  <!-- Timeline line -->
+  <div class="absolute left-[11px] top-6 bottom-0 w-0.5 bg-gray-200 last:hidden"></div>
+  
+  <!-- Timeline dot -->
+  <div class="relative z-10 flex-shrink-0">
+    <div
+      class:list={[
+        'flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-sm',
+        status ? statusColors[status] : 'bg-blue-500',
+      ]}
+    >
+      {
+        icon ? (
+          <span class="text-xs text-white">{icon}</span>
+        ) : (
+          <div class="h-2 w-2 rounded-full bg-white" />
+        )
+      }
+    </div>
+  </div>
+  
+  <!-- Content -->
+  <div class="flex-1 pt-0.5">
+    <h4 class="font-semibold text-gray-900">{title}</h4>
+    <div class="mt-2 text-sm text-gray-600 leading-relaxed">
+      <slot />
+    </div>
+  </div>
+</div>
