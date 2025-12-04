@@ -48,7 +48,10 @@ export default defineConfig({
         [
           rehypeAutolinkHeadings,
           {
-            behavior: 'wrap',
+            behavior: 'prepend',
+            properties: {
+              className: ['heading-link'],
+            },
           },
         ],
         [

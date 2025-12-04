@@ -149,6 +149,25 @@
   header p {
     color: #111827 !important; /* gray-900 */
   }
+
+  /* Heading anchor links - remove link styling */
+  .heading-link {
+    @apply text-gray-900 no-underline !text-gray-900;
+  }
+
+  .heading-link:hover {
+    @apply !text-gray-900 !no-underline;
+  }
+
+  article a.heading-link,
+  .prose a.heading-link {
+    @apply !text-gray-900 !font-medium !no-underline;
+  }
+
+  article a.heading-link:hover,
+  .prose a.heading-link:hover {
+    @apply !text-gray-900 !no-underline;
+  }
 }
 
 @layer utilities {
