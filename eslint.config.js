@@ -34,6 +34,6 @@ export default [
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', '.astro/', '.vercel/'],
+    ignores: ['dist/', 'node_modules/', '.astro/', '.vercel/', '.cloudflare/'],
   },
 ];

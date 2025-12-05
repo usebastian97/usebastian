@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a production-ready multilingual portfolio website built with Astro 5, TypeScript (strictest mode), and Tailwind CSS 4. The site showcases cloud architecture expertise with support for 10 languages (en, de, fr, it, nl, ch, jp, es, pt, pt-br), MDX-powered blog/projects, and is deployed on Vercel.
+This is a production-ready multilingual portfolio website built with Astro 5, TypeScript (strictest mode), and Tailwind CSS 4. The site showcases cloud architecture expertise with support for 10 languages (en, de, fr, it, nl, ch, jp, es, pt, pt-br), MDX-powered blog/projects, and is deployed on Cloudflare Pages.
 
 ## Architecture & Structure
 
@@ -106,8 +106,7 @@ npm run check    # Astro type checking
 
 ## Deployment
 
-- **Target**: Vercel (adapter configured in `astro.config.mjs`)
-- **Analytics**: Vercel Web Analytics enabled
+- **Target**: Cloudflare Pages (adapter configured in `astro.config.mjs`)
 - **Build format**: Directory mode with auto inline stylesheets
 - **SSR**: Not used - fully static site generation
 

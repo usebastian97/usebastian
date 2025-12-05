@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
@@ -14,7 +14,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.sgu.com',
+  site: 'https://www.usebastian.com',
   trailingSlash: 'ignore',
   build: {
     format: 'directory',
@@ -30,10 +30,8 @@ export default defineConfig({
       noExternal: ['astro-icon'],
     },
   },
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
+  adapter: cloudflare({
+    mode: 'directory',
   }),
   integrations: [
     sitemap(),
@@ -115,7 +113,7 @@ export default defineConfig({
       },
     }),
     robotsTxt({
-      sitemap: ['https://www.sgu.com/sitemap-index.xml'],
+      sitemap: ['https://www.usebastian.com/sitemap-index.xml'],
       policy: [
         {
           userAgent: '*',

@@ -29,11 +29,11 @@ A modern, production-ready portfolio website built with Astro, TypeScript, and T
 
 ## 📦 Deployment
 
-Configured for Vercel. Can deploy to Netlify, Cloudflare Pages, or any static host.
+Configured for Cloudflare Pages. The site is optimized for edge deployment.
 
 ## 🤝 Contact
 
-- Website: www.sgu.com
-- Email: contact@sgu.com
+- Website: www.usebastian.com
+- Email: contact@usebastian.com
 - GitHub: @sgu
 - LinkedIn: sebastian-utoiu
