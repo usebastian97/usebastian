@@ -4,6 +4,12 @@ import DocLayout from '@layouts/DocLayout.astro';
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects');
+  
+  // If no projects exist, return empty array to prevent build errors
+  if (projectEntries.length === 0) {
+    return [];
+  }
+  
   return projectEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

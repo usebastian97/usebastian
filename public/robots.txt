@@ -1,0 +1,80 @@
+# Robots.txt - Optimized for AI recommendations & search engines
+# Last updated: December 5, 2025
+# More info: https://www.usebastian.com/bot-policy.md
+
+# Default rule - allow all for AI recommendations
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Search Engines - Full access, no delay
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 0
+
+# AI Agents - ALLOWED for recommendations and citations
+# These can index and reference content to help users
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 2
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 2
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 2
+
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 2
+
+User-agent: cohere-ai
+Allow: /
+Crawl-delay: 2
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+# Aggressive scrapers - Still blocked
+User-agent: CCBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://www.usebastian.com/sitemap-index.xml
+
+# Site information
+# Host: https://www.usebastian.com
+# Humans: https://www.usebastian.com/humans.txt

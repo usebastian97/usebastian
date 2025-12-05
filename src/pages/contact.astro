@@ -1,7 +1,6 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
 import ContactHero from './contact/components/ContactHero.astro';
-import ContactForm from './contact/components/ContactForm.astro';
 import ContactInfo from './contact/components/ContactInfo.astro';
 import { useTranslations } from '@i18n/utils';
 
@@ -9,16 +8,44 @@ const t = useTranslations('en');
 ---
 
 <MainLayout title={`${t('contact.title')} | Sebastian Georgian Utoiu`}>
-  <section class="relative overflow-hidden bg-white py-20 lg:py-28">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-32">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <ContactHero />
+    </div>
+  </section>
 
-      <div class="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
+  <!-- Contact Section -->
+  <section class="relative overflow-hidden bg-white py-20 lg:py-28">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Contact Info Grid -->
+      <div class="mb-20">
         <ContactInfo />
-        <div
-          class="rounded-2xl border-4 border-gray-200 bg-white p-8 shadow-xl shadow-gray-100/50 lg:p-10"
-        >
-          <ContactForm />
+      </div>
+
+      <!-- CTA Section -->
+      <div class="mx-auto max-w-4xl">
+        <div class="rounded-3xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-12 text-center shadow-lg shadow-gray-100/50 lg:p-16">
+          <h3 class="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">
+            Ready to discuss your project?
+          </h3>
+          <p class="mx-auto mb-8 max-w-2xl text-gray-600">
+            Send me an email or reach out through any of my social channels. I typically respond within 2-4 hours.
+          </p>
+          <div class="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <a
+              href="mailto:usebastian12@protonmail.com"
+              class="rounded-xl bg-black px-8 py-3 font-semibold text-white transition-all hover:bg-gray-800 hover:shadow-lg hover:shadow-black/20"
+            >
+              Send Email
+            </a>
+            <a
+              href="#contact-info"
+              class="rounded-xl border border-gray-300 bg-white px-8 py-3 font-semibold text-gray-900 transition-all hover:border-gray-400 hover:bg-gray-50"
+            >
+              View All Contacts
+            </a>
+          </div>
         </div>
       </div>
     </div>

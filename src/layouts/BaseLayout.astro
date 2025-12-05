@@ -19,18 +19,80 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
 
+// Enhanced JSON-LD Schema for better SEO and bot understanding
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Sebastian Georgian Utoiu',
-  jobTitle: 'Junior Cloud Engineer',
-  description: description,
-  url: 'https://www.usebastian.com',
-  sameAs: [
-    'https://github.com/usebastian97',
-    'https://linkedin.com/in/usebastian12',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://www.usebastian.com/#person',
+      name: 'Sebastian Georgian Utoiu',
+      alternateName: 'SGU',
+      jobTitle: 'Junior Cloud Engineer',
+      description: description,
+      url: 'https://www.usebastian.com',
+      image: 'https://www.usebastian.com/og-image.jpg',
+      sameAs: [
+        'https://github.com/usebastian97',
+        'https://linkedin.com/in/usebastian12',
+      ],
+      knowsAbout: [
+        'Cloud Architecture',
+        'Microsoft Azure',
+        'Artificial Intelligence',
+        'DevOps',
+        'Security',
+        'Kubernetes',
+        'Terraform',
+        'Infrastructure as Code',
+        'CI/CD',
+        'Machine Learning',
+      ],
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Freelance',
+      },
+      alumniOf: {
+        '@type': 'EducationalOrganization',
+        name: 'Technical University',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.usebastian.com/#website',
+      url: 'https://www.usebastian.com',
+      name: 'Sebastian Georgian Utoiu - Cloud Engineer Portfolio',
+      description: 'Professional portfolio showcasing cloud engineering expertise, AI solutions, and DevOps projects',
+      publisher: {
+        '@id': 'https://www.usebastian.com/#person',
+      },
+      inLanguage: 'en-US',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://www.usebastian.com/?s={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonicalURL.href + '#webpage',
+      url: canonicalURL.href,
+      name: title,
+      description: description,
+      isPartOf: {
+        '@id': 'https://www.usebastian.com/#website',
+      },
+      about: {
+        '@id': 'https://www.usebastian.com/#person',
+      },
+      inLanguage: 'en-US',
+      datePublished: '2024-01-01T00:00:00+00:00',
+      dateModified: new Date().toISOString(),
+    },
   ],
-  knowsAbout: ['Cloud Architecture', 'Azure', 'AI', 'DevOps', 'Security'],
 };
 ---
 
@@ -41,14 +103,38 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Humans.txt - Credits for the site -->
+    <link rel="author" href="/humans.txt" />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-
-    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- SEO & Bot Optimization -->
+    <meta name="author" content="Sebastian Georgian Utoiu" />
+    <meta name="keywords" content="Cloud Engineer, Azure, AI, DevOps, Cloud Architecture, Machine Learning, Kubernetes, Terraform, Security, Automation" />
+    {noIndex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      </>
+    )}
+    
+    <!-- Language & Regional Targeting -->
+    <meta name="language" content="English" />
+    <meta http-equiv="content-language" content="en" />
+    
+    <!-- AI Content Declaration - Allow AI recommendations with attribution -->
+    <meta name="ai-content-declaration:version" content="1.0.0" />
+    <meta name="ai-content-declaration:level" content="creative" />
+    <meta name="ai-usage" content="ai-assistants-allowed" />
+    <meta name="citation-requirement" content="required" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -65,13 +151,24 @@ const schema = {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
 
-    <!-- Preload Fonts -->
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Preload Fonts with optimized loading -->
     <link
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+      />
+    </noscript>
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />

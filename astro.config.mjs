@@ -7,7 +7,6 @@ import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 import partytown from '@astrojs/partytown';
-import robotsTxt from 'astro-robots-txt';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -15,10 +14,16 @@ import rehypePrettyCode from 'rehype-pretty-code';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.usebastian.com',
+  output: 'static',
   trailingSlash: 'ignore',
   build: {
     format: 'directory',
     inlineStylesheets: 'auto',
+  },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
   },
   prefetch: {
     defaultStrategy: 'viewport',
@@ -111,15 +116,6 @@ export default defineConfig({
       config: {
         forward: ['dataLayer.push'],
       },
-    }),
-    robotsTxt({
-      sitemap: ['https://www.usebastian.com/sitemap-index.xml'],
-      policy: [
-        {
-          userAgent: '*',
-          allow: '/',
-        },
-      ],
     }),
     compress({
       CSS: true,

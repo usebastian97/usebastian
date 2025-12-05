@@ -1,0 +1,31 @@
+/* TEAM */
+Developer: Sebastian Georgian Utoiu
+Contact: contact [at] usebastian.com
+LinkedIn: https://linkedin.com/in/usebastian12
+GitHub: https://github.com/usebastian97
+Location: Available Globally
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript ES2024
+Components: Astro 5, TypeScript, Tailwind CSS 4
+Deployment: Cloudflare Pages
+Security: CSP, HSTS, Security Headers
+Performance: 95+ Lighthouse Score
+Accessibility: WCAG 2.1 AA Compliant
+
+/* THANKS */
+Framework: Astro Team
+Hosting: Cloudflare
+Fonts: Google Fonts
+Icons: Lucide, Simple Icons
+
+/* BOTS */
+Search Engines: Welcome! Please crawl responsibly.
+AI Scrapers: Unauthorized scraping prohibited. See robots.txt.
+Good Bots: Googlebot, Bingbot, DuckDuckBot, Yahoo Slurp - fully allowed
+Rate Limit: Please respect 1 request/second for crawlers
+
+/* COPYRIGHT */
+All content © 2024-2025 Sebastian Georgian Utoiu
+Code examples: MIT License (unless otherwise stated)
+Blog posts: Creative Commons BY-NC-SA 4.0
