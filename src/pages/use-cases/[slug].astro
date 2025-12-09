@@ -38,11 +38,11 @@ const { Content, headings } = await entry.render();
 >
   <!-- Challenge / Solution / Outcome cards -->
   <Fragment slot="header">
-    <div class="not-prose mb-10 grid gap-4 md:grid-cols-3">
-      <div class="rounded-xl border border-red-100 bg-gradient-to-br from-red-50 to-white p-5">
-        <div class="mb-2 flex items-center gap-2">
-          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-red-100">
-            <svg class="h-4 w-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="not-prose mb-8 sm:mb-10 grid gap-3 sm:gap-4 md:grid-cols-3">
+      <div class="rounded-lg sm:rounded-xl border border-red-100 bg-gradient-to-br from-red-50 to-white p-4 sm:p-5">
+        <div class="mb-2 sm:mb-2.5 flex items-center gap-2">
+          <div class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-red-100">
+            <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -51,16 +51,16 @@ const { Content, headings } = await entry.render();
               ></path>
             </svg>
           </div>
-          <h3 class="text-sm font-semibold tracking-wider text-red-700 uppercase">Challenge</h3>
+          <h3 class="text-xs sm:text-sm font-semibold tracking-wider text-red-700 uppercase">Challenge</h3>
         </div>
-        <p class="text-sm leading-relaxed text-gray-700">{entry.data.problem}</p>
+        <p class="text-xs sm:text-sm leading-relaxed text-gray-700">{entry.data.problem}</p>
       </div>
 
-      <div class="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5">
-        <div class="mb-2 flex items-center gap-2">
-          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
+      <div class="rounded-lg sm:rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-4 sm:p-5">
+        <div class="mb-2 sm:mb-2.5 flex items-center gap-2">
+          <div class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-blue-100">
             <svg
-              class="h-4 w-4 text-blue-600"
+              class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -73,18 +73,18 @@ const { Content, headings } = await entry.render();
               ></path>
             </svg>
           </div>
-          <h3 class="text-sm font-semibold tracking-wider text-blue-700 uppercase">Solution</h3>
+          <h3 class="text-xs sm:text-sm font-semibold tracking-wider text-blue-700 uppercase">Solution</h3>
         </div>
-        <p class="text-sm leading-relaxed text-gray-700">{entry.data.solution}</p>
+        <p class="text-xs sm:text-sm leading-relaxed text-gray-700">{entry.data.solution}</p>
       </div>
 
       <div
-        class="rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-5"
+        class="rounded-lg sm:rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-4 sm:p-5"
       >
-        <div class="mb-2 flex items-center gap-2">
-          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100">
+        <div class="mb-2 sm:mb-2.5 flex items-center gap-2">
+          <div class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-emerald-100">
             <svg
-              class="h-4 w-4 text-emerald-600"
+              class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -96,9 +96,9 @@ const { Content, headings } = await entry.render();
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-sm font-semibold tracking-wider text-emerald-700 uppercase">Outcome</h3>
+          <h3 class="text-xs sm:text-sm font-semibold tracking-wider text-emerald-700 uppercase">Outcome</h3>
         </div>
-        <p class="text-sm leading-relaxed text-gray-700">{entry.data.result}</p>
+        <p class="text-xs sm:text-sm leading-relaxed text-gray-700">{entry.data.result}</p>
       </div>
     </div>
   </Fragment>
@@ -109,10 +109,10 @@ const { Content, headings } = await entry.render();
   <Fragment slot="footer">
     {
       entry.data.technologies && entry.data.technologies.length > 0 && (
-        <div class="not-prose mt-12 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6">
-          <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900">
+        <div class="not-prose mt-8 sm:mt-12 rounded-lg sm:rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-4 sm:p-6">
+          <h3 class="mb-3 sm:mb-4 flex items-center gap-2 text-base sm:text-lg font-semibold text-gray-900">
             <svg
-              class="h-5 w-5 text-gray-600"
+              class="h-4 w-4 sm:h-5 sm:w-5 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -126,9 +126,9 @@ const { Content, headings } = await entry.render();
             </svg>
             Technologies Used
           </h3>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
             {entry.data.technologies.map((tech: string) => (
-              <span class="rounded-lg border border-gray-100 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm">
+              <span class="rounded-md sm:rounded-lg border border-gray-100 bg-white px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-gray-700 shadow-sm">
                 {tech}
               </span>
             ))}

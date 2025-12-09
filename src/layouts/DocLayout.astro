@@ -37,34 +37,33 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
 <MainLayout title={`${title} | Sebastian Georgian Utoiu`} description={description}>
   <!-- Header with gradient background -->
   <div class="border-b border-gray-200 bg-gradient-to-b from-gray-50 to-white">
-    <div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <div class:list={['grid grid-cols-1 gap-12', showTOC && 'lg:grid-cols-[1fr_280px]']}>
-        <div class="max-w-4xl">
-          <!-- Breadcrumb -->
-          <nav class="mb-6 flex items-center gap-2 text-sm">
-            <a href="/" class="text-gray-500 hover:text-gray-700 transition-colors">Home</a>
-            <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-            <a href={breadcrumb.href} class="text-gray-500 hover:text-gray-700 transition-colors">
-              {breadcrumb.label}
-            </a>
-            <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-            <span class="text-gray-900 font-medium truncate max-w-[200px]">{title}</span>
-          </nav>
+    <div class="container mx-auto px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="mb-4 sm:mb-6 flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm overflow-x-auto">
+          <a href="/" class="text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Home</a>
+          <svg class="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          <a href={breadcrumb.href} class="text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">
+            {breadcrumb.label}
+          </a>
+          <svg class="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          <span class="text-gray-900 font-medium truncate">{title}</span>
+        </nav>
 
-          <!-- Title & Description -->
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-4">
-            {title}
-          </h1>
-          <p class="text-lg text-gray-600 leading-relaxed">{description}</p>
+        <!-- Title & Description -->
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-gray-900 mb-3 sm:mb-4 leading-tight text-center">
+          {title}
+        </h1>
+        <p class="text-base sm:text-lg text-gray-600 leading-relaxed text-center">{description}</p>
 
           <!-- Meta info -->
           {
             meta && meta.length > 0 && (
-              <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-500">
+              <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
                 {meta.map((item, index) => (
                   <>
                     {index > 0 && <span class="text-gray-300">•</span>}
@@ -81,7 +80,7 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
           <!-- Tags -->
           {
             tags && tags.length > 0 && (
-              <div class="mt-6 flex flex-wrap gap-2">
+              <div class="mt-6 flex flex-wrap justify-center gap-2">
                 {tags.map((tag) => (
                   <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">
                     {tag}
@@ -94,7 +93,7 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
           <!-- Action buttons -->
           {
             actions && actions.length > 0 && (
-              <div class="mt-8 flex flex-wrap gap-3">
+              <div class="mt-8 flex flex-wrap justify-center gap-3">
                 {actions.map((action) => (
                   <a
                     href={action.href}
@@ -124,8 +123,6 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
             )
           }
         </div>
-        <!-- Empty column for alignment with sidebar -->
-        {showTOC && <div class="hidden lg:block"></div>}
       </div>
     </div>
   </div>
@@ -154,29 +151,29 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
 
           <!-- Main content with enhanced prose styles -->
           <div class:list={[
-            'prose prose-base max-w-none',
+            'prose prose-sm sm:prose-base max-w-none',
             'prose-gray',
             'prose-p:leading-relaxed prose-p:text-gray-600',
-            'prose-a:text-blue-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline',
+            'prose-a:text-blue-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-a:break-words',
             'prose-strong:text-gray-900',
-            '[&_h1]:!text-gray-900 [&_h1]:!font-medium [&_h1]:!no-underline',
-            '[&_h2]:!text-gray-900 [&_h2]:!font-medium [&_h2]:!no-underline [&_h2]:scroll-mt-24 [&_h2]:mt-12 [&_h2]:mb-6 [&_h2]:text-2xl [&_h2]:border-b [&_h2]:border-gray-200 [&_h2]:pb-3',
-            '[&_h3]:!text-gray-900 [&_h3]:!font-medium [&_h3]:!no-underline [&_h3]:scroll-mt-24 [&_h3]:mt-8 [&_h3]:mb-4 [&_h3]:text-xl',
-            '[&_h4]:!text-gray-900 [&_h4]:!font-medium [&_h4]:!no-underline [&_h4]:scroll-mt-24 [&_h4]:mt-6 [&_h4]:mb-3 [&_h4]:text-lg',
+            '[&_h1]:!text-gray-900 [&_h1]:!font-medium [&_h1]:!no-underline [&_h1]:break-words',
+            '[&_h2]:!text-gray-900 [&_h2]:!font-medium [&_h2]:!no-underline [&_h2]:scroll-mt-24 [&_h2]:mt-8 sm:[&_h2]:mt-12 [&_h2]:mb-4 sm:[&_h2]:mb-6 [&_h2]:text-xl sm:[&_h2]:text-2xl [&_h2]:border-b [&_h2]:border-gray-200 [&_h2]:pb-2 sm:[&_h2]:pb-3 [&_h2]:break-words',
+            '[&_h3]:!text-gray-900 [&_h3]:!font-medium [&_h3]:!no-underline [&_h3]:scroll-mt-24 [&_h3]:mt-6 sm:[&_h3]:mt-8 [&_h3]:mb-3 sm:[&_h3]:mb-4 [&_h3]:text-lg sm:[&_h3]:text-xl [&_h3]:break-words',
+            '[&_h4]:!text-gray-900 [&_h4]:!font-medium [&_h4]:!no-underline [&_h4]:scroll-mt-24 [&_h4]:mt-5 sm:[&_h4]:mt-6 [&_h4]:mb-2 sm:[&_h4]:mb-3 [&_h4]:text-base sm:[&_h4]:text-lg [&_h4]:break-words',
             '[&_h1_a]:!text-gray-900 [&_h1_a]:!no-underline',
             '[&_h2_a]:!text-gray-900 [&_h2_a]:!no-underline',
             '[&_h3_a]:!text-gray-900 [&_h3_a]:!no-underline',
             '[&_h4_a]:!text-gray-900 [&_h4_a]:!no-underline',
-            'prose-code:rounded-md prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-sm prose-code:font-medium prose-code:text-gray-800 prose-code:before:content-none prose-code:after:content-none',
-            'prose-pre:rounded-xl prose-pre:bg-gray-900 prose-pre:shadow-lg prose-pre:border prose-pre:border-gray-800',
-            'prose-ul:my-6 prose-ol:my-6',
-            'prose-li:my-1 prose-li:text-gray-600',
-            'prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:not-italic prose-blockquote:text-gray-700',
-            'prose-img:rounded-xl',
-            'prose-hr:my-12',
-            'prose-table:overflow-hidden prose-table:rounded-lg prose-table:border prose-table:border-gray-200',
-            'prose-th:bg-gray-50 prose-th:px-4 prose-th:py-3',
-            'prose-td:px-4 prose-td:py-3',
+            'prose-code:rounded-md prose-code:bg-gray-100 prose-code:px-1 sm:prose-code:px-1.5 prose-code:py-0.5 prose-code:text-xs sm:prose-code:text-sm prose-code:font-medium prose-code:text-gray-800 prose-code:before:content-none prose-code:after:content-none prose-code:break-words',
+            'prose-pre:rounded-lg sm:prose-pre:rounded-xl prose-pre:bg-gray-900 prose-pre:shadow-lg prose-pre:border prose-pre:border-gray-800 prose-pre:text-xs sm:prose-pre:text-sm prose-pre:overflow-x-auto',
+            'prose-ul:my-4 sm:prose-ul:my-6 prose-ol:my-4 sm:prose-ol:my-6',
+            'prose-li:my-1 prose-li:text-gray-600 prose-li:break-words',
+            'prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:rounded-r-lg sm:prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:pl-4 sm:prose-blockquote:pl-6 prose-blockquote:pr-3 sm:prose-blockquote:pr-4 prose-blockquote:not-italic prose-blockquote:text-gray-700',
+            'prose-img:rounded-lg sm:prose-img:rounded-xl prose-img:w-full',
+            'prose-hr:my-8 sm:prose-hr:my-12',
+            'prose-table:overflow-x-auto prose-table:block prose-table:rounded-lg prose-table:border prose-table:border-gray-200 prose-table:text-xs sm:prose-table:text-sm',
+            'prose-th:bg-gray-50 prose-th:px-2 sm:prose-th:px-4 prose-th:py-2 sm:prose-th:py-3 prose-th:whitespace-nowrap',
+            'prose-td:px-2 sm:prose-td:px-4 prose-td:py-2 sm:prose-td:py-3 prose-td:break-words',
           ]}
             style="--tw-prose-headings: rgb(17, 24, 39); --tw-prose-links: rgb(17, 24, 39);"
           >
