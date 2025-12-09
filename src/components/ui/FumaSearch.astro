@@ -1,0 +1,371 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  placeholder?: string;
+}
+
+const { placeholder = 'Search documentation...' } = Astro.props;
+---
+
+<div class="search-container relative">
+  <Icon name="lucide:search" class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
+  <input
+    type="search"
+    id="fuma-search"
+    placeholder={placeholder}
+    autocomplete="off"
+    class="w-full rounded-xl border-2 border-gray-200 bg-white py-3.5 pl-12 pr-4 text-base transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+  />
+  
+  <!-- Search Results Dropdown -->
+  <div
+    id="search-results"
+    class="absolute top-full left-0 right-0 mt-2 hidden max-h-96 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-2xl z-50"
+  >
+    <div id="results-content" class="p-2"></div>
+    <div id="no-results" class="hidden p-8 text-center">
+      <Icon name="lucide:search-x" class="mx-auto h-12 w-12 text-gray-400 mb-3" />
+      <p class="text-gray-600">No results found</p>
+      <p class="text-sm text-gray-500 mt-1">Try different keywords</p>
+    </div>
+    <div id="search-footer" class="hidden border-t border-gray-200 px-4 py-2 text-xs text-gray-500">
+      <div class="flex items-center justify-between">
+        <span>Press <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono">↑</kbd> <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono">↓</kbd> to navigate</span>
+        <span>Press <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono">Enter</kbd> to select</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div
+    id="search-loading"
+    class="absolute top-full left-0 right-0 mt-2 hidden rounded-xl border border-gray-200 bg-white p-8 shadow-2xl z-50"
+  >
+    <div class="flex items-center justify-center gap-3">
+      <div class="h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600"></div>
+      <p class="text-gray-600">Searching...</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-result-item {
+    display: block;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+
+  .search-result-item:hover {
+    background-color: rgb(239 246 255);
+  }
+
+  .search-result-item.selected {
+    background-color: rgb(239 246 255);
+  }
+
+  .search-result-title {
+    font-weight: 600;
+    color: rgb(17 24 39);
+    margin-bottom: 0.25rem;
+  }
+
+  .search-result-item:hover .search-result-title {
+    color: rgb(37 99 235);
+  }
+
+  .search-result-description {
+    font-size: 0.875rem;
+    color: rgb(75 85 99);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .search-result-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: rgb(107 114 128);
+  }
+
+  .search-result-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 9999px;
+    background-color: rgb(243 244 246);
+    padding: 0.125rem 0.5rem;
+    font-weight: 500;
+  }
+
+  kbd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+  }
+</style>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  interface SearchItem {
+    title: string;
+    description: string;
+    url: string;
+    category: 'blog' | 'project' | 'use-case';
+    tags?: string[];
+    content?: string;
+  }
+
+  class FumaSearch {
+    private searchInput: HTMLInputElement;
+    private resultsContainer: HTMLElement;
+    private resultsContent: HTMLElement;
+    private noResults: HTMLElement;
+    private searchFooter: HTMLElement;
+    private loadingIndicator: HTMLElement;
+    private fuse: Fuse<SearchItem> | null = null;
+    private selectedIndex = -1;
+    private currentResults: SearchItem[] = [];
+
+    constructor() {
+      this.searchInput = document.getElementById('fuma-search') as HTMLInputElement;
+      this.resultsContainer = document.getElementById('search-results') as HTMLElement;
+      this.resultsContent = document.getElementById('results-content') as HTMLElement;
+      this.noResults = document.getElementById('no-results') as HTMLElement;
+      this.searchFooter = document.getElementById('search-footer') as HTMLElement;
+      this.loadingIndicator = document.getElementById('search-loading') as HTMLElement;
+
+      this.init();
+    }
+
+    private async init() {
+      // Load search data
+      await this.loadSearchData();
+
+      // Setup event listeners
+      this.searchInput.addEventListener('input', this.handleInput.bind(this));
+      this.searchInput.addEventListener('keydown', this.handleKeydown.bind(this));
+      this.searchInput.addEventListener('focus', () => {
+        if (this.searchInput.value.length > 0) {
+          this.resultsContainer.classList.remove('hidden');
+        }
+      });
+
+      // Close results when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!this.searchInput.contains(e.target as Node) && 
+            !this.resultsContainer.contains(e.target as Node)) {
+          this.resultsContainer.classList.add('hidden');
+        }
+      });
+
+      // Keyboard shortcut (Ctrl/Cmd + K)
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          this.searchInput.focus();
+        }
+
+        // Escape to close
+        if (e.key === 'Escape') {
+          this.resultsContainer.classList.add('hidden');
+          this.searchInput.blur();
+        }
+      });
+    }
+
+    private async loadSearchData() {
+      try {
+        this.showLoading();
+
+        // Fetch search index (you'll need to generate this)
+        const response = await fetch('/search-index.json');
+        const searchData: SearchItem[] = await response.json();
+
+        // Initialize Fuse.js
+        this.fuse = new Fuse(searchData, {
+          keys: [
+            { name: 'title', weight: 3 },
+            { name: 'description', weight: 2 },
+            { name: 'tags', weight: 1.5 },
+            { name: 'content', weight: 1 },
+          ],
+          threshold: 0.3,
+          includeScore: true,
+          minMatchCharLength: 2,
+        });
+
+        this.hideLoading();
+      } catch (error) {
+        console.error('Failed to load search data:', error);
+        this.hideLoading();
+      }
+    }
+
+    private handleInput(e: Event) {
+      const query = (e.target as HTMLInputElement).value.trim();
+
+      if (query.length === 0) {
+        this.resultsContainer.classList.add('hidden');
+        this.currentResults = [];
+        this.selectedIndex = -1;
+        return;
+      }
+
+      if (query.length < 2) {
+        return;
+      }
+
+      this.performSearch(query);
+    }
+
+    private performSearch(query: string) {
+      if (!this.fuse) {
+        console.warn('Search not initialized');
+        return;
+      }
+
+      const results = this.fuse.search(query);
+      this.currentResults = results.map(result => result.item);
+
+      this.displayResults(this.currentResults);
+    }
+
+    private displayResults(results: SearchItem[]) {
+      this.resultsContent.innerHTML = '';
+      this.selectedIndex = -1;
+
+      if (results.length === 0) {
+        this.noResults.classList.remove('hidden');
+        this.searchFooter.classList.add('hidden');
+        this.resultsContainer.classList.remove('hidden');
+        return;
+      }
+
+      this.noResults.classList.add('hidden');
+      this.searchFooter.classList.remove('hidden');
+
+      results.forEach((item, index) => {
+        const resultEl = this.createResultElement(item, index);
+        this.resultsContent.appendChild(resultEl);
+      });
+
+      this.resultsContainer.classList.remove('hidden');
+    }
+
+    private createResultElement(item: SearchItem, index: number): HTMLElement {
+      const div = document.createElement('div');
+      div.className = 'search-result-item group';
+      div.dataset.index = index.toString();
+
+      const categoryColors = {
+        blog: 'bg-blue-100 text-blue-700',
+        project: 'bg-green-100 text-green-700',
+        'use-case': 'bg-purple-100 text-purple-700',
+      };
+
+      div.innerHTML = `
+        <div class="search-result-title">${this.highlightText(item.title)}</div>
+        <div class="search-result-description">${this.highlightText(item.description)}</div>
+        <div class="search-result-meta">
+          <span class="search-result-category ${categoryColors[item.category]}">
+            ${item.category}
+          </span>
+          ${item.tags && item.tags.length > 0 ? `
+            <span class="flex items-center gap-1">
+              ${item.tags.slice(0, 3).map(tag => `<span class="rounded bg-gray-100 px-2 py-0.5">${tag}</span>`).join('')}
+            </span>
+          ` : ''}
+        </div>
+      `;
+
+      div.addEventListener('click', () => {
+        window.location.href = item.url;
+      });
+
+      div.addEventListener('mouseenter', () => {
+        this.selectResult(index);
+      });
+
+      return div;
+    }
+
+    private highlightText(text: string): string {
+      const query = this.searchInput.value.trim();
+      if (!query) return text;
+
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<mark class="bg-yellow-200 text-gray-900">$1</mark>');
+    }
+
+    private handleKeydown(e: KeyboardEvent) {
+      if (!this.resultsContainer.classList.contains('hidden') && this.currentResults.length > 0) {
+        switch (e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            this.selectResult((this.selectedIndex + 1) % this.currentResults.length);
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            this.selectResult(
+              this.selectedIndex <= 0 
+                ? this.currentResults.length - 1 
+                : this.selectedIndex - 1
+            );
+            break;
+          case 'Enter':
+            e.preventDefault();
+            if (this.selectedIndex >= 0) {
+              const selected = this.currentResults[this.selectedIndex];
+              const url = selected?.url;
+              if (url) {
+                window.location.href = url;
+              }
+            }
+            break;
+        }
+      }
+    }
+
+    private selectResult(index: number) {
+      // Remove previous selection
+      const prevSelected = this.resultsContent.querySelector('.selected');
+      if (prevSelected) {
+        prevSelected.classList.remove('selected');
+      }
+
+      this.selectedIndex = index;
+
+      // Add new selection
+      const newSelected = this.resultsContent.querySelector(`[data-index="${index}"]`);
+      if (newSelected) {
+        newSelected.classList.add('selected');
+        newSelected.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    private showLoading() {
+      this.loadingIndicator.classList.remove('hidden');
+    }
+
+    private hideLoading() {
+      this.loadingIndicator.classList.add('hidden');
+    }
+  }
+
+  // Initialize search when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new FumaSearch();
+    });
+  } else {
+    new FumaSearch();
+  }
+</script>

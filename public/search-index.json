@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Welcome to Fumadocs-Style Documentation",
+    "description": "Discover the new documentation system with advanced search, enhanced navigation, and beautiful components inspired by Fumadocs.",
+    "url": "/blog/fumadocs-integration",
+    "category": "blog",
+    "tags": [
+      "Documentation",
+      "Fumadocs",
+      "Search",
+      "UI/UX"
+    ],
+    "content": "\nimport FumaCallout from '@components/mdx/FumaCallout.astro';\nimport FumaCodeBlock from '@components/mdx/FumaCodeBlock.astro';\n\n## Introduction\n\nWelcome to our new **Fumadocs-inspired documentation system**! While Fumadocs is built for Next.js, we've brought its elegant design patterns and powerful features to our Astro-based portfolio.\n\n<FumaCallout type=\"tip\" title=\"Quick Start\">\nPress **Ctrl/Cmd + K** anywhere on the site to open the search bar and start exploring!\n</FumaCallout>\n\n## Key Feat"
+  },
+  {
+    "title": "Defense-in-Depth in Azure",
+    "description": "A comprehensive guide to implementing layered security controls across identity, network, compute, application, and data tiers in Microsoft Azure.",
+    "url": "/blog/Defense-in-Depth",
+    "category": "blog",
+    "tags": [
+      "Azure",
+      "Security",
+      "Zero Trust",
+      "Microsoft Defender",
+      "Cloud Architecture"
+    ],
+    "content": "\n## Introduction to Defense-in-Depth\n\nDefense-in-depth represents a cardinal security philosophy wherein multiple protective mechanisms are layered throughout an environment to impede adversaries at every conceivable juncture. Rather than relying on a solitary control, this strategy assumes that any single defense can fail. Azure provides a robust constellation of services engineered to implement this paradigm at scale.\n\nThe principle originates from military doctrine. Successive barriers slow a"
+  },
+  {
+    "title": "Limiting Public Access and Protecting Sensitive Data in Azure Storage",
+    "description": "Implemented enterprise-grade security for Azure Storage to prevent data exposure through private endpoints, Azure AD authentication, and Zero Trust principles.",
+    "url": "/use-cases/azure-storage-security",
+    "category": "use-case",
+    "tags": [
+      "Azure Storage",
+      "Private Endpoints",
+      "Azure AD",
+      "RBAC",
+      "Azure Key Vault",
+      "Managed Identity",
+      "Log Analytics",
+      "Virtual Network",
+      "Security Alerts"
+    ],
+    "content": "\nimport FumaCallout from '@components/mdx/FumaCallout.astro';\nimport FumaCodeBlock from '@components/mdx/FumaCodeBlock.astro';\nimport Diagram from '@components/mdx/Diagram.astro';\nimport Paragraph from '@components/mdx/Paragraph.astro';\n\n## The Challenge\nI encountered a common security risk: an internal application using Azure Storage to store user-generated files with overly permissive default configurations. The main threat was accidental data exposure through public access or long-lived SAS t"
+  }
+]

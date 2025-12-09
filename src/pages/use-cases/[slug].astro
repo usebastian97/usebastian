@@ -27,6 +27,7 @@ const { Content, headings } = await entry.render();
   breadcrumb={{ label: 'Use Cases', href: '/use-cases' }}
   backLink={{ label: 'Back to Use Cases', href: '/use-cases' }}
   image={entry.data.image ?? undefined}
+  showTOC={false}
   meta={[
     { label: 'Category', value: entry.data.category.charAt(0).toUpperCase() + entry.data.category.slice(1), icon: '📁' },
   ]}

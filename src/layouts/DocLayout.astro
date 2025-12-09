@@ -1,7 +1,7 @@
 ---
 import type { MarkdownHeading } from 'astro';
 import MainLayout from '@layouts/MainLayout.astro';
-import TableOfContents from '@components/mdx/TableOfContents.astro';
+import FumaTOC from '@components/ui/FumaTOC.astro';
 
 interface Props {
   title: string;
@@ -28,16 +28,17 @@ interface Props {
     variant?: 'primary' | 'secondary';
     icon?: 'external' | 'github';
   }[];
+  showTOC?: boolean;
 }
 
-const { title, description, headings, breadcrumb, backLink, meta, tags, image, actions } = Astro.props;
+const { title, description, headings, breadcrumb, backLink, meta, tags, image, actions, showTOC = true } = Astro.props;
 ---
 
 <MainLayout title={`${title} | Sebastian Georgian Utoiu`} description={description}>
   <!-- Header with gradient background -->
   <div class="border-b border-gray-200 bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_280px]">
+      <div class:list={['grid grid-cols-1 gap-12', showTOC && 'lg:grid-cols-[1fr_280px]']}>
         <div class="max-w-4xl">
           <!-- Breadcrumb -->
           <nav class="mb-6 flex items-center gap-2 text-sm">
@@ -124,7 +125,7 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
           }
         </div>
         <!-- Empty column for alignment with sidebar -->
-        <div class="hidden lg:block"></div>
+        {showTOC && <div class="hidden lg:block"></div>}
       </div>
     </div>
   </div>
@@ -132,9 +133,9 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
   <!-- Main content area -->
   <div class="bg-white">
     <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_280px]">
+      <div class:list={['grid grid-cols-1 gap-12', showTOC && 'lg:grid-cols-[1fr_280px]']}>
         <!-- Article content -->
-        <article class="min-w-0 max-w-4xl">
+        <article class:list={['min-w-0', showTOC ? 'max-w-4xl' : 'max-w-5xl mx-auto']}>
           {
             image && (
               <div class="mb-10 overflow-hidden rounded-2xl border border-gray-200">
@@ -187,36 +188,36 @@ const { title, description, headings, breadcrumb, backLink, meta, tags, image, a
         </article>
 
         <!-- Sidebar -->
-        <aside class="hidden lg:block">
-          <div class="sticky top-24 space-y-6">
-            <!-- Table of Contents -->
-            {
-              headings.length > 0 && (
-                <div class="rounded-xl border border-gray-200 bg-white p-5">
-                  <TableOfContents headings={headings} />
-                </div>
-              )
-            }
+        {showTOC && (
+          <aside class="hidden lg:block">
+            <div class="sticky top-24 space-y-6">
+              <!-- Table of Contents -->
+              {
+                headings.length > 0 && (
+                  <FumaTOC headings={headings} />
+                )
+              }
 
-            <!-- Back link -->
-            {
-              backLink && (
-                <a
-                  href={backLink.href}
-                  class="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-all hover:border-gray-900 hover:bg-gray-900 hover:text-white"
-                >
-                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                  </svg>
-                  {backLink.label}
-                </a>
-              )
-            }
+              <!-- Back link -->
+              {
+                backLink && (
+                  <a
+                    href={backLink.href}
+                    class="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-all hover:border-gray-900 hover:bg-gray-900 hover:text-white"
+                  >
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    {backLink.label}
+                  </a>
+                )
+              }
 
-            <!-- Additional sidebar slot -->
-            <slot name="sidebar" />
-          </div>
-        </aside>
+              <!-- Additional sidebar slot -->
+              <slot name="sidebar" />
+            </div>
+          </aside>
+        )}
       </div>
     </div>
   </div>

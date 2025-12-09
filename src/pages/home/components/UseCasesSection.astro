@@ -5,8 +5,10 @@ import { useTranslations } from '@i18n/utils';
 const t = useTranslations('en');
 
 // Fetch use cases from MDX files
-const allUseCases = await getCollection('use-cases', ({ data }) => data.lang === 'en');
-const useCases = allUseCases.slice(0, 3); // Show maximum 3 use cases
+const allUseCases = await getCollection('use-cases');
+const useCases = allUseCases
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+  .slice(0, 3); // Show maximum 3 use cases
 ---
 
 <section class="relative overflow-hidden border-b border-gray-200 bg-gray-50 py-12 sm:py-16 lg:py-20">

@@ -1,0 +1,77 @@
+---
+interface Props {
+  align?: 'left' | 'center' | 'right' | 'justify';
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  class?: string;
+}
+
+const { 
+  align = 'left', 
+  maxWidth = 'xl',
+  class: className = '' 
+} = Astro.props;
+
+const alignmentClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+  justify: 'text-justify'
+};
+
+const maxWidthClasses = {
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+  '2xl': 'max-w-2xl',
+  full: 'max-w-full'
+};
+---
+
+<div class={`mx-auto ${maxWidthClasses[maxWidth]} ${alignmentClasses[align]} ${className}`}>
+  <div class="prose prose-gray dark:prose-invert max-w-none">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .prose {
+    line-height: 1.75;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+    color: #374151;
+  }
+
+  .dark .prose :global(p) {
+    color: #d1d5db;
+  }
+
+  .prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .prose :global(strong) {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .dark .prose :global(strong) {
+    color: #f9fafb;
+  }
+
+  .prose :global(em) {
+    font-style: italic;
+  }
+
+  .prose :global(a) {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .prose :global(a:hover) {
+    text-decoration: underline;
+  }
+</style>

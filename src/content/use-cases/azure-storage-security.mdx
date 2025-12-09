@@ -1,0 +1,259 @@
+---
+title: 'Limiting Public Access and Protecting Sensitive Data in Azure Storage'
+description: 'Implemented enterprise-grade security for Azure Storage to prevent data exposure through private endpoints, Azure AD authentication, and Zero Trust principles.'
+category: 'security'
+problem: 'An internal application using Azure Storage had overly permissive default configurations, creating risk of accidental data exposure through public access and long-lived SAS tokens.'
+solution: 'Implemented a minimal yet robust security configuration with disabled public access, private endpoints, Azure AD authentication with RBAC, centralized secrets management via Key Vault, and comprehensive monitoring.'
+result: 'Achieved zero public exposure of sensitive files, eliminated key sprawl through identity-based access, established real-time visibility into access patterns, and implemented practical Zero Trust architecture.'
+technologies: ['Azure Storage', 'Private Endpoints', 'Azure AD', 'RBAC', 'Azure Key Vault', 'Managed Identity', 'Log Analytics', 'Virtual Network', 'Security Alerts']
+relatedProjects: []
+order: 1
+lang: 'en'
+---
+
+import FumaCallout from '@components/mdx/FumaCallout.astro';
+import FumaCodeBlock from '@components/mdx/FumaCodeBlock.astro';
+import Diagram from '@components/mdx/Diagram.astro';
+import Paragraph from '@components/mdx/Paragraph.astro';
+
+## The Challenge
+I encountered a common security risk: an internal application using Azure Storage to store user-generated files with overly permissive default configurations. The main threat was accidental data exposure through public access or long-lived SAS tokens.
+## What I Built
+I implemented a minimal yet robust security configuration that reduces the attack surface and prevents unauthorized access to sensitive data.
+
+## Implementation Details
+
+### 1. Disabled Public Access
+
+One of the most common cloud security mistakes is leaving blob storage publicly accessible. I disabled this at the storage account level by setting `Allow Blob Public Access = Disabled`.
+
+### 2. Enabled Private Communication Only
+
+Instead of allowing traffic from the public internet, I configured a Private Endpoint on a dedicated subnet within the Virtual Network. This ensures all storage traffic stays within Azure's internal network.
+
+### 3. Implemented Azure AD Authentication
+
+SAS tokens are difficult to manage and rotate securely. I switched to Azure AD authentication with RBAC at the container level, using `Storage Blob Data Contributor` for the application service principal. This provides centralized identity management with granular control.
+
+### 4. Enforced Least Privilege
+
+To minimize the blast radius of any potential compromise, I applied strict permission boundaries:
+
+- Application service: **Write** permissions only
+- End users: **Read-only** access
+- No account-level keys distributed anywhere
+
+### 5. Centralized Secrets Management
+I eliminated hardcoded credentials entirely by storing connection strings in **Azure Key Vault** and using **Managed Identity** for App Service authentication. Zero secrets live in the application code or repository.
+
+### 6. Enabled Monitoring & Alerting
+
+To detect suspicious activity in real-time, I configured Diagnostic Settings to send logs to a Log Analytics Workspace and created alert rules for:
+
+- Anonymous access attempts
+- Unusual data egress patterns
+- Failed authentication attempts
+
+## Key Takeaways
+
+This implementation deepened my understanding of:
+
+- Enterprise-grade storage security beyond default configurations
+- Replacing static credentials with identity-based authentication
+- How Private Endpoints eliminate attack surfaces while maintaining functionality
+- Building observable security through logging, alerting, and anomaly detection
+- Practical Zero Trust architecture in Azure
+
+## Complete Security Implementation Diagram
+
+<Diagram>
+```mermaid
+graph TB
+    subgraph "User Layer"
+        A[End User]
+    end
+    
+    subgraph "Application Layer"
+        B[App Service]
+        C[Managed Identity]
+    end
+    
+    subgraph "Security Layer"
+        D[Azure Key Vault]
+        E[Azure AD]
+        F[RBAC Policies]
+    end
+    
+    subgraph "Network Layer"
+        G[Virtual Network]
+        H[Private Endpoint Subnet]
+        I[Private Endpoint]
+    end
+    
+    subgraph "Storage Layer"
+        J[Storage Account]
+        K[Container - Write Access]
+        L[Container - Read Access]
+    end
+    
+    subgraph "Monitoring Layer"
+        M[Diagnostic Settings]
+        N[Log Analytics Workspace]
+        O[Security Alerts]
+        P[Azure Monitor]
+    end
+    
+    A -->|1. Request| B
+    B -->|2. Authenticate| C
+    C -->|3. Get Credentials| D
+    C -->|4. Verify Identity| E
+    E -->|5. Check Permissions| F
+    B -->|6. Internal Traffic| G
+    G -->|7. Route Through| H
+    H -->|8. Connect Via| I
+    I -->|9. Secure Connection| J
+    J -->|10. Write Data| K
+    J -->|11. Read Data| L
+    J -->|12. Send Logs| M
+    M -->|13. Store Logs| N
+    N -->|14. Analyze| P
+    P -->|15. Trigger| O
+    
+    style J fill:#e1f5ff
+    style D fill:#fff4e1
+    style I fill:#e8f5e9
+    style O fill:#ffebee
+    style E fill:#f3e5f5
+```
+</Diagram>
+
+### Step-by-Step Flow
+
+1. **User Request:** End user initiates a request through the application interface
+2. **Authentication:** App Service uses its Managed Identity to authenticate
+3. **Credential Retrieval:** Managed Identity retrieves connection strings from Azure Key Vault (no hardcoded secrets)
+4. **Identity Verification:** Azure AD verifies the identity of the requesting service
+5. **Permission Check:** RBAC policies determine what actions are allowed (read/write)
+6. **Network Routing:** Request is routed through the Virtual Network (no internet exposure)
+7. **Subnet Traversal:** Traffic passes through the dedicated Private Endpoint subnet
+8. **Private Connection:** Private Endpoint establishes secure connection to Storage Account
+9. **Storage Access:** Storage Account receives the authenticated request
+10. **Write Operation:** Application writes data to designated container (if authorized)
+11. **Read Operation:** Users read data from container (read-only RBAC)
+12. **Logging:** All access attempts are logged via Diagnostic Settings
+13. **Log Storage:** Logs are sent to Log Analytics Workspace for analysis
+14. **Monitoring:** Azure Monitor continuously analyzes access patterns
+15. **Alerting:** Security alerts are triggered for suspicious activity (anonymous access, failed auth, unusual egress)
+
+### Key Security Controls in Diagram
+
+- **Blue (Storage):** Public access disabled, private endpoint only
+- **Yellow (Key Vault):** Centralized secret management
+- **Green (Private Endpoint):** Network isolation
+- **Red (Alerts):** Real-time threat detection
+- **Purple (Azure AD):** Identity-based authentication
+
+---
+
+## Architecture Evolution: Before vs. After
+
+### Before: Insecure Default Configuration
+
+<Diagram caption="High-risk architecture with public exposure">
+```mermaid
+graph TB
+    subgraph "Exposed Architecture"
+        A[Internet Users] -->|Public Access| B[Storage Account]
+        C[Application] -->|SAS Token| B
+        D[Developers] -->|Hardcoded Keys| C
+        B -->|No Encryption in Transit| E[Public Blob Container]
+        F[No Monitoring] -.X.- B
+    end
+    
+    style B fill:#ffcccc
+    style E fill:#ffcccc
+    style D fill:#ffe0cc
+    
+    G[Key Risks:]
+    H[❌ Public internet exposure]
+    I[❌ Static credentials in code]
+    J[❌ No access logging]
+    K[❌ Broad permissions]
+    L[❌ No network isolation]
+```
+</Diagram>
+
+### After: Zero Trust Security Model
+
+<Diagram caption="Zero Trust architecture with comprehensive security controls">
+```mermaid
+graph TB
+    subgraph "Secure Architecture"
+        A[Authenticated Users] -->|Azure AD Auth| B[App Service]
+        B -->|Managed Identity| C[Key Vault]
+        B -->|Private Network| D[Virtual Network]
+        D -->|Private Endpoint| E[Storage Account]
+        E -->|RBAC Enforced| F[Private Containers]
+        E -->|Diagnostic Logs| G[Log Analytics]
+        G -->|Real-time Analysis| H[Security Alerts]
+    end
+    
+    style E fill:#ccffcc
+    style C fill:#fff4cc
+    style D fill:#cce5ff
+    style H fill:#ffccff
+    
+    I[Security Controls:]
+    J[✓ Private endpoint only]
+    K[✓ Identity-based auth]
+    L[✓ Full audit trail]
+    M[✓ Least privilege RBAC]
+    N[✓ Network isolation]
+    O[✓ Zero secrets in code]
+```
+</Diagram>
+
+### Side-by-Side Comparison
+
+<Diagram caption="Security transformation from high-risk to Zero Trust">
+```mermaid
+graph LR
+    subgraph "BEFORE: High Risk"
+        A1[Public Internet]
+        A2[SAS Tokens]
+        A3[Hardcoded Keys]
+        A4[No Monitoring]
+        A1 --> A5[Storage Account]
+        A2 --> A5
+        A3 --> A5
+        A4 -.X.- A5
+    end
+    
+    subgraph "AFTER: Zero Trust"
+        B1[Azure AD]
+        B2[Managed Identity]
+        B3[Key Vault]
+        B4[Private Endpoint]
+        B5[Log Analytics]
+        B1 --> B6[Storage Account]
+        B2 --> B6
+        B3 --> B6
+        B4 --> B6
+        B6 --> B5
+    end
+    
+    style A5 fill:#ff9999
+    style B6 fill:#99ff99
+```
+</Diagram>
+
+### Security Transformation Summary
+
+| Security Layer | Before | After | Risk Reduction |
+| --- | --- | --- | --- |
+| **Network Access** | Public internet exposure | Private endpoint only | Eliminates external attack surface |
+| **Authentication** | SAS tokens (hard to rotate) | Azure AD + Managed Identity | No credential management |
+| **Authorization** | Broad container permissions | Granular RBAC policies | Least privilege enforcement |
+| **Secrets** | Hardcoded in source code | Key Vault with auto-rotation | Zero credential exposure |
+| **Visibility** | No logging or monitoring | Full audit trail + alerts | Real-time threat detection |
+| **Compliance** | Unknown posture | Auditable Zero Trust model | Regulatory alignment |

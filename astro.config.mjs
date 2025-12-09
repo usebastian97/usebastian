@@ -69,10 +69,12 @@ export default defineConfig({
         // Callouts & Admonitions
         Callout: './src/components/mdx/Callout.astro',
         Admonition: './src/components/mdx/Admonition.astro',
+        FumaCallout: './src/components/mdx/FumaCallout.astro',
         
         // Code
         CodeBlock: './src/components/mdx/CodeBlock.astro',
         CodeGroup: './src/components/mdx/CodeGroup.astro',
+        FumaCodeBlock: './src/components/mdx/FumaCodeBlock.astro',
         
         // Cards & Layout
         Card: './src/components/mdx/Card.astro',
@@ -99,6 +101,7 @@ export default defineConfig({
         
         // Content
         Quote: './src/components/mdx/Quote.astro',
+        Paragraph: './src/components/mdx/Paragraph.astro',
         TOC: './src/components/mdx/TOC.astro',
         TableOfContents: './src/components/mdx/TableOfContents.astro',
         Checklist: './src/components/mdx/Checklist.astro',

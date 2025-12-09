@@ -1,0 +1,183 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title?: string;
+  lang?: string;
+  showLineNumbers?: boolean;
+  highlightLines?: string;
+  filename?: string;
+}
+
+const { title, lang, showLineNumbers = false, filename } = Astro.props;
+---
+
+<div class="fuma-code-block not-prose my-6 overflow-hidden rounded-xl border border-gray-200 bg-gray-900 shadow-lg">
+  {(title || filename) && (
+    <div class="flex items-center justify-between border-b border-gray-800 bg-gray-800/50 px-4 py-3">
+      <div class="flex items-center gap-2">
+        {filename && (
+          <Icon name="lucide:file-code" class="h-4 w-4 text-gray-400" />
+        )}
+        <span class="text-sm font-medium text-gray-200">
+          {filename || title}
+        </span>
+        {lang && !filename && (
+          <span class="rounded bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-300">
+            {lang}
+          </span>
+        )}
+      </div>
+      <button
+        class="copy-button flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-700"
+        data-copy-button
+      >
+        <Icon name="lucide:copy" class="copy-icon h-4 w-4" />
+        <Icon name="lucide:check" class="check-icon hidden h-4 w-4 text-green-400" />
+        <span class="copy-text">Copy</span>
+        <span class="copied-text hidden text-green-400">Copied!</span>
+      </button>
+    </div>
+  )}
+  
+  <div class="relative">
+    {!title && !filename && (
+      <button
+        class="copy-button absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-lg bg-gray-800 px-3 py-1.5 text-sm font-medium text-gray-300 opacity-0 transition-all hover:bg-gray-700 group-hover:opacity-100"
+        data-copy-button
+      >
+        <Icon name="lucide:copy" class="copy-icon h-4 w-4" />
+        <Icon name="lucide:check" class="check-icon hidden h-4 w-4 text-green-400" />
+        <span class="copy-text">Copy</span>
+        <span class="copied-text hidden text-green-400">Copied!</span>
+      </button>
+    )}
+    
+    <div class={showLineNumbers ? 'code-with-line-numbers' : ''}>
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .fuma-code-block {
+    position: relative;
+  }
+
+  .fuma-code-block:hover .copy-button {
+    opacity: 1;
+  }
+
+  .fuma-code-block :global(pre) {
+    margin: 0;
+    overflow-x: auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.625;
+  }
+
+  .fuma-code-block :global(code) {
+    display: block;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  }
+
+  .code-with-line-numbers :global(pre) {
+    counter-reset: line;
+  }
+
+  .code-with-line-numbers :global(code) {
+    display: grid;
+  }
+
+  .code-with-line-numbers :global(code > .line) {
+    padding-left: 3rem;
+    position: relative;
+  }
+
+  .code-with-line-numbers :global(code > .line::before) {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 2rem;
+    text-align: right;
+    color: rgb(107 114 128);
+  }
+
+  .fuma-code-block :global(.line.highlight) {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left: 2px solid rgb(59 130 246);
+  }
+
+  .fuma-code-block :global(.line.diff.add) {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-left: 2px solid rgb(34 197 94);
+  }
+
+  .fuma-code-block :global(.line.diff.remove) {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 2px solid rgb(239 68 68);
+  }
+</style>
+
+<script>
+  class CodeBlockCopy {
+    constructor() {
+      this.init();
+    }
+
+    private init() {
+      const copyButtons = document.querySelectorAll('[data-copy-button]');
+      
+      copyButtons.forEach(button => {
+        button.addEventListener('click', async (e) => {
+          const btn = e.currentTarget as HTMLButtonElement;
+          const codeBlock = btn.closest('.fuma-code-block');
+          
+          if (!codeBlock) return;
+
+          const codeElement = codeBlock.querySelector('code');
+          if (!codeElement) return;
+
+          const code = codeElement.textContent || '';
+
+          try {
+            await navigator.clipboard.writeText(code);
+            this.showCopied(btn);
+          } catch (err) {
+            console.error('Failed to copy:', err);
+          }
+        });
+      });
+    }
+
+    private showCopied(button: HTMLButtonElement) {
+      const copyIcon = button.querySelector('.copy-icon');
+      const checkIcon = button.querySelector('.check-icon');
+      const copyText = button.querySelector('.copy-text');
+      const copiedText = button.querySelector('.copied-text');
+
+      copyIcon?.classList.add('hidden');
+      checkIcon?.classList.remove('hidden');
+      copyText?.classList.add('hidden');
+      copiedText?.classList.remove('hidden');
+
+      setTimeout(() => {
+        copyIcon?.classList.remove('hidden');
+        checkIcon?.classList.add('hidden');
+        copyText?.classList.remove('hidden');
+        copiedText?.classList.add('hidden');
+      }, 2000);
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new CodeBlockCopy();
+    });
+  } else {
+    new CodeBlockCopy();
+  }
+</script>

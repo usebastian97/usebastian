@@ -41,6 +41,7 @@ const useCases = defineCollection({
     relatedProjects: z.array(z.string()).default([]),
     image: z.string().optional(),
     order: z.number().default(0),
+    lang: z.string().default('en'),
   }),
 });
 

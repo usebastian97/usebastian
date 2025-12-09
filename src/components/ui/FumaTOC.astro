@@ -1,0 +1,207 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  title?: string;
+}
+
+const { headings, title = 'On This Page' } = Astro.props;
+
+// Filter headings to only show h2 and h3
+const filteredHeadings = headings.filter(h => h.depth <= 3);
+---
+
+<nav class="fuma-toc sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-gray-200 bg-white p-5">
+  <div class="mb-4 flex items-center gap-2 text-sm font-semibold text-gray-900">
+    <Icon name="lucide:list" class="h-4 w-4" />
+    {title}
+  </div>
+
+  {filteredHeadings.length > 0 ? (
+    <ul class="space-y-1 text-sm">
+      {filteredHeadings.map((heading) => (
+        <li
+          class:list={[
+            'toc-item',
+            heading.depth === 2 && 'toc-h2',
+            heading.depth === 3 && 'toc-h3 ml-4',
+          ]}
+        >
+          <a
+            href={`#${heading.slug}`}
+            class="block rounded-md py-1.5 px-2 text-gray-600 transition-colors hover:bg-gray-50 hover:text-blue-600"
+            data-toc-link
+            data-heading-id={heading.slug}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="text-sm text-gray-500">No headings found</p>
+  )}
+
+  <!-- Progress Indicator -->
+  <div class="mt-6 pt-4 border-t border-gray-200">
+    <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
+      <span>Reading Progress</span>
+      <span id="reading-progress-percent">0%</span>
+    </div>
+    <div class="h-1.5 w-full rounded-full bg-gray-100 overflow-hidden">
+      <div
+        id="reading-progress-bar"
+        class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-300"
+        style="width: 0%"
+      ></div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .fuma-toc {
+    scrollbar-width: thin;
+    scrollbar-color: #e5e7eb transparent;
+  }
+
+  .fuma-toc::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .fuma-toc::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .fuma-toc::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 2px;
+  }
+
+  .fuma-toc::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+  }
+
+  .toc-item a.active {
+    background-color: rgb(239 246 255);
+    color: rgb(37 99 235);
+    font-weight: 500;
+  }
+
+  .toc-item a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1rem;
+    width: 0.125rem;
+    background-color: rgb(37 99 235);
+    border-radius: 9999px;
+  }
+
+  .toc-item a {
+    position: relative;
+  }
+</style>
+
+<script>
+  class TableOfContentsObserver {
+    private tocLinks: NodeListOf<HTMLAnchorElement>;
+    private headings: NodeListOf<Element>;
+    private observer!: IntersectionObserver;
+    private progressBar: HTMLElement | null;
+    private progressPercent: HTMLElement | null;
+
+    constructor() {
+      this.tocLinks = document.querySelectorAll('[data-toc-link]');
+      this.headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]');
+      this.progressBar = document.getElementById('reading-progress-bar');
+      this.progressPercent = document.getElementById('reading-progress-percent');
+
+      if (this.tocLinks.length === 0 || this.headings.length === 0) {
+        return;
+      }
+
+      this.setupIntersectionObserver();
+      this.setupScrollProgress();
+      this.setupSmoothScroll();
+    }
+
+    private setupIntersectionObserver() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '-80px 0px -80% 0px',
+        threshold: 0,
+      };
+
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          const tocLink = document.querySelector(`[data-heading-id="${id}"]`);
+
+          if (entry.isIntersecting && tocLink) {
+            // Remove active class from all links
+            this.tocLinks.forEach(link => link.classList.remove('active'));
+            // Add active class to current link
+            tocLink.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      this.headings.forEach(heading => {
+        this.observer.observe(heading);
+      });
+    }
+
+    private setupScrollProgress() {
+      if (!this.progressBar || !this.progressPercent) return;
+
+      window.addEventListener('scroll', () => {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+        
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        const clampedPercent = Math.min(100, Math.max(0, scrollPercent));
+
+        if (this.progressBar) {
+          this.progressBar.style.width = `${clampedPercent}%`;
+        }
+        if (this.progressPercent) {
+          this.progressPercent.textContent = `${Math.round(clampedPercent)}%`;
+        }
+      });
+    }
+
+    private setupSmoothScroll() {
+      this.tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('data-heading-id');
+          const targetElement = document.getElementById(targetId || '');
+
+          if (targetElement) {
+            const yOffset = -80; // Offset for fixed header
+            const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            
+            // Update URL without triggering scroll
+            history.pushState(null, '', `#${targetId}`);
+          }
+        });
+      });
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new TableOfContentsObserver();
+    });
+  } else {
+    new TableOfContentsObserver();
+  }
+</script>

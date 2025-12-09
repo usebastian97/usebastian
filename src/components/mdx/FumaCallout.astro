@@ -1,0 +1,111 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  type?: 'note' | 'warning' | 'danger' | 'success' | 'info' | 'tip';
+  title?: string;
+  icon?: string;
+  collapsible?: boolean;
+}
+
+const { type = 'note', title, icon } = Astro.props;
+
+const styles = {
+  note: {
+    container: 'border-blue-500/20 bg-blue-50',
+    text: 'text-blue-900',
+    icon: 'text-blue-600',
+    border: 'border-l-blue-500',
+  },
+  warning: {
+    container: 'border-yellow-500/20 bg-yellow-50',
+    text: 'text-yellow-900',
+    icon: 'text-yellow-600',
+    border: 'border-l-yellow-500',
+  },
+  danger: {
+    container: 'border-red-500/20 bg-red-50',
+    text: 'text-red-900',
+    icon: 'text-red-600',
+    border: 'border-l-red-500',
+  },
+  success: {
+    container: 'border-green-500/20 bg-green-50',
+    text: 'text-green-900',
+    icon: 'text-green-600',
+    border: 'border-l-green-500',
+  },
+  info: {
+    container: 'border-purple-500/20 bg-purple-50',
+    text: 'text-purple-900',
+    icon: 'text-purple-600',
+    border: 'border-l-purple-500',
+  },
+  tip: {
+    container: 'border-indigo-500/20 bg-indigo-50',
+    text: 'text-indigo-900',
+    icon: 'text-indigo-600',
+    border: 'border-l-indigo-500',
+  },
+};
+
+const icons = {
+  note: 'lucide:info',
+  warning: 'lucide:alert-triangle',
+  danger: 'lucide:alert-circle',
+  success: 'lucide:check-circle-2',
+  info: 'lucide:lightbulb',
+  tip: 'lucide:zap',
+};
+
+const defaultTitles = {
+  note: 'Note',
+  warning: 'Warning',
+  danger: 'Danger',
+  success: 'Success',
+  info: 'Info',
+  tip: 'Tip',
+};
+
+const style = styles[type];
+const displayTitle = title || defaultTitles[type];
+const displayIcon = icon || icons[type];
+---
+
+<div class={`fuma-admonition not-prose my-6 rounded-xl border ${style.container} ${style.border} shadow-sm`}>
+  <div class="flex items-start gap-4 p-5">
+    <div class={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-white/70 ${style.icon}`}>
+      <Icon name={displayIcon} class="h-5 w-5" />
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class={`mb-2 font-semibold ${style.text}`}>{displayTitle}</div>
+      <div class={`prose prose-sm ${style.text} [&>*:last-child]:mb-0`}>
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .fuma-admonition :global(p) {
+    margin: 0.5rem 0;
+  }
+
+  .fuma-admonition :global(p:first-child) {
+    margin-top: 0;
+  }
+
+  .fuma-admonition :global(code) {
+    background-color: rgba(0, 0, 0, 0.06);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-weight: 500;
+  }
+
+  .fuma-admonition :global(a) {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
