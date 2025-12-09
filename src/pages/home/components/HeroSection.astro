@@ -7,18 +7,17 @@ const t = useTranslations('en');
 
 <section class="relative overflow-hidden border-b border-gray-200 bg-white">
   <!-- Background SVG decoration -->
-  <div class="pointer-events-none absolute -left-62 -top-32 h-[500px] w-[500px] opacity-70 sm:-left-24 sm:-top-24 sm:h-[600px] sm:w-[600px] lg:-left-16 lg:-top-16 lg:h-[700px] lg:w-[700px]">
-    <img
-      src="/home/hero-bg.svg"
-      alt=""
-      class="h-full w-full"
-      aria-hidden="true"
-    />
+  <div
+    class="pointer-events-none absolute -top-32 -left-62 h-[500px] w-[500px] opacity-70 sm:-top-24 sm:-left-24 sm:h-[600px] sm:w-[600px] lg:-top-16 lg:-left-16 lg:h-[700px] lg:w-[700px]"
+  >
+    <img src="/home/hero-bg.svg" alt="" class="h-full w-full" aria-hidden="true" />
   </div>
 
   <div class="relative container mx-auto px-4 py-16 sm:px-6 sm:py-10 lg:px-8">
     <!-- Two column layout: content left, image right -->
-    <div class="mx-auto flex max-w-6xl flex-col-reverse items-center gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+    <div
+      class="mx-auto flex max-w-6xl flex-col-reverse items-center gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12"
+    >
       <!-- Left column: Text content -->
       <div class="flex-1 text-center lg:text-left">
         <!-- Main headline -->
@@ -39,7 +38,9 @@ const t = useTranslations('en');
         </p>
 
         <!-- CTA Buttons -->
-        <div class="slide-in-up mb-10 flex flex-row items-center justify-center gap-3 lg:justify-start">
+        <div
+          class="slide-in-up mb-10 flex flex-row items-center justify-center gap-3 lg:justify-start"
+        >
           <a
             href="/projects"
             class="btn-primary group inline-flex items-center space-x-1 rounded-xl px-4 py-2 text-sm sm:space-x-2 sm:px-6 sm:py-3 sm:text-base"
@@ -62,51 +63,51 @@ const t = useTranslations('en');
 
         <!-- Social Media Icons -->
         <div class="slide-in-up flex items-center justify-center gap-4 lg:justify-start">
-        <a
-          href="https://linkedin.com/in/usebastian12"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon-link"
-          aria-label="LinkedIn"
-        >
-          <Icon name="simple-icons:linkedin" class="h-5 w-5 sm:h-6 sm:w-6" />
-        </a>
-        <a
-          href="https://github.com/usebastian97"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon-link"
-          aria-label="GitHub"
-        >
-          <Icon name="simple-icons:github" class="h-5 w-5 sm:h-6 sm:w-6" />
-        </a>
-        <a
-          href="https://substack.com/@yourprofile"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon-link"
-          aria-label="Substack"
-        >
-          <Icon name="simple-icons:substack" class="h-5 w-5 sm:h-6 sm:w-6" />
-        </a>
-        <a
-          href="https://x.com/sutoiu12"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon-link"
-          aria-label="X (Twitter)"
-        >
-          <Icon name="simple-icons:x" class="h-5 w-5 sm:h-6 sm:w-6" />
-        </a>
-        <a
-          href="https://instagram.com/usebastian12"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-icon-link"
-          aria-label="Instagram"
-        >
-          <Icon name="simple-icons:instagram" class="h-5 w-5 sm:h-6 sm:w-6" />
-        </a>
+          <a
+            href="https://linkedin.com/in/usebastian12"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon-link"
+            aria-label="LinkedIn"
+          >
+            <Icon name="simple-icons:linkedin" class="h-5 w-5 sm:h-6 sm:w-6" />
+          </a>
+          <a
+            href="https://github.com/usebastian97"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon-link"
+            aria-label="GitHub"
+          >
+            <Icon name="simple-icons:github" class="h-5 w-5 sm:h-6 sm:w-6" />
+          </a>
+          <a
+            href="https://substack.com/@yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon-link"
+            aria-label="Substack"
+          >
+            <Icon name="simple-icons:substack" class="h-5 w-5 sm:h-6 sm:w-6" />
+          </a>
+          <a
+            href="https://x.com/sutoiu12"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon-link"
+            aria-label="X (Twitter)"
+          >
+            <Icon name="simple-icons:x" class="h-5 w-5 sm:h-6 sm:w-6" />
+          </a>
+          <a
+            href="https://instagram.com/usebastian12"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon-link"
+            aria-label="Instagram"
+          >
+            <Icon name="simple-icons:instagram" class="h-5 w-5 sm:h-6 sm:w-6" />
+          </a>
         </div>
       </div>
 
@@ -115,7 +116,7 @@ const t = useTranslations('en');
         <img
           src="/home/me.jpg"
           alt="Profile — Cloud Architect"
-          class="block h-32 w-32 rounded-full object-cover object-top shadow-lg border-4 border-white dark:border-gray-800 sm:h-40 sm:w-40 lg:h-56 lg:w-56"
+          class="block h-32 w-32 rounded-full border-4 border-white object-cover object-top shadow-lg sm:h-40 sm:w-40 lg:h-56 lg:w-56 dark:border-gray-800"
           loading="eager"
         />
       </div>

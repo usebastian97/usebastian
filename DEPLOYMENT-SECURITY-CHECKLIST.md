@@ -72,6 +72,7 @@ npm run preview
 ### 2. Security Header Verification
 
 After deployment, verify headers at:
+
 - https://securityheaders.com/?q=https://www.usebastian.com
 
 Expected Grade: **A+**
@@ -172,21 +173,21 @@ npx wrangler pages deploy dist
 
 ### Lighthouse Scores
 
-| Metric | Target | Expected |
-|--------|--------|----------|
-| Performance | 90+ | 95-100 |
-| Accessibility | 90+ | 90-95 |
-| Best Practices | 90+ | 100 |
-| SEO | 90+ | 100 |
+| Metric         | Target | Expected |
+| -------------- | ------ | -------- |
+| Performance    | 90+    | 95-100   |
+| Accessibility  | 90+    | 90-95    |
+| Best Practices | 90+    | 100      |
+| SEO            | 90+    | 100      |
 
 ### Core Web Vitals
 
 | Metric | Target | Expected |
-|--------|--------|----------|
-| LCP | <2.5s | ~1.2s |
-| FID | <100ms | ~50ms |
-| CLS | <0.1 | ~0.05 |
-| TTFB | <800ms | ~200ms |
+| ------ | ------ | -------- |
+| LCP    | <2.5s  | ~1.2s    |
+| FID    | <100ms | ~50ms    |
+| CLS    | <0.1   | ~0.05    |
+| TTFB   | <800ms | ~200ms   |
 
 ### Security Headers Grade
 
@@ -232,7 +233,7 @@ npm run build
 ✅ 95+ Lighthouse performance score  
 ✅ <2.5s LCP on 3G connection  
 ✅ All pages load successfully  
-✅ No console errors  
+✅ No console errors
 
 ---
 

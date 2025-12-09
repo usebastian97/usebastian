@@ -1,8 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import { useTranslations } from '@i18n/utils';
-
-const t = useTranslations('en');
 
 // Fetch use cases from MDX files
 const allUseCases = await getCollection('use-cases');

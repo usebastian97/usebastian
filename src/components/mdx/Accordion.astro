@@ -8,10 +8,10 @@ const { title, defaultOpen = false } = Astro.props;
 const id = `accordion-${Math.random().toString(36).substring(7)}`;
 ---
 
-<div class="not-prose my-4 rounded-lg border border-gray-200 bg-white overflow-hidden">
+<div class="not-prose my-4 overflow-hidden rounded-lg border border-gray-200 bg-white">
   <button
     type="button"
-    class="accordion-trigger flex w-full items-center justify-between px-4 py-3 text-left font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+    class="accordion-trigger flex w-full items-center justify-between px-4 py-3 text-left font-medium text-gray-900 transition-colors hover:bg-gray-50"
     aria-expanded={defaultOpen ? 'true' : 'false'}
     aria-controls={id}
   >
@@ -22,7 +22,8 @@ const id = `accordion-${Math.random().toString(36).substring(7)}`;
       stroke="currentColor"
       viewBox="0 0 24 24"
     >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+      ></path>
     </svg>
   </button>
   <div
@@ -30,7 +31,7 @@ const id = `accordion-${Math.random().toString(36).substring(7)}`;
     class="accordion-content overflow-hidden transition-all duration-200"
     style={defaultOpen ? '' : 'max-height: 0;'}
   >
-    <div class="px-4 pb-4 pt-2 text-gray-600 leading-relaxed">
+    <div class="px-4 pt-2 pb-4 leading-relaxed text-gray-600">
       <slot />
     </div>
   </div>
@@ -45,13 +46,13 @@ const id = `accordion-${Math.random().toString(36).substring(7)}`;
 <script>
   document.addEventListener('astro:page-load', () => {
     const triggers = document.querySelectorAll('.accordion-trigger');
-    
+
     triggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
         const contentId = trigger.getAttribute('aria-controls');
         const content = document.getElementById(contentId || '');
-        
+
         if (content) {
           trigger.setAttribute('aria-expanded', (!expanded).toString());
           if (expanded) {

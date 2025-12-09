@@ -9,7 +9,7 @@ This project now includes a **Fumadocs-inspired documentation system** integrate
 A centralized documentation homepage that showcases:
 
 - **Latest Blog Posts** - Technical insights and cloud architecture guides
-- **Featured Projects** - Cloud solutions and enterprise implementations  
+- **Featured Projects** - Cloud solutions and enterprise implementations
 - **Enterprise Use Cases** - Real-world solutions and success stories
 
 **Features:**
@@ -72,12 +72,10 @@ Enhanced callout/admonition component with:
 
 ```mdx
 <FumaCallout type="note" title="Important">
-This is a note callout with custom styling
+  This is a note callout with custom styling
 </FumaCallout>
 
-<FumaCallout type="warning">
-Warning callouts have their own color scheme
-</FumaCallout>
+<FumaCallout type="warning">Warning callouts have their own color scheme</FumaCallout>
 ```
 
 #### `<FumaCodeBlock>`
@@ -93,11 +91,11 @@ Advanced code block component featuring:
 
 **Usage:**
 
-```mdx
+````mdx
 <FumaCodeBlock filename="example.ts" lang="typescript" showLineNumbers>
   ```ts
   const greeting = "Hello World";
-  ```
+````
 
 </FumaCodeBlock>
 ```
@@ -144,14 +142,14 @@ src/
 
 All Fuma components are available in your MDX files:
 
-```mdx
+````mdx
 ---
 title: My Blog Post
 description: A post with Fuma components
 ---
 
 <FumaCallout type="tip" title="Pro Tip">
-Use keyboard shortcuts to navigate faster!
+  Use keyboard shortcuts to navigate faster!
 </FumaCallout>
 
 <FumaCodeBlock filename="config.ts">
@@ -160,7 +158,7 @@ export const config = {
   theme: 'dark',
   search: true
 };
-```
+````
 
 </FumaCodeBlock>
 ```
@@ -227,14 +225,14 @@ All content is indexed for search and displayed in the docs hub.
 
 While inspired by Fumadocs, this implementation is tailored for Astro:
 
-| Feature | Fumadocs (Next.js) | Our Implementation (Astro) |
-|---------|-------------------|---------------------------|
-| Framework | Next.js + React | Astro + Minimal JS |
-| Search | Algolia/Orama | Fuse.js (client-side) |
-| TOC | React component | Vanilla JS + Astro |
-| Components | React/TSX | Astro components |
-| Routing | Next.js pages | Astro file-based routing |
-| Data | Content Collections API | Astro Content Collections |
+| Feature    | Fumadocs (Next.js)      | Our Implementation (Astro) |
+| ---------- | ----------------------- | -------------------------- |
+| Framework  | Next.js + React         | Astro + Minimal JS         |
+| Search     | Algolia/Orama           | Fuse.js (client-side)      |
+| TOC        | React component         | Vanilla JS + Astro         |
+| Components | React/TSX               | Astro components           |
+| Routing    | Next.js pages           | Astro file-based routing   |
+| Data       | Content Collections API | Astro Content Collections  |
 
 ## 📚 Learn More
 

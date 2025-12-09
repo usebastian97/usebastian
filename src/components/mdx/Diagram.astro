@@ -53,20 +53,20 @@ const { caption } = Astro.props;
   // Function to render diagrams
   async function renderDiagrams() {
     const diagrams = document.querySelectorAll('.mermaid-diagram');
-    
+
     for (const diagram of diagrams) {
       // Get the code from the pre > code block
       const codeBlock = diagram.querySelector('pre code');
       if (codeBlock) {
         const mermaidCode = codeBlock.textContent || '';
-        
+
         // Create a unique ID for this diagram
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
-        
+
         try {
           // Render the diagram
           const { svg } = await mermaid.render(id, mermaidCode);
-          
+
           // Replace the code block with the rendered SVG
           diagram.innerHTML = svg;
         } catch (error) {

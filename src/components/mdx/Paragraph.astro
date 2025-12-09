@@ -5,17 +5,13 @@ interface Props {
   class?: string;
 }
 
-const { 
-  align = 'left', 
-  maxWidth = 'xl',
-  class: className = '' 
-} = Astro.props;
+const { align = 'left', maxWidth = 'xl', class: className = '' } = Astro.props;
 
 const alignmentClasses = {
   left: 'text-left',
   center: 'text-center',
   right: 'text-right',
-  justify: 'text-justify'
+  justify: 'text-justify',
 };
 
 const maxWidthClasses = {
@@ -24,7 +20,7 @@ const maxWidthClasses = {
   lg: 'max-w-lg',
   xl: 'max-w-xl',
   '2xl': 'max-w-2xl',
-  full: 'max-w-full'
+  full: 'max-w-full',
 };
 ---
 

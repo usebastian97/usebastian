@@ -8,10 +8,12 @@ const { title, open = false } = Astro.props;
 ---
 
 <details
-  class="not-prose group my-4 rounded-xl border border-gray-200 bg-white overflow-hidden"
+  class="not-prose group my-4 overflow-hidden rounded-xl border border-gray-200 bg-white"
   open={open}
 >
-  <summary class="flex cursor-pointer items-center justify-between px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 transition-colors">
+  <summary
+    class="flex cursor-pointer items-center justify-between px-4 py-3 font-medium text-gray-900 transition-colors hover:bg-gray-50"
+  >
     <span>{title}</span>
     <svg
       class="h-5 w-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
@@ -19,10 +21,11 @@ const { title, open = false } = Astro.props;
       stroke="currentColor"
       viewBox="0 0 24 24"
     >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+      ></path>
     </svg>
   </summary>
-  <div class="border-t border-gray-100 px-4 py-3 text-gray-600 leading-relaxed">
+  <div class="border-t border-gray-100 px-4 py-3 leading-relaxed text-gray-600">
     <slot />
   </div>
 </details>

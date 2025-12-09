@@ -27,9 +27,7 @@ const { items, columns = 2 } = Astro.props;
           </svg>
           <div>
             <h5 class="font-semibold text-gray-900">{item.label}</h5>
-            {item.value && (
-              <p class="mt-1 text-sm text-gray-600">{item.value}</p>
-            )}
+            {item.value && <p class="mt-1 text-sm text-gray-600">{item.value}</p>}
           </div>
         </div>
       ))

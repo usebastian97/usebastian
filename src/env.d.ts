@@ -10,7 +10,10 @@ declare module 'alpinejs' {
     watch(getter: () => unknown, callback: (value: unknown) => void): void;
     show(el: Element, callback?: () => void, fallback?: () => void): void;
     hide(el: Element, callback?: () => void, fallback?: () => void): void;
-    transition(name: string, callback: (el: Element, show: boolean, callback?: () => void) => void): void;
+    transition(
+      name: string,
+      callback: (el: Element, show: boolean, callback?: () => void) => void
+    ): void;
   }
 
   const Alpine: Alpine;

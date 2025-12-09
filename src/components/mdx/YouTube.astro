@@ -8,9 +8,7 @@ const { url, title } = Astro.props;
 
 // Extract video ID from various YouTube URL formats
 const getYouTubeId = (url: string): string | null => {
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-  ];
+  const patterns = [/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/];
   for (const pattern of patterns) {
     const match = url.match(pattern);
     if (match) return match[1] ?? null;
@@ -24,12 +22,10 @@ const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefa
 ---
 
 <div class="not-prose my-8">
-  {
-    title && (
-      <h4 class="mb-3 font-semibold text-gray-900">{title}</h4>
-    )
-  }
-  <div class="video-container group relative aspect-video overflow-hidden rounded-xl border border-gray-200 bg-gray-900">
+  {title && <h4 class="mb-3 font-semibold text-gray-900">{title}</h4>}
+  <div
+    class="video-container group relative aspect-video overflow-hidden rounded-xl border border-gray-200 bg-gray-900"
+  >
     {
       thumbnailUrl && (
         <img
@@ -45,33 +41,34 @@ const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefa
       data-embed-url={embedUrl}
       aria-label="Play video"
     >
-      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 text-white shadow-lg transition-transform group-hover:scale-110">
-        <svg class="h-8 w-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z" />
+      <div
+        class="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 text-white shadow-lg transition-transform group-hover:scale-110"
+      >
+        <svg class="ml-1 h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"></path>
         </svg>
       </div>
     </button>
     <iframe
       class="video-iframe absolute inset-0 hidden h-full w-full"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+      allowfullscreen></iframe>
   </div>
 </div>
 
 <script>
   document.addEventListener('astro:page-load', () => {
     const playButtons = document.querySelectorAll('.play-button');
-    
+
     playButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const container = button.closest('.video-container');
         if (!container) return;
-        
+
         const iframe = container.querySelector('.video-iframe') as HTMLIFrameElement;
         const thumbnail = container.querySelector('.video-thumbnail');
         const embedUrl = button.getAttribute('data-embed-url');
-        
+
         if (iframe && embedUrl) {
           iframe.src = embedUrl + '?autoplay=1';
           iframe.classList.remove('hidden');

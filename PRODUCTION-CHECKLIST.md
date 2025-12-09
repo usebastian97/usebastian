@@ -3,6 +3,7 @@
 ## ✅ Completed Items
 
 ### Domain & Infrastructure
+
 - [x] Domain purchased: www.usebastian.com
 - [x] Cloudflare Pages project created: usebastian-portfolio
 - [x] Custom domain added to Cloudflare
@@ -11,6 +12,7 @@
 - [x] Cloudflare CDN enabled globally
 
 ### Code Configuration
+
 - [x] Replaced Vercel adapter with Cloudflare
 - [x] Updated all domain references to www.usebastian.com
 - [x] Updated sitemap URLs
@@ -19,6 +21,7 @@
 - [x] Compression enabled (HTML, CSS, JS, SVG)
 
 ### Astro Configuration
+
 - [x] Site URL: https://www.usebastian.com
 - [x] Cloudflare adapter configured
 - [x] Sitemap generation enabled
@@ -30,52 +33,63 @@
 ## ⚠️ Items to Review/Update
 
 ### 1. Social Media Links (Currently Placeholder)
+
 Update these in your source files with your actual profiles:
 
 **BaseLayout.astro (Schema.org)**
+
 - GitHub: Currently `https://github.com/sgu`
 - LinkedIn: Currently `https://linkedin.com/in/sebastian-utoiu`
 - Twitter: Currently `https://twitter.com/sgu`
 
 **Actual links found in components:**
+
 - GitHub: `https://github.com/usebastian97` ✅
 - LinkedIn: `https://linkedin.com/in/usebastian12` ✅
 
 **Action:** Update BaseLayout.astro schema to match actual profiles.
 
 ### 2. Open Graph Image
+
 - [ ] Create and add `/public/og-image.jpg` (1200x630px recommended)
 - Current: References `/og-image.jpg` but file doesn't exist
 - This image appears when sharing on social media
 
 ### 3. Email Contact
+
 - [ ] Set up email: contact@usebastian.com
 - [ ] Configure email forwarding in Cloudflare (Email Routing)
 - [ ] Update contact form to use actual email
 
 ### 4. Project GitHub URLs
+
 Current placeholder repos in projects:
+
 - `https://github.com/sgu/ai-log-analysis`
 - `https://github.com/sgu/azure-landing-zone`
 
 **Action:** Update these to actual GitHub repositories if they exist.
 
 ### 5. Analytics (Optional but Recommended)
+
 - [ ] Enable Cloudflare Web Analytics
   - Dashboard → usebastian-portfolio → Analytics → Enable
   - Free, privacy-friendly, no code changes needed
 
 ### 6. Environment Variables (If Needed)
+
 - [ ] Add any API keys or secrets via Cloudflare Dashboard
   - Dashboard → Settings → Environment variables
 
 ### 7. Performance Monitoring
+
 - [ ] Set up uptime monitoring (Cloudflare Dashboard)
 - [ ] Review Core Web Vitals in Cloudflare Analytics
 
 ## 🔄 Continuous Deployment Setup (Recommended)
 
 ### Option 1: Connect to GitHub (Recommended)
+
 1. Push your code to GitHub repository
 2. Cloudflare Dashboard → usebastian-portfolio → Settings
 3. Click "Connect to Git" → Select repository
@@ -86,6 +100,7 @@ Current placeholder repos in projects:
 5. Every push to master will auto-deploy
 
 ### Option 2: Continue Manual Deployments
+
 ```bash
 npm run build
 wrangler pages deploy dist --project-name=usebastian-portfolio
@@ -94,6 +109,7 @@ wrangler pages deploy dist --project-name=usebastian-portfolio
 ## 📊 Post-Launch Monitoring
 
 ### First 24 Hours
+
 - [ ] Test all pages and links
 - [ ] Verify SSL certificate
 - [ ] Check mobile responsiveness
@@ -102,12 +118,14 @@ wrangler pages deploy dist --project-name=usebastian-portfolio
 - [ ] Check robots.txt: https://www.usebastian.com/robots.txt
 
 ### First Week
+
 - [ ] Monitor Cloudflare Analytics
 - [ ] Check Core Web Vitals
 - [ ] Review error logs (if any)
 - [ ] Test from different locations/devices
 
 ## 🎯 SEO Optimization (Already Configured)
+
 - ✅ Meta tags configured
 - ✅ Open Graph tags
 - ✅ Twitter Card tags
@@ -118,6 +136,7 @@ wrangler pages deploy dist --project-name=usebastian-portfolio
 - ✅ Mobile responsive
 
 ## 🚀 Performance Features (Active)
+
 - ✅ Cloudflare CDN (300+ locations)
 - ✅ HTTP/3 enabled
 - ✅ Brotli compression

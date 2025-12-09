@@ -4,12 +4,12 @@ import DocLayout from '@layouts/DocLayout.astro';
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects');
-  
+
   // If no projects exist, return empty array to prevent build errors
   if (projectEntries.length === 0) {
     return [];
   }
-  
+
   return projectEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -46,10 +46,14 @@ if (entry.data.githubUrl) {
   breadcrumb={{ label: 'Projects', href: '/projects' }}
   backLink={{ label: 'Back to Projects', href: '/projects' }}
   tags={entry.data.tags}
-  {...(entry.data.image ? { image: entry.data.image } : {})}
-  {...(actions.length > 0 ? { actions } : {})}
+  {...entry.data.image ? { image: entry.data.image } : {}}
+  {...actions.length > 0 ? { actions } : {}}
   meta={[
-    { label: 'Category', value: entry.data.category.charAt(0).toUpperCase() + entry.data.category.slice(1), icon: '📁' },
+    {
+      label: 'Category',
+      value: entry.data.category.charAt(0).toUpperCase() + entry.data.category.slice(1),
+      icon: '📁',
+    },
   ]}
 >
   <Content />

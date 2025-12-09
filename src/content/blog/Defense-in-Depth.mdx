@@ -21,7 +21,7 @@ Microsoft operates hyperscale datacenters across 60+ regions globally. Physical 
 
 ### Identity and Access
 
-Identity constitutes the primary control plane in cloud environments. Authentication validates *who* is requesting access; authorization determines *what* they may do. Compromise at this layer cascades catastrophically. Strong identity controls—multifactor authentication, conditional access, privileged identity management—form the bulwark against credential-based attacks.
+Identity constitutes the primary control plane in cloud environments. Authentication validates _who_ is requesting access; authorization determines _what_ they may do. Compromise at this layer cascades catastrophically. Strong identity controls—multifactor authentication, conditional access, privileged identity management—form the bulwark against credential-based attacks.
 
 ### Perimeter Protection
 
@@ -45,7 +45,7 @@ Data is the ultimate target. Encryption at rest (Azure Storage Service Encryptio
 
 ## Zero Trust and Defense-in-Depth: Complementary Paradigms
 
-Zero Trust mandates explicit verification, least-privilege access, and assumed breach posture. Defense-in-depth provides the structural layers across which Zero Trust principles are operationalized. They are not competing models—Zero Trust defines *what* to enforce; defense-in-depth defines *where* to enforce it.
+Zero Trust mandates explicit verification, least-privilege access, and assumed breach posture. Defense-in-depth provides the structural layers across which Zero Trust principles are operationalized. They are not competing models—Zero Trust defines _what_ to enforce; defense-in-depth defines _where_ to enforce it.
 
 Azure implements Zero Trust through:
 
@@ -55,15 +55,15 @@ Azure implements Zero Trust through:
 
 ## Azure Services Mapped to Each Layer
 
-| **Layer** | **Azure Services** |
-| --- | --- |
-| Physical | Microsoft-managed datacenters (SOC 2, ISO 27001, FedRAMP certified) |
-| Identity | Microsoft Entra ID, PIM, Conditional Access, Identity Protection |
-| Perimeter | Azure DDoS Protection, Azure Firewall, Front Door WAF |
-| Network | NSGs, Azure Private Link, Virtual Network, Bastion, Network Watcher |
-| Compute | Defender for Servers, Defender for Containers, Update Management |
-| Application | Key Vault, API Management, App Service Authentication, Defender for App Service |
-| Data | Storage Service Encryption, TDE, Always Encrypted, Purview, Confidential Computing |
+| **Layer**   | **Azure Services**                                                                 |
+| ----------- | ---------------------------------------------------------------------------------- |
+| Physical    | Microsoft-managed datacenters (SOC 2, ISO 27001, FedRAMP certified)                |
+| Identity    | Microsoft Entra ID, PIM, Conditional Access, Identity Protection                   |
+| Perimeter   | Azure DDoS Protection, Azure Firewall, Front Door WAF                              |
+| Network     | NSGs, Azure Private Link, Virtual Network, Bastion, Network Watcher                |
+| Compute     | Defender for Servers, Defender for Containers, Update Management                   |
+| Application | Key Vault, API Management, App Service Authentication, Defender for App Service    |
+| Data        | Storage Service Encryption, TDE, Always Encrypted, Purview, Confidential Computing |
 
 ## Identity as the New Perimeter: Microsoft Entra ID
 

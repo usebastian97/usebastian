@@ -10,20 +10,18 @@ const projects = await getCollection('projects');
 const useCases = await getCollection('use-cases');
 
 // Sort blog posts by date (newest first)
-const sortedBlogs = blogPosts.sort((a, b) => 
-  b.data.publishDate.getTime() - a.data.publishDate.getTime()
-).slice(0, 6);
+const sortedBlogs = blogPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 6);
 
 // Get featured projects
 const featuredProjects = projects
-  .filter(p => p.data.featured)
+  .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 6);
 
 // Get recent use cases
-const recentUseCases = useCases
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 6);
+const recentUseCases = useCases.sort((a, b) => a.data.order - b.data.order).slice(0, 6);
 
 const stats = [
   { label: 'Blog Posts', count: blogPosts.length, icon: 'lucide:book-open', href: '/blog' },
@@ -32,7 +30,7 @@ const stats = [
 ];
 ---
 
-<MainLayout 
+<MainLayout
   title="Documentation Hub | Sebastian Georgian Utoiu"
   description="Explore technical blog posts, cloud architecture projects, and enterprise use cases. Your complete resource for cloud solutions and best practices."
 >
@@ -40,18 +38,21 @@ const stats = [
   <section class="border-b border-gray-200 bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
       <div class="max-w-4xl">
-        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
+        <div
+          class="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700"
+        >
           <Icon name="lucide:sparkles" class="h-4 w-4" />
           Documentation Hub
         </div>
-        
+
         <h1 class="mb-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
           Cloud Architecture<br />Knowledge Base
         </h1>
-        
-        <p class="mb-8 text-xl text-gray-600 leading-relaxed">
-          Comprehensive documentation covering cloud solutions, enterprise architecture patterns, 
-          and real-world implementation guides. Learn from practical experience and proven methodologies.
+
+        <p class="mb-8 text-xl leading-relaxed text-gray-600">
+          Comprehensive documentation covering cloud solutions, enterprise architecture patterns,
+          and real-world implementation guides. Learn from practical experience and proven
+          methodologies.
         </p>
 
         <!-- Search Bar -->
@@ -59,20 +60,22 @@ const stats = [
 
         <!-- Stats -->
         <div class="grid gap-4 sm:grid-cols-3">
-          {stats.map(stat => (
-            <a
-              href={stat.href}
-              class="group flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-blue-500 hover:shadow-md"
-            >
-              <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 transition-transform group-hover:scale-110">
-                <Icon name={stat.icon} class="h-6 w-6" />
-              </div>
-              <div>
-                <p class="text-2xl font-bold text-gray-900">{stat.count}</p>
-                <p class="text-sm text-gray-600">{stat.label}</p>
-              </div>
-            </a>
-          ))}
+          {
+            stats.map((stat) => (
+              <a
+                href={stat.href}
+                class="group flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-blue-500 hover:shadow-md"
+              >
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 transition-transform group-hover:scale-110">
+                  <Icon name={stat.icon} class="h-6 w-6" />
+                </div>
+                <div>
+                  <p class="text-2xl font-bold text-gray-900">{stat.count}</p>
+                  <p class="text-sm text-gray-600">{stat.label}</p>
+                </div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -81,7 +84,6 @@ const stats = [
   <!-- Main Content -->
   <div class="bg-white py-16">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      
       <!-- Blog Posts Section -->
       <section class="mb-20">
         <div class="mb-8 flex items-center justify-between">
@@ -89,7 +91,7 @@ const stats = [
             <h2 class="text-3xl font-bold text-gray-900">Latest Blog Posts</h2>
             <p class="mt-2 text-gray-600">Technical insights and cloud architecture guides</p>
           </div>
-          <a 
+          <a
             href="/blog"
             class="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
           >
@@ -99,35 +101,39 @@ const stats = [
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {sortedBlogs.map(post => (
-            <a
-              href={`/blog/${post.slug}`}
-              class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
-            >
-              <div class="mb-4 flex items-center gap-2 text-sm text-gray-500">
-                <Icon name="lucide:calendar" class="h-4 w-4" />
-                {new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' }).format(post.data.publishDate)}
-              </div>
-              
-              <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
-                {post.data.title}
-              </h3>
-              
-              <p class="mb-4 flex-1 text-gray-600 line-clamp-2">
-                {post.data.description}
-              </p>
-
-              {post.data.tags && post.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2">
-                  {post.data.tags.slice(0, 3).map(tag => (
-                    <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
-                      {tag}
-                    </span>
-                  ))}
+          {
+            sortedBlogs.map((post) => (
+              <a
+                href={`/blog/${post.slug}`}
+                class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+              >
+                <div class="mb-4 flex items-center gap-2 text-sm text-gray-500">
+                  <Icon name="lucide:calendar" class="h-4 w-4" />
+                  {new Intl.DateTimeFormat('en', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  }).format(post.data.publishDate)}
                 </div>
-              )}
-            </a>
-          ))}
+
+                <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                  {post.data.title}
+                </h3>
+
+                <p class="mb-4 line-clamp-2 flex-1 text-gray-600">{post.data.description}</p>
+
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {post.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))
+          }
         </div>
       </section>
 
@@ -138,7 +144,7 @@ const stats = [
             <h2 class="text-3xl font-bold text-gray-900">Featured Projects</h2>
             <p class="mt-2 text-gray-600">Cloud solutions and enterprise implementations</p>
           </div>
-          <a 
+          <a
             href="/projects"
             class="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
           >
@@ -148,45 +154,45 @@ const stats = [
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map(project => (
-            <a
-              href={`/projects/${project.slug}`}
-              class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
-            >
-              {project.data.image && (
-                <div class="mb-4 overflow-hidden rounded-lg">
-                  <img
-                    src={project.data.image}
-                    alt={project.data.title}
-                    class="aspect-video w-full object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-              )}
-              
-              <div class="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
-                <Icon name="lucide:folder" class="h-3 w-3" />
-                {project.data.category}
-              </div>
-              
-              <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
-                {project.data.title}
-              </h3>
-              
-              <p class="mb-4 flex-1 text-gray-600 line-clamp-2">
-                {project.data.description}
-              </p>
+          {
+            featuredProjects.map((project) => (
+              <a
+                href={`/projects/${project.slug}`}
+                class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+              >
+                {project.data.image && (
+                  <div class="mb-4 overflow-hidden rounded-lg">
+                    <img
+                      src={project.data.image}
+                      alt={project.data.title}
+                      class="aspect-video w-full object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                )}
 
-              {project.data.tags && project.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2">
-                  {project.data.tags.slice(0, 3).map(tag => (
-                    <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
-                      {tag}
-                    </span>
-                  ))}
+                <div class="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+                  <Icon name="lucide:folder" class="h-3 w-3" />
+                  {project.data.category}
                 </div>
-              )}
-            </a>
-          ))}
+
+                <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                  {project.data.title}
+                </h3>
+
+                <p class="mb-4 line-clamp-2 flex-1 text-gray-600">{project.data.description}</p>
+
+                {project.data.tags && project.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {project.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))
+          }
         </div>
       </section>
 
@@ -197,7 +203,7 @@ const stats = [
             <h2 class="text-3xl font-bold text-gray-900">Enterprise Use Cases</h2>
             <p class="mt-2 text-gray-600">Real-world solutions and success stories</p>
           </div>
-          <a 
+          <a
             href="/use-cases"
             class="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
           >
@@ -207,35 +213,34 @@ const stats = [
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {recentUseCases.map(useCase => (
-            <a
-              href={`/use-cases/${useCase.slug}`}
-              class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
-            >
-              <div class="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-purple-50 px-3 py-1 text-xs font-medium text-purple-700">
-                <Icon name="lucide:zap" class="h-3 w-3" />
-                {useCase.data.category}
-              </div>
-              
-              <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
-                {useCase.data.title}
-              </h3>
-              
-              <p class="mb-4 flex-1 text-gray-600 line-clamp-2">
-                {useCase.data.description}
-              </p>
-
-              <div class="space-y-2 text-sm">
-                <div class="flex items-start gap-2">
-                  <Icon name="lucide:target" class="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
-                  <p class="text-gray-600 line-clamp-1">{useCase.data.problem}</p>
+          {
+            recentUseCases.map((useCase) => (
+              <a
+                href={`/use-cases/${useCase.slug}`}
+                class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+              >
+                <div class="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-purple-50 px-3 py-1 text-xs font-medium text-purple-700">
+                  <Icon name="lucide:zap" class="h-3 w-3" />
+                  {useCase.data.category}
                 </div>
-              </div>
-            </a>
-          ))}
+
+                <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                  {useCase.data.title}
+                </h3>
+
+                <p class="mb-4 line-clamp-2 flex-1 text-gray-600">{useCase.data.description}</p>
+
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-start gap-2">
+                    <Icon name="lucide:target" class="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+                    <p class="line-clamp-1 text-gray-600">{useCase.data.problem}</p>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
         </div>
       </section>
-
     </div>
   </div>
 
@@ -261,13 +266,18 @@ const stats = [
           <h3 class="mb-4 text-lg font-semibold text-gray-900">Topics</h3>
           <ul class="space-y-2">
             <li>
-              <a href="/blog?tag=azure" class="text-gray-600 hover:text-blue-600">Azure Solutions</a>
+              <a href="/blog?tag=azure" class="text-gray-600 hover:text-blue-600">Azure Solutions</a
+              >
             </li>
             <li>
-              <a href="/blog?tag=cloud-architecture" class="text-gray-600 hover:text-blue-600">Cloud Architecture</a>
+              <a href="/blog?tag=cloud-architecture" class="text-gray-600 hover:text-blue-600"
+                >Cloud Architecture</a
+              >
             </li>
             <li>
-              <a href="/blog?tag=security" class="text-gray-600 hover:text-blue-600">Security & Compliance</a>
+              <a href="/blog?tag=security" class="text-gray-600 hover:text-blue-600"
+                >Security & Compliance</a
+              >
             </li>
           </ul>
         </div>
@@ -294,11 +304,11 @@ const stats = [
   // Simple client-side search functionality
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('docs-search') as HTMLInputElement;
-    
+
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         const query = (e.target as HTMLInputElement).value.toLowerCase();
-        
+
         // This is a placeholder - you can implement actual search
         // For now, it just filters visible content
         if (query.length > 2) {

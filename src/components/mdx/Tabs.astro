@@ -20,7 +20,7 @@ const defaultTab = tabs[0]?.value || '';
         <button
           type="button"
           role="tab"
-          class="px-4 py-2 text-sm font-medium transition-colors border-b-2"
+          class="border-b-2 px-4 py-2 text-sm font-medium transition-colors"
           x-on:click={`activeTab = '${tab.value}'`}
           x-bind:class={`activeTab === '${tab.value}' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-600 hover:text-gray-900'`}
           x-bind:aria-selected={`activeTab === '${tab.value}'`}

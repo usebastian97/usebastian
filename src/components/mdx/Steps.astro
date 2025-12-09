@@ -8,7 +8,9 @@ const { title } = Astro.props;
 
 <div class="not-prose my-8">
   {title && <h4 class="mb-6 text-xl font-bold text-gray-900">{title}</h4>}
-  <div class="steps-container relative space-y-0 pl-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:to-purple-500">
+  <div
+    class="steps-container relative space-y-0 pl-8 before:absolute before:top-2 before:bottom-2 before:left-[11px] before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:to-purple-500"
+  >
     <slot />
   </div>
 </div>

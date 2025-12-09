@@ -70,35 +70,35 @@ export default defineConfig({
         Callout: './src/components/mdx/Callout.astro',
         Admonition: './src/components/mdx/Admonition.astro',
         FumaCallout: './src/components/mdx/FumaCallout.astro',
-        
+
         // Code
         CodeBlock: './src/components/mdx/CodeBlock.astro',
         CodeGroup: './src/components/mdx/CodeGroup.astro',
         FumaCodeBlock: './src/components/mdx/FumaCodeBlock.astro',
-        
+
         // Cards & Layout
         Card: './src/components/mdx/Card.astro',
         Cards: './src/components/mdx/Cards.astro',
         LinkCard: './src/components/mdx/LinkCard.astro',
-        
+
         // Interactive
         Accordion: './src/components/mdx/Accordion.astro',
         Details: './src/components/mdx/Details.astro',
         Tabs: './src/components/mdx/Tabs.astro',
         TabPanel: './src/components/mdx/TabPanel.astro',
-        
+
         // Steps & Timeline
         Steps: './src/components/mdx/Steps.astro',
         Step: './src/components/mdx/Step.astro',
         Timeline: './src/components/mdx/Timeline.astro',
         TimelineItem: './src/components/mdx/TimelineItem.astro',
-        
+
         // Media
         ImageZoom: './src/components/mdx/ImageZoom.astro',
         YouTube: './src/components/mdx/YouTube.astro',
         VideoEmbed: './src/components/mdx/VideoEmbed.astro',
         Diagram: './src/components/mdx/Diagram.astro',
-        
+
         // Content
         Quote: './src/components/mdx/Quote.astro',
         Paragraph: './src/components/mdx/Paragraph.astro',

@@ -72,12 +72,16 @@ const displayTitle = title || defaultTitles[type];
 const displayIcon = icon || icons[type];
 ---
 
-<div class={`fuma-admonition not-prose my-6 rounded-xl border ${style.container} ${style.border} shadow-sm`}>
+<div
+  class={`fuma-admonition not-prose my-6 rounded-xl border ${style.container} ${style.border} shadow-sm`}
+>
   <div class="flex items-start gap-4 p-5">
-    <div class={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-white/70 ${style.icon}`}>
+    <div
+      class={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-white/70 ${style.icon}`}
+    >
       <Icon name={displayIcon} class="h-5 w-5" />
     </div>
-    <div class="flex-1 min-w-0">
+    <div class="min-w-0 flex-1">
       <div class={`mb-2 font-semibold ${style.text}`}>{displayTitle}</div>
       <div class={`prose prose-sm ${style.text} [&>*:last-child]:mb-0`}>
         <slot />

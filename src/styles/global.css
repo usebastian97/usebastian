@@ -152,7 +152,7 @@
 
   /* Heading anchor links - remove link styling */
   .heading-link {
-    @apply text-gray-900 no-underline !text-gray-900;
+    @apply !text-gray-900 text-gray-900 no-underline;
   }
 
   .heading-link:hover {
@@ -161,7 +161,7 @@
 
   article a.heading-link,
   .prose a.heading-link {
-    @apply !text-gray-900 !font-medium !no-underline;
+    @apply !font-medium !text-gray-900 !no-underline;
   }
 
   article a.heading-link:hover,

@@ -14,16 +14,14 @@ const id = `codegroup-${Math.random().toString(36).substring(7)}`;
 
 <div class="not-prose my-6" data-code-group={id}>
   <!-- File tabs -->
-  <div class="flex gap-1 rounded-t-lg bg-gray-800 px-2 pt-2 overflow-x-auto">
+  <div class="flex gap-1 overflow-x-auto rounded-t-lg bg-gray-800 px-2 pt-2">
     {
       files.map((file, index) => (
         <button
           type="button"
           class:list={[
             'code-tab flex items-center gap-2 rounded-t-md px-4 py-2 text-sm font-medium transition-colors',
-            index === 0
-              ? 'bg-gray-900 text-white'
-              : 'text-gray-400 hover:text-gray-200',
+            index === 0 ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-200',
           ]}
           data-tab-index={index}
         >
@@ -34,7 +32,21 @@ const id = `codegroup-${Math.random().toString(36).substring(7)}`;
             {file.language === 'bash' || file.language === 'shell' ? '💻' : ''}
             {file.language === 'json' ? '📋' : ''}
             {file.language === 'yaml' || file.language === 'yml' ? '⚙️' : ''}
-            {!['typescript', 'ts', 'javascript', 'js', 'python', 'py', 'bash', 'shell', 'json', 'yaml', 'yml'].includes(file.language || '') ? '📄' : ''}
+            {![
+              'typescript',
+              'ts',
+              'javascript',
+              'js',
+              'python',
+              'py',
+              'bash',
+              'shell',
+              'json',
+              'yaml',
+              'yml',
+            ].includes(file.language || '')
+              ? '📄'
+              : ''}
           </span>
           {file.name}
         </button>
@@ -46,23 +58,21 @@ const id = `codegroup-${Math.random().toString(36).substring(7)}`;
   <div class="relative">
     {
       files.map((file, index) => (
-        <div
-          class:list={[
-            'code-panel',
-            index !== 0 && 'hidden',
-          ]}
-          data-panel-index={index}
-        >
+        <div class:list={['code-panel', index !== 0 && 'hidden']} data-panel-index={index}>
           <div class="group relative">
             <button
-              class="copy-button absolute right-3 top-3 z-10 rounded bg-gray-700 px-3 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity hover:bg-gray-600 group-hover:opacity-100"
+              class="copy-button absolute top-3 right-3 z-10 rounded bg-gray-700 px-3 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-600"
               data-code={file.code}
               aria-label="Copy code"
             >
               <span class="copy-text">Copy</span>
               <span class="copied-text hidden">Copied!</span>
             </button>
-            <pre class="overflow-x-auto rounded-b-lg rounded-t-none bg-gray-900 p-4 text-sm"><code class="text-gray-100" data-language={file.language}>{file.code}</code></pre>
+            <pre class="overflow-x-auto rounded-t-none rounded-b-lg bg-gray-900 p-4 text-sm">
+              <code class="text-gray-100" data-language={file.language}>
+                {file.code}
+              </code>
+            </pre>
           </div>
         </div>
       ))
@@ -73,15 +83,15 @@ const id = `codegroup-${Math.random().toString(36).substring(7)}`;
 <script>
   document.addEventListener('astro:page-load', () => {
     const codeGroups = document.querySelectorAll('[data-code-group]');
-    
+
     codeGroups.forEach((group) => {
       const tabs = group.querySelectorAll('.code-tab');
       const panels = group.querySelectorAll('.code-panel');
-      
+
       tabs.forEach((tab) => {
         tab.addEventListener('click', () => {
           const index = tab.getAttribute('data-tab-index');
-          
+
           // Update tabs
           tabs.forEach((t, i) => {
             if (i.toString() === index) {
@@ -92,7 +102,7 @@ const id = `codegroup-${Math.random().toString(36).substring(7)}`;
               t.classList.add('text-gray-400');
             }
           });
-          
+
           // Update panels
           panels.forEach((p, i) => {
             if (i.toString() === index) {
@@ -120,14 +130,14 @@ const id = `codegroup-${Math.random().toString(36).substring(7)}`;
             document.execCommand('copy');
             document.body.removeChild(textarea);
           }
-          
+
           const copyText = button.querySelector('.copy-text');
           const copiedText = button.querySelector('.copied-text');
-          
+
           if (copyText && copiedText) {
             copyText.classList.add('hidden');
             copiedText.classList.remove('hidden');
-            
+
             setTimeout(() => {
               copyText.classList.remove('hidden');
               copiedText.classList.add('hidden');

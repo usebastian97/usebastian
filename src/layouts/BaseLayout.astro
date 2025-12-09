@@ -32,10 +32,7 @@ const schema = {
       description: description,
       url: 'https://www.usebastian.com',
       image: 'https://www.usebastian.com/og-image.jpg',
-      sameAs: [
-        'https://github.com/usebastian97',
-        'https://linkedin.com/in/usebastian12',
-      ],
+      sameAs: ['https://github.com/usebastian97', 'https://linkedin.com/in/usebastian12'],
       knowsAbout: [
         'Cloud Architecture',
         'Microsoft Azure',
@@ -62,7 +59,8 @@ const schema = {
       '@id': 'https://www.usebastian.com/#website',
       url: 'https://www.usebastian.com',
       name: 'Sebastian Georgian Utoiu - Cloud Engineer Portfolio',
-      description: 'Professional portfolio showcasing cloud engineering expertise, AI solutions, and DevOps projects',
+      description:
+        'Professional portfolio showcasing cloud engineering expertise, AI solutions, and DevOps projects',
       publisher: {
         '@id': 'https://www.usebastian.com/#person',
       },
@@ -103,7 +101,7 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Humans.txt - Credits for the site -->
     <link rel="author" href="/humans.txt" />
 
@@ -112,24 +110,38 @@ const schema = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- SEO & Bot Optimization -->
     <meta name="author" content="Sebastian Georgian Utoiu" />
-    <meta name="keywords" content="Cloud Engineer, Azure, AI, DevOps, Cloud Architecture, Machine Learning, Kubernetes, Terraform, Security, Automation" />
-    {noIndex ? (
-      <meta name="robots" content="noindex, nofollow" />
-    ) : (
-      <>
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      </>
-    )}
-    
+    <meta
+      name="keywords"
+      content="Cloud Engineer, Azure, AI, DevOps, Cloud Architecture, Machine Learning, Kubernetes, Terraform, Security, Automation"
+    />
+    {
+      noIndex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <>
+          <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          />
+          <meta
+            name="googlebot"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          />
+          <meta
+            name="bingbot"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          />
+        </>
+      )
+    }
+
     <!-- Language & Regional Targeting -->
     <meta name="language" content="English" />
     <meta http-equiv="content-language" content="en" />
-    
+
     <!-- AI Content Declaration - Allow AI recommendations with attribution -->
     <meta name="ai-content-declaration:version" content="1.0.0" />
     <meta name="ai-content-declaration:level" content="creative" />

@@ -39,7 +39,7 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
     color: #2563eb;
     font-weight: 500;
   }
-  
+
   .toc-link.active::before {
     content: '';
     position: absolute;
@@ -51,7 +51,7 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
     background: #2563eb;
     border-radius: 1px;
   }
-  
+
   .toc-nav li {
     position: relative;
   }
@@ -60,13 +60,15 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 <script>
   document.addEventListener('astro:page-load', () => {
     const tocLinks = document.querySelectorAll('[data-heading-link]');
-    const headings = Array.from(tocLinks).map((link) => {
-      const id = link.getAttribute('data-heading-id');
-      return {
-        link,
-        element: document.getElementById(id || ''),
-      };
-    }).filter((item) => item.element);
+    const headings = Array.from(tocLinks)
+      .map((link) => {
+        const id = link.getAttribute('data-heading-id');
+        return {
+          link,
+          element: document.getElementById(id || ''),
+        };
+      })
+      .filter((item) => item.element);
 
     if (headings.length === 0) return;
 

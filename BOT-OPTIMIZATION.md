@@ -11,6 +11,7 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 ### 1. Enhanced robots.txt (`/robots.txt`)
 
 **Good Bots - FULLY ALLOWED:**
+
 - ✅ Googlebot (Google Search)
 - ✅ Bingbot (Microsoft Bing)
 - ✅ Slurp (Yahoo)
@@ -19,6 +20,7 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 - ✅ Baiduspider (Chinese search)
 
 **AI Scrapers - BLOCKED:**
+
 - 🚫 GPTBot (OpenAI)
 - 🚫 ChatGPT-User
 - 🚫 CCBot (Common Crawl)
@@ -32,19 +34,31 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 ### 2. Advanced Meta Tags for Bots
 
 **Robot Directives:**
+
 ```html
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta
+  name="robots"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
+<meta
+  name="googlebot"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
+<meta
+  name="bingbot"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
 ```
 
 **Benefits:**
+
 - `index, follow` - Allows full crawling and indexing
 - `max-image-preview:large` - Shows large image previews in search results
 - `max-snippet:-1` - No limit on text snippet length
 - `max-video-preview:-1` - Full video previews allowed
 
 **SEO Enhancement:**
+
 ```html
 <meta name="author" content="Sebastian Georgian Utoiu" />
 <meta name="keywords" content="Cloud Engineer, Azure, AI, DevOps..." />
@@ -54,12 +68,14 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 ### 3. Enhanced Structured Data (JSON-LD)
 
 **Implemented Schema.org Types:**
+
 - ✅ **Person** schema with full profile information
 - ✅ **WebSite** schema with search action
 - ✅ **WebPage** schema for each page
 - ✅ **@graph** structure for rich entity relationships
 
 **What Bots Can Now Understand:**
+
 - Your professional role and expertise
 - Your social profiles (GitHub, LinkedIn)
 - Knowledge areas (Azure, AI, Kubernetes, etc.)
@@ -67,6 +83,7 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 - Content relationships
 
 **Example:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -92,22 +109,26 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 ### 4. Sitemap Configuration
 
 **Files Generated:**
+
 - ✅ `sitemap-index.xml` - Main sitemap index
 - ✅ `sitemap-0.xml` - All page URLs (33 routes)
 
 **Referenced in:**
+
 - robots.txt: `Sitemap: https://www.usebastian.com/sitemap-index.xml`
 - Auto-submitted to search engines via robots.txt
 
 ### 5. Transparency Files
 
 **humans.txt** (`/humans.txt`)
+
 - Credits and team information
 - Technology stack details
 - Bot crawling guidelines
 - Copyright information
 
 **bot-policy.md** (`/bot-policy.md`)
+
 - Detailed bot policy explanation
 - Rate limiting guidelines
 - Content usage rules
@@ -120,12 +141,14 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 ### Search Engine Discovery
 
 **Before:**
+
 - Basic robots.txt (allow all)
 - Minimal meta tags
 - Simple Person schema
 - No bot-specific directives
 
 **After:**
+
 - ✅ Granular bot control (allow good, block bad)
 - ✅ Comprehensive meta tags with bot directives
 - ✅ Rich @graph structured data (Person + WebSite + WebPage)
@@ -134,14 +157,14 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 
 ### Expected Improvements
 
-| Metric | Before | After | Impact |
-|--------|--------|-------|--------|
-| Search Visibility | Good | Excellent | +25-40% |
-| Rich Snippets | Basic | Enhanced | +50% CTR |
-| Image Previews | Small | Large | Better engagement |
-| Snippet Length | Limited | Unlimited | More context |
-| Bot Understanding | Moderate | Comprehensive | Better ranking |
-| AI Scraper Protection | None | Full | Content protected |
+| Metric                | Before   | After         | Impact            |
+| --------------------- | -------- | ------------- | ----------------- |
+| Search Visibility     | Good     | Excellent     | +25-40%           |
+| Rich Snippets         | Basic    | Enhanced      | +50% CTR          |
+| Image Previews        | Small    | Large         | Better engagement |
+| Snippet Length        | Limited  | Unlimited     | More context      |
+| Bot Understanding     | Moderate | Comprehensive | Better ranking    |
+| AI Scraper Protection | None     | Full          | Content protected |
 
 ---
 
@@ -167,6 +190,7 @@ Your website is now **fully optimized** for search engine crawlers and properly 
 ### Structured Data Validation
 
 Test your implementation:
+
 ```bash
 # Google Rich Results Test
 https://search.google.com/test/rich-results?url=https://www.usebastian.com
@@ -188,14 +212,17 @@ https://validator.schema.org/#url=https://www.usebastian.com
 ### Blocked Scrapers
 
 **OpenAI:**
+
 - GPTBot (official crawler)
 - ChatGPT-User (user-triggered crawling)
 
 **Anthropic:**
+
 - anthropic-ai
 - Claude-Web
 
 **Others:**
+
 - CCBot (Common Crawl - used by many AI companies)
 - Google-Extended (Google's AI training crawler)
 - cohere-ai (Cohere AI)
@@ -206,7 +233,7 @@ https://validator.schema.org/#url=https://www.usebastian.com
 ✅ **Protects original content** from being used in AI training without consent  
 ✅ **Maintains attribution** - your work remains identifiably yours  
 ✅ **Legal protection** - clear policy against unauthorized use  
-✅ **Bandwidth savings** - AI scrapers are aggressive crawlers  
+✅ **Bandwidth savings** - AI scrapers are aggressive crawlers
 
 **Note:** Regular search engines (Google Search, Bing) are still fully allowed!
 
@@ -217,24 +244,31 @@ https://validator.schema.org/#url=https://www.usebastian.com
 After deployment, verify bot optimization:
 
 ### 1. robots.txt
+
 ```bash
 curl https://www.usebastian.com/robots.txt
 ```
+
 Should show all bot rules and sitemap.
 
 ### 2. Sitemap
+
 ```bash
 curl https://www.usebastian.com/sitemap-index.xml
 ```
+
 Should list all pages.
 
 ### 3. Meta Tags
+
 View page source - verify:
+
 - `<meta name="robots"` tags
 - `<meta name="googlebot"` tags
 - `<link rel="author" href="/humans.txt">`
 
 ### 4. Structured Data
+
 ```bash
 # Google's test
 https://search.google.com/test/rich-results
@@ -243,9 +277,11 @@ https://search.google.com/test/rich-results
 ```
 
 ### 5. humans.txt
+
 ```bash
 curl https://www.usebastian.com/humans.txt
 ```
+
 Should show team and tech info.
 
 ---
@@ -293,12 +329,14 @@ Should show team and tech info.
 ### Monitor Bot Activity
 
 **Cloudflare Analytics** will show:
+
 - Bot traffic by type
 - Blocked vs. allowed bots
 - Crawl frequency
 - Geographic distribution
 
 **Watch for:**
+
 - Increased Googlebot activity (good!)
 - Blocked AI scrapers attempting access
 - Unusual crawl patterns
@@ -306,6 +344,7 @@ Should show team and tech info.
 ### Content Optimization
 
 Continue creating SEO-friendly content:
+
 - ✅ Blog posts with technical expertise
 - ✅ Project showcases with detailed descriptions
 - ✅ Use cases with problem-solution format
@@ -340,7 +379,7 @@ Your website now has **enterprise-grade bot optimization**:
 ✅ **Rich structured data** - Enhanced search result appearances  
 ✅ **Comprehensive meta tags** - Maximum snippet and image preview sizes  
 ✅ **Transparency** - humans.txt and bot-policy.md for clarity  
-✅ **Automatic sitemap** - 33 routes indexed and discoverable  
+✅ **Automatic sitemap** - 33 routes indexed and discoverable
 
 **Result:** Better search rankings, richer search results, protected content! 🎯
 

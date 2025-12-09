@@ -23,13 +23,11 @@ const variants = {
             {icon}
           </span>
         )}
-        {title && (
-          <h4 class="text-lg font-semibold text-gray-900">{title}</h4>
-        )}
+        {title && <h4 class="text-lg font-semibold text-gray-900">{title}</h4>}
       </div>
     )
   }
-  <div class="text-gray-700 leading-relaxed">
+  <div class="leading-relaxed text-gray-700">
     <slot />
   </div>
 </div>

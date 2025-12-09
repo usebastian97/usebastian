@@ -19,7 +19,7 @@
 
 ### Latest Update
 
-- **Date**: December 5, 2025  
+- **Date**: December 5, 2025
 - **Deployment ID**: e45aef7a
 - **Preview URL**: <https://e45aef7a.usebastian-portfolio.pages.dev>
 - **Changes**: Updated social media links in Schema.org metadata
@@ -59,10 +59,10 @@
 
 ## 🌐 Live URLs
 
-| Type | URL |
-|------|-----|
-| **Production** | <https://www.usebastian.com> |
-| **Pages.dev** | <https://usebastian-portfolio.pages.dev> |
+| Type               | URL                                               |
+| ------------------ | ------------------------------------------------- |
+| **Production**     | <https://www.usebastian.com>                      |
+| **Pages.dev**      | <https://usebastian-portfolio.pages.dev>          |
 | **Latest Preview** | <https://e45aef7a.usebastian-portfolio.pages.dev> |
 
 ---
@@ -156,15 +156,15 @@ Once DNS propagates (1-5 minutes):
 
 ## 📊 Build Statistics
 
-| Metric | Value |
-|--------|-------|
-| Total Files | 94 |
-| Worker Modules | 67 (293.79 KiB) |
-| HTML Saved | 32.62 KB (compression) |
+| Metric           | Value                  |
+| ---------------- | ---------------------- |
+| Total Files      | 94                     |
+| Worker Modules   | 67 (293.79 KiB)        |
+| HTML Saved       | 32.62 KB (compression) |
 | JavaScript Saved | 208.7 KB (compression) |
-| SVG Saved | 8.99 KB (compression) |
-| Build Time | 7.7 seconds |
-| Deploy Time | 1.65 seconds |
+| SVG Saved        | 8.99 KB (compression)  |
+| Build Time       | 7.7 seconds            |
+| Deploy Time      | 1.65 seconds           |
 
 ---
 
@@ -228,6 +228,6 @@ Your portfolio is now live on a world-class infrastructure with:
 
 ---
 
-*Last Updated: December 5, 2025*  
-*Deployment Platform: Cloudflare Pages*  
-*Framework: Astro 5.15.9*
+_Last Updated: December 5, 2025_  
+_Deployment Platform: Cloudflare Pages_  
+_Framework: Astro 5.15.9_

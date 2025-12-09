@@ -12,8 +12,7 @@ const styles = {
     icon: 'text-blue-600',
     title: 'text-blue-900',
     content: 'text-blue-800',
-    iconPath:
-      'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    iconPath: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
   },
   warning: {
     container: 'bg-yellow-50 border-yellow-200',
@@ -28,16 +27,14 @@ const styles = {
     icon: 'text-red-600',
     title: 'text-red-900',
     content: 'text-red-800',
-    iconPath:
-      'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z',
+    iconPath: 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z',
   },
   success: {
     container: 'bg-green-50 border-green-200',
     icon: 'text-green-600',
     title: 'text-green-900',
     content: 'text-green-800',
-    iconPath:
-      'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    iconPath: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
   },
   tip: {
     container: 'bg-purple-50 border-purple-200',
@@ -52,10 +49,7 @@ const styles = {
 const currentStyle = styles[type];
 ---
 
-<div
-  class={`my-6 rounded-lg border-l-4 p-4 ${currentStyle.container}`}
-  role="alert"
->
+<div class={`my-6 rounded-lg border-l-4 p-4 ${currentStyle.container}`} role="alert">
   <div class="flex items-start gap-3">
     <svg
       class={`h-6 w-6 flex-shrink-0 ${currentStyle.icon}`}
@@ -71,13 +65,7 @@ const currentStyle = styles[type];
         d={currentStyle.iconPath}></path>
     </svg>
     <div class="flex-1">
-      {
-        title && (
-          <h4 class={`mb-1 font-semibold ${currentStyle.title}`}>
-            {title}
-          </h4>
-        )
-      }
+      {title && <h4 class={`mb-1 font-semibold ${currentStyle.title}`}>{title}</h4>}
       <div class={`text-sm leading-relaxed ${currentStyle.content}`}>
         <slot />
       </div>

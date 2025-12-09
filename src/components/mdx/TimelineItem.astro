@@ -16,8 +16,8 @@ const statusColors = {
 
 <div class="not-prose relative flex gap-4 pb-8 last:pb-0">
   <!-- Timeline line -->
-  <div class="absolute left-[11px] top-6 bottom-0 w-0.5 bg-gray-200 last:hidden"></div>
-  
+  <div class="absolute top-6 bottom-0 left-[11px] w-0.5 bg-gray-200 last:hidden"></div>
+
   <!-- Timeline dot -->
   <div class="relative z-10 flex-shrink-0">
     <div
@@ -35,11 +35,11 @@ const statusColors = {
       }
     </div>
   </div>
-  
+
   <!-- Content -->
   <div class="flex-1 pt-0.5">
     <h4 class="font-semibold text-gray-900">{title}</h4>
-    <div class="mt-2 text-sm text-gray-600 leading-relaxed">
+    <div class="mt-2 text-sm leading-relaxed text-gray-600">
       <slot />
     </div>
   </div>

@@ -72,6 +72,7 @@ Cloudflare Pages automatically deploys on every push to your main branch. Previe
 ## Monitoring
 
 Monitor your deployment at:
+
 - Cloudflare Dashboard → Analytics
 - Real User Monitoring (RUM) available
 - Web Analytics can be enabled in Cloudflare Dashboard

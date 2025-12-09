@@ -24,9 +24,9 @@ async function generateSearchIndex() {
     const filePath = path.join(contentDir, file);
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const { data, content } = matter(fileContent);
-    
+
     const slug = path.basename(file, '.mdx');
-    
+
     searchIndex.push({
       title: data.title || 'Untitled',
       description: data.description || '',
@@ -43,9 +43,9 @@ async function generateSearchIndex() {
     const filePath = path.join(contentDir, file);
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const { data, content } = matter(fileContent);
-    
+
     const slug = path.basename(file, '.mdx');
-    
+
     searchIndex.push({
       title: data.title || 'Untitled',
       description: data.description || '',
@@ -62,9 +62,9 @@ async function generateSearchIndex() {
     const filePath = path.join(contentDir, file);
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const { data, content } = matter(fileContent);
-    
+
     const slug = path.basename(file, '.mdx');
-    
+
     searchIndex.push({
       title: data.title || 'Untitled',
       description: data.description || '',

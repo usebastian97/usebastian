@@ -65,7 +65,9 @@ const displayTitle = title || current.defaultTitle;
 
 <aside class={`not-prose my-6 rounded-xl border ${current.border} ${current.bg} overflow-hidden`}>
   <div class="flex items-start gap-4 p-4">
-    <div class={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg ${current.iconBg}`}>
+    <div
+      class={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg ${current.iconBg}`}
+    >
       <svg
         class={`h-5 w-5 ${current.iconColor}`}
         fill="none"
@@ -76,7 +78,7 @@ const displayTitle = title || current.defaultTitle;
         <Fragment set:html={current.icon} />
       </svg>
     </div>
-    <div class="flex-1 min-w-0">
+    <div class="min-w-0 flex-1">
       <p class={`font-semibold ${current.titleColor}`}>{displayTitle}</p>
       <div class={`mt-1 text-sm leading-relaxed ${current.textColor}`}>
         <slot />

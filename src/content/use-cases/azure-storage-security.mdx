@@ -5,7 +5,18 @@ category: 'security'
 problem: 'An internal application using Azure Storage had overly permissive default configurations, creating risk of accidental data exposure through public access and long-lived SAS tokens.'
 solution: 'Implemented a minimal yet robust security configuration with disabled public access, private endpoints, Azure AD authentication with RBAC, centralized secrets management via Key Vault, and comprehensive monitoring.'
 result: 'Achieved zero public exposure of sensitive files, eliminated key sprawl through identity-based access, established real-time visibility into access patterns, and implemented practical Zero Trust architecture.'
-technologies: ['Azure Storage', 'Private Endpoints', 'Azure AD', 'RBAC', 'Azure Key Vault', 'Managed Identity', 'Log Analytics', 'Virtual Network', 'Security Alerts']
+technologies:
+  [
+    'Azure Storage',
+    'Private Endpoints',
+    'Azure AD',
+    'RBAC',
+    'Azure Key Vault',
+    'Managed Identity',
+    'Log Analytics',
+    'Virtual Network',
+    'Security Alerts',
+  ]
 relatedProjects: []
 order: 1
 lang: 'en'
@@ -17,8 +28,11 @@ import Diagram from '@components/mdx/Diagram.astro';
 import Paragraph from '@components/mdx/Paragraph.astro';
 
 ## The Challenge
+
 I encountered a common security risk: an internal application using Azure Storage to store user-generated files with overly permissive default configurations. The main threat was accidental data exposure through public access or long-lived SAS tokens.
+
 ## What I Built
+
 I implemented a minimal yet robust security configuration that reduces the attack surface and prevents unauthorized access to sensitive data.
 
 ## Implementation Details
@@ -44,6 +58,7 @@ To minimize the blast radius of any potential compromise, I applied strict permi
 - No account-level keys distributed anywhere
 
 ### 5. Centralized Secrets Management
+
 I eliminated hardcoded credentials entirely by storing connection strings in **Azure Key Vault** and using **Managed Identity** for App Service authentication. Zero secrets live in the application code or repository.
 
 ### 6. Enabled Monitoring & Alerting
@@ -69,61 +84,54 @@ This implementation deepened my understanding of:
 <Diagram>
 ```mermaid
 graph TB
-    subgraph "User Layer"
-        A[End User]
-    end
-    
-    subgraph "Application Layer"
-        B[App Service]
-        C[Managed Identity]
-    end
-    
-    subgraph "Security Layer"
-        D[Azure Key Vault]
-        E[Azure AD]
-        F[RBAC Policies]
-    end
-    
-    subgraph "Network Layer"
-        G[Virtual Network]
-        H[Private Endpoint Subnet]
-        I[Private Endpoint]
-    end
-    
-    subgraph "Storage Layer"
-        J[Storage Account]
-        K[Container - Write Access]
-        L[Container - Read Access]
-    end
-    
-    subgraph "Monitoring Layer"
-        M[Diagnostic Settings]
-        N[Log Analytics Workspace]
-        O[Security Alerts]
-        P[Azure Monitor]
-    end
-    
-    A -->|1. Request| B
-    B -->|2. Authenticate| C
-    C -->|3. Get Credentials| D
-    C -->|4. Verify Identity| E
-    E -->|5. Check Permissions| F
-    B -->|6. Internal Traffic| G
-    G -->|7. Route Through| H
-    H -->|8. Connect Via| I
-    I -->|9. Secure Connection| J
-    J -->|10. Write Data| K
-    J -->|11. Read Data| L
-    J -->|12. Send Logs| M
-    M -->|13. Store Logs| N
-    N -->|14. Analyze| P
-    P -->|15. Trigger| O
-    
-    style J fill:#e1f5ff
-    style D fill:#fff4e1
-    style I fill:#e8f5e9
-    style O fill:#ffebee
-    style E fill:#f3e5f5
+  subgraph "User Layer"
+    A[End User]
+  end
+  subgraph "Application Layer"
+    B[App Service]
+    C[Managed Identity]
+  end
+  subgraph "Security Layer"
+    D[Azure Key Vault]
+    E[Azure AD]
+    F[RBAC Policies]
+  end
+  subgraph "Network Layer"
+    G[Virtual Network]
+    H[Private Endpoint Subnet]
+    I[Private Endpoint]
+  end
+  subgraph "Storage Layer"
+    J[Storage Account]
+    K[Container - Write Access]
+    L[Container - Read Access]
+  end
+  subgraph "Monitoring Layer"
+    M[Diagnostic Settings]
+    N[Log Analytics Workspace]
+    O[Security Alerts]
+    P[Azure Monitor]
+  end
+  A -->|1. Request| B
+  B -->|2. Authenticate| C
+  C -->|3. Get Credentials| D
+  C -->|4. Verify Identity| E
+  E -->|5. Check Permissions| F
+  B -->|6. Internal Traffic| G
+  G -->|7. Route Through| H
+  H -->|8. Connect Via| I
+  I -->|9. Secure Connection| J
+  J -->|10. Write Data| K
+  J -->|11. Read Data| L
+  J -->|12. Send Logs| M
+  M -->|13. Store Logs| N
+  N -->|14. Analyze| P
+  P -->|15. Trigger| O
+  style J fill:#e1f5ff
+  style D fill:#fff4e1
+  style I fill:#e8f5e9
+  style O fill:#ffebee
+  style E fill:#f3e5f5
 ```
 </Diagram>
 
@@ -162,24 +170,22 @@ graph TB
 <Diagram caption="High-risk architecture with public exposure">
 ```mermaid
 graph TB
-    subgraph "Exposed Architecture"
-        A[Internet Users] -->|Public Access| B[Storage Account]
-        C[Application] -->|SAS Token| B
-        D[Developers] -->|Hardcoded Keys| C
-        B -->|No Encryption in Transit| E[Public Blob Container]
-        F[No Monitoring] -.X.- B
-    end
-    
-    style B fill:#ffcccc
-    style E fill:#ffcccc
-    style D fill:#ffe0cc
-    
-    G[Key Risks:]
-    H[❌ Public internet exposure]
-    I[❌ Static credentials in code]
-    J[❌ No access logging]
-    K[❌ Broad permissions]
-    L[❌ No network isolation]
+  subgraph "Exposed Architecture"
+    A[Internet Users] -->|Public Access| B[Storage Account]
+    C[Application] -->|SAS Token| B
+    D[Developers] -->|Hardcoded Keys| C
+    B -->|No Encryption in Transit| E[Public Blob Container]
+    F[No Monitoring] -.X.- B
+  end
+  style B fill:#ffcccc
+  style E fill:#ffcccc
+  style D fill:#ffe0cc
+  G[Key Risks:]
+  H[❌ Public internet exposure]
+  I[❌ Static credentials in code]
+  J[❌ No access logging]
+  K[❌ Broad permissions]
+  L[❌ No network isolation]
 ```
 </Diagram>
 
@@ -188,28 +194,26 @@ graph TB
 <Diagram caption="Zero Trust architecture with comprehensive security controls">
 ```mermaid
 graph TB
-    subgraph "Secure Architecture"
-        A[Authenticated Users] -->|Azure AD Auth| B[App Service]
-        B -->|Managed Identity| C[Key Vault]
-        B -->|Private Network| D[Virtual Network]
-        D -->|Private Endpoint| E[Storage Account]
-        E -->|RBAC Enforced| F[Private Containers]
-        E -->|Diagnostic Logs| G[Log Analytics]
-        G -->|Real-time Analysis| H[Security Alerts]
-    end
-    
-    style E fill:#ccffcc
-    style C fill:#fff4cc
-    style D fill:#cce5ff
-    style H fill:#ffccff
-    
-    I[Security Controls:]
-    J[✓ Private endpoint only]
-    K[✓ Identity-based auth]
-    L[✓ Full audit trail]
-    M[✓ Least privilege RBAC]
-    N[✓ Network isolation]
-    O[✓ Zero secrets in code]
+  subgraph "Secure Architecture"
+    A[Authenticated Users] -->|Azure AD Auth| B[App Service]
+    B -->|Managed Identity| C[Key Vault]
+    B -->|Private Network| D[Virtual Network]
+    D -->|Private Endpoint| E[Storage Account]
+    E -->|RBAC Enforced| F[Private Containers]
+    E -->|Diagnostic Logs| G[Log Analytics]
+    G -->|Real-time Analysis| H[Security Alerts]
+  end
+  style E fill:#ccffcc
+  style C fill:#fff4cc
+  style D fill:#cce5ff
+  style H fill:#ffccff
+  I[Security Controls:]
+  J[✓ Private endpoint only]
+  K[✓ Identity-based auth]
+  L[✓ Full audit trail]
+  M[✓ Least privilege RBAC]
+  N[✓ Network isolation]
+  O[✓ Zero secrets in code]
 ```
 </Diagram>
 
@@ -218,42 +222,40 @@ graph TB
 <Diagram caption="Security transformation from high-risk to Zero Trust">
 ```mermaid
 graph LR
-    subgraph "BEFORE: High Risk"
-        A1[Public Internet]
-        A2[SAS Tokens]
-        A3[Hardcoded Keys]
-        A4[No Monitoring]
-        A1 --> A5[Storage Account]
-        A2 --> A5
-        A3 --> A5
-        A4 -.X.- A5
-    end
-    
-    subgraph "AFTER: Zero Trust"
-        B1[Azure AD]
-        B2[Managed Identity]
-        B3[Key Vault]
-        B4[Private Endpoint]
-        B5[Log Analytics]
-        B1 --> B6[Storage Account]
-        B2 --> B6
-        B3 --> B6
-        B4 --> B6
-        B6 --> B5
-    end
-    
-    style A5 fill:#ff9999
-    style B6 fill:#99ff99
+  subgraph "BEFORE: High Risk"
+    A1[Public Internet]
+    A2[SAS Tokens]
+    A3[Hardcoded Keys]
+    A4[No Monitoring]
+    A1 --> A5[Storage Account]
+    A2 --> A5
+    A3 --> A5
+    A4 -.X.- A5
+  end
+  subgraph "AFTER: Zero Trust"
+    B1[Azure AD]
+    B2[Managed Identity]
+    B3[Key Vault]
+    B4[Private Endpoint]
+    B5[Log Analytics]
+    B1 --> B6[Storage Account]
+    B2 --> B6
+    B3 --> B6
+    B4 --> B6
+    B6 --> B5
+  end
+  style A5 fill:#ff9999
+  style B6 fill:#99ff99
 ```
 </Diagram>
 
 ### Security Transformation Summary
 
-| Security Layer | Before | After | Risk Reduction |
-| --- | --- | --- | --- |
-| **Network Access** | Public internet exposure | Private endpoint only | Eliminates external attack surface |
-| **Authentication** | SAS tokens (hard to rotate) | Azure AD + Managed Identity | No credential management |
-| **Authorization** | Broad container permissions | Granular RBAC policies | Least privilege enforcement |
-| **Secrets** | Hardcoded in source code | Key Vault with auto-rotation | Zero credential exposure |
-| **Visibility** | No logging or monitoring | Full audit trail + alerts | Real-time threat detection |
-| **Compliance** | Unknown posture | Auditable Zero Trust model | Regulatory alignment |
+| Security Layer     | Before                      | After                        | Risk Reduction                     |
+| ------------------ | --------------------------- | ---------------------------- | ---------------------------------- |
+| **Network Access** | Public internet exposure    | Private endpoint only        | Eliminates external attack surface |
+| **Authentication** | SAS tokens (hard to rotate) | Azure AD + Managed Identity  | No credential management           |
+| **Authorization**  | Broad container permissions | Granular RBAC policies       | Least privilege enforcement        |
+| **Secrets**        | Hardcoded in source code    | Key Vault with auto-rotation | Zero credential exposure           |
+| **Visibility**     | No logging or monitoring    | Full audit trail + alerts    | Real-time threat detection         |
+| **Compliance**     | Unknown posture             | Auditable Zero Trust model   | Regulatory alignment               |

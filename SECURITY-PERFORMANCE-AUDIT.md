@@ -40,15 +40,15 @@ Created Cloudflare Pages middleware (`functions/_middleware.ts`) with comprehens
 
 #### Implemented Headers
 
-| Header | Value | Purpose |
-|--------|-------|---------|
-| **Content-Security-Policy** | Strict CSP with allowlist | Prevents XSS, injection attacks |
-| **X-Frame-Options** | DENY | Prevents clickjacking |
-| **X-Content-Type-Options** | nosniff | Prevents MIME sniffing |
-| **X-XSS-Protection** | 1; mode=block | Browser XSS protection |
-| **Referrer-Policy** | strict-origin-when-cross-origin | Privacy protection |
-| **Permissions-Policy** | Restrictive | Limits powerful features |
-| **Strict-Transport-Security** | max-age=63072000 | Forces HTTPS (2 years) |
+| Header                        | Value                           | Purpose                         |
+| ----------------------------- | ------------------------------- | ------------------------------- |
+| **Content-Security-Policy**   | Strict CSP with allowlist       | Prevents XSS, injection attacks |
+| **X-Frame-Options**           | DENY                            | Prevents clickjacking           |
+| **X-Content-Type-Options**    | nosniff                         | Prevents MIME sniffing          |
+| **X-XSS-Protection**          | 1; mode=block                   | Browser XSS protection          |
+| **Referrer-Policy**           | strict-origin-when-cross-origin | Privacy protection              |
+| **Permissions-Policy**        | Restrictive                     | Limits powerful features        |
+| **Strict-Transport-Security** | max-age=63072000                | Forces HTTPS (2 years)          |
 
 #### Content Security Policy Details
 
@@ -126,8 +126,8 @@ upgrade-insecure-requests;
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 <!-- Async font loading with fallback -->
-<link rel="preload" href="..." as="style" onload="...">
-<noscript><link rel="stylesheet" href="..."></noscript>
+<link rel="preload" href="..." as="style" onload="..." />
+<noscript><link rel="stylesheet" href="..." /></noscript>
 ```
 
 **Benefits**:
@@ -185,13 +185,13 @@ prefetch: {
 
 Based on implementation:
 
-| Metric | Target | Expected | Status |
-|--------|--------|----------|--------|
-| **LCP** (Largest Contentful Paint) | <2.5s | ~1.2s | ✅ Good |
-| **FID** (First Input Delay) | <100ms | ~50ms | ✅ Good |
-| **CLS** (Cumulative Layout Shift) | <0.1 | ~0.05 | ✅ Good |
-| **INP** (Interaction to Next Paint) | <200ms | ~80ms | ✅ Good |
-| **TTFB** (Time to First Byte) | <800ms | ~200ms | ✅ Good |
+| Metric                              | Target | Expected | Status  |
+| ----------------------------------- | ------ | -------- | ------- |
+| **LCP** (Largest Contentful Paint)  | <2.5s  | ~1.2s    | ✅ Good |
+| **FID** (First Input Delay)         | <100ms | ~50ms    | ✅ Good |
+| **CLS** (Cumulative Layout Shift)   | <0.1   | ~0.05    | ✅ Good |
+| **INP** (Interaction to Next Paint) | <200ms | ~80ms    | ✅ Good |
+| **TTFB** (Time to First Byte)       | <800ms | ~200ms   | ✅ Good |
 
 **Lighthouse Score Estimate**: 95-100/100
 
