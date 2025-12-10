@@ -1,8 +1,5 @@
 ---
 import Button from '@components/ui/Button.astro';
-import { useTranslations } from '@i18n/utils';
-
-const t = useTranslations('en');
 ---
 
 <section class="relative overflow-hidden border-b border-gray-200 bg-white py-12 sm:py-16 lg:py-20">
@@ -16,7 +13,7 @@ const t = useTranslations('en');
         transformation.
       </p>
       <Button href="/contact" variant="primary">
-        {t('home.hero.cta_contact')}
+        Let's Get in Touch
       </Button>
     </div>
   </div>
