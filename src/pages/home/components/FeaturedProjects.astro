@@ -22,15 +22,25 @@ const featuredProjects = allProjects.sort((a, b) => a.data.order - b.data.order)
 
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
-        featuredProjects.map((project) => (
-          <Card
-            title={project.data.title}
-            description={project.data.description}
-            href={`/projects/${project.slug}`}
-            image={project.data.image ?? ''}
-            tags={project.data.tags}
-          />
-        ))
+        // If there are no featured projects, show a friendly "coming soon" message
+        featuredProjects.length === 0 ? (
+          <div class="col-span-full flex items-center justify-center py-12">
+            <div class="text-center max-w-2xl">
+              <h3 class="mb-3 text-2xl font-semibold text-gray-900">New Projects Coming Soon</h3>
+              <p class="text-gray-600 mb-6">I'm actively working on new projects that will showcase cloud architecture, security, and AI integrations.</p>
+            </div>
+          </div>
+        ) : (
+          featuredProjects.map((project) => (
+            <Card
+              title={project.data.title}
+              description={project.data.description}
+              href={`/projects/${project.slug}`}
+              image={project.data.image ?? ''}
+              tags={project.data.tags}
+            />
+          ))
+        )
       }
     </div>
 
