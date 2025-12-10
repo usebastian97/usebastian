@@ -1,0 +1,178 @@
+---
+title: 'Why Proper Azure Architecture Starts With Governance, Not Resources'
+description: 'A practical guide for beginners and cloud architects on implementing governance-first Azure architecture with management groups, policies, and landing zones.'
+publishDate: 2025-12-10
+tags: ['Azure', 'Governance', 'Architecture', 'Management Groups', 'Cloud Design']
+image: '/blog/azure-governance.png'
+draft: false
+lang: 'en'
+---
+
+## Introduction
+
+Most Azure beginners start the same way: they open the portal, click "Create a resource," and deploy a virtual machine or web app. Within weeks, they have resources scattered across multiple subscriptions, no consistent naming, unclear ownership, and mounting costs they can't explain.
+
+This approach creates technical debt from day one. Security teams find gaps in access controls. Finance struggles to allocate costs. Operations can't enforce standards. What started as a simple proof of concept becomes an unmaintainable mess.
+
+The problem isn't Azure itself. The problem is skipping governance.
+
+Governance defines the rules before you deploy anything. It establishes who can do what, where resources can live, how they're secured, and how they're monitored. Without these foundations, every resource you create makes the environment harder to manage.
+
+This guide explains why governance comes first, what it includes, and how to implement it correctly.
+
+## Why Governance Must Come First
+
+Azure's organizational structure starts with the **Root Management Group**. This is the top-level container that holds all subscriptions in your tenant. Every Azure Policy and RBAC assignment you apply here cascades down to everything below it.
+
+The Root Management Group lets you enforce organization-wide rules. Need to prevent resources outside Europe? Apply an allowed locations policy at the root. Need to ensure every subscription has specific diagnostic settings? Enforce it centrally.
+
+Below the root sits the **platform layer**. This layer contains shared infrastructure: identity services, networking hubs, security monitoring, and centralized logging. These services support all application workloads.
+
+Identity governs authentication and authorization. Network topology defines how resources communicate. Security establishes baseline protections. These elements form the foundation that makes everything else possible.
+
+When you build governance first, you create guardrails. Teams can deploy resources quickly, but only within defined boundaries. Security stays consistent. Costs stay predictable. Operations remain scalable.
+
+Without governance, you're building on sand.
+
+## The Four Governance Pillars
+
+### Identity
+
+Identity controls who accesses Azure resources and what they can do. Azure Active Directory provides authentication. Role-Based Access Control assigns permissions.
+
+**Mistake 1:** Granting users Contributor or Owner roles at the subscription level. This gives excessive permissions. Users can delete production resources, modify security settings, or deploy expensive services without oversight.
+
+**Mistake 2:** Not separating admin accounts from daily-use accounts. Admins use their regular account for privileged operations, increasing the attack surface when credentials are compromised.
+
+### Network
+
+Network architecture determines how resources connect, how traffic flows, and where security boundaries exist. Hub-and-spoke topologies centralize connectivity. Network Security Groups filter traffic.
+
+**Mistake 1:** Allowing public internet access to resources by default. Developers deploy databases or storage accounts without restricting network access, exposing sensitive data.
+
+**Mistake 2:** Creating multiple unconnected virtual networks without planning. Teams build isolated networks that can't communicate, requiring costly redesigns when integration is needed.
+
+### Security
+
+Security establishes baseline protections across all resources. This includes Microsoft Defender for Cloud, encryption requirements, threat detection, and vulnerability management.
+
+**Mistake 1:** Disabling security features to reduce costs. Organizations turn off Defender for Cloud or don't enable diagnostic logging, losing visibility when incidents occur.
+
+**Mistake 2:** Not enforcing encryption at rest. Developers deploy unencrypted storage accounts or disks, violating compliance requirements and creating data exposure risks.
+
+### Compliance
+
+Compliance ensures resources meet regulatory, industry, and organizational standards. Azure Policy enforces rules automatically. Compliance reporting tracks adherence.
+
+**Mistake 1:** Building environments without understanding data residency requirements. Organizations discover too late that customer data resides in prohibited regions.
+
+**Mistake 2:** Not documenting governance decisions. Teams can't explain why certain policies exist or how exceptions are granted, failing audits.
+
+## Recommended Management Group Structure
+
+Azure governance uses a hierarchical management group structure:
+
+**Root Management Group** → **Platform** → **Landing Zones** → **Subscriptions**
+
+The **Root Management Group** contains tenant-wide policies. Apply only critical, non-negotiable policies here: allowed regions, required tags, mandatory encryption, or security baseline configurations.
+
+The **Platform** management group holds shared infrastructure subscriptions: identity services, network connectivity, security monitoring, and management tools. These subscriptions support all workloads but don't host application resources.
+
+**Landing Zones** group subscriptions by environment or workload type. Common landing zones include Production, Non-Production, Sandbox, and specialized zones for specific workload requirements.
+
+**Subscriptions** sit at the bottom. Each subscription contains resource groups and resources for specific applications or teams.
+
+**RBAC inheritance** works top-down. A role assignment at the root applies everywhere. A role at a management group applies to all child groups and subscriptions. This allows centralized control while enabling delegation.
+
+**Azure Policy inheritance** follows the same pattern. Policies assigned at higher levels automatically apply below. Child scopes can add more policies but can't remove parent policies without exemptions.
+
+This structure separates concerns, enables delegation, and maintains control.
+
+## Essential Azure Policies to Apply Early
+
+### Allowed Locations
+
+This policy restricts where resources can be deployed. Set this immediately to meet data residency requirements and prevent surprise deployments in expensive regions.
+
+Without it, developers might launch resources in regions with higher costs or compliance issues.
+
+### Allowed VM SKUs
+
+This policy limits virtual machine sizes. Prevent users from deploying unnecessarily large VMs that waste budget.
+
+Without it, someone deploys a 64-core VM for a simple test and forgets to delete it.
+
+### Tag Enforcement
+
+This policy requires specific tags on resources: owner, cost center, environment, application name. Tags enable cost allocation, lifecycle management, and automation.
+
+Without it, you can't answer "Who owns this?" or "Which department pays for this?"
+
+### Diagnostic Settings Enforcement
+
+This policy ensures every resource sends logs and metrics to a central Log Analytics workspace or storage account. Logging is critical for security monitoring, troubleshooting, and compliance.
+
+Without it, incidents occur with no audit trail.
+
+### Resource Naming Standards
+
+This policy enforces naming conventions using patterns. Consistent naming makes resources discoverable, enables automation, and reduces errors.
+
+Without it, you get resources named "test123" or "vm-final-really-final."
+
+## Building Your First Landing Zone
+
+A landing zone is a pre-configured subscription ready for workloads. It includes network connectivity, security baselines, monitoring, and access controls.
+
+A basic landing zone for application workloads includes:
+
+- **Virtual network** connected to the platform hub
+- **Network Security Groups** with baseline rules
+- **Azure Policy assignments** from parent management groups
+- **RBAC assignments** granting appropriate team access
+- **Diagnostic settings** forwarding logs centrally
+- **Microsoft Defender for Cloud** enabled
+- **Budgets and alerts** configured
+
+Organizations should avoid putting everything in a single subscription. Subscriptions provide isolation boundaries for billing, RBAC, and policy. Different applications or teams should use separate subscriptions within appropriate landing zones.
+
+Subscriptions also have resource limits. A single large subscription hits quotas faster and creates blast radius risks when issues occur.
+
+## Example Scenario
+
+A company builds a customer portal with these components:
+
+- Web application on App Service
+- SQL Database for customer data
+- Azure Cognitive Services for content moderation
+- Microsoft 365 integration for email workflows
+
+Without governance, developers deploy everything in one subscription with default settings. The SQL Database allows public internet access. No tags identify cost allocation. Resources span multiple regions. No diagnostic logs collect security events.
+
+With governance, the process changes:
+
+The company creates a Production landing zone with policies requiring:
+
+- Resources only in West Europe
+- All resources tagged with application name and cost center
+- Public internet access disabled by default
+- Diagnostic logs forwarded to central workspace
+- Database encryption enforced
+
+The network team configures private endpoints for the SQL Database. Only the App Service can connect through the virtual network. The identity team grants the development team Contributor access scoped to specific resource groups, not the entire subscription.
+
+When the application scales, adding new regions follows the same governance pattern. New subscriptions inherit the same policies. Security stays consistent. Costs remain trackable. Operations understand the environment's structure.
+
+The governance foundation enables growth without chaos.
+
+## Conclusion
+
+Azure governance isn't bureaucracy. It's the architecture that makes everything else work.
+
+Without governance, security weakens as you scale. Costs spiral as resources multiply. Operations collapse under complexity. Compliance audits fail.
+
+With governance, teams move faster within defined guardrails. Security stays consistent. Resources stay organized. Costs stay predictable.
+
+Start with the Root Management Group. Build the four pillars: identity, network, security, compliance. Structure management groups logically. Apply essential policies early. Create landing zones before workloads.
+
+**Adopt governance first thinking.** Your future self and your security team will thank you.

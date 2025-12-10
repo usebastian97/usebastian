@@ -1,5 +1,19 @@
 [
   {
+    "title": "Why Proper Azure Architecture Starts With Governance, Not Resources",
+    "description": "A practical guide for beginners and cloud architects on implementing governance-first Azure architecture with management groups, policies, and landing zones.",
+    "url": "/blog/why-proper-azure-architecture-starts-with-governance",
+    "category": "blog",
+    "tags": [
+      "Azure",
+      "Governance",
+      "Architecture",
+      "Management Groups",
+      "Cloud Design"
+    ],
+    "content": "\n## Introduction\n\nMost Azure beginners start the same way: they open the portal, click \"Create a resource,\" and deploy a virtual machine or web app. Within weeks, they have resources scattered across multiple subscriptions, no consistent naming, unclear ownership, and mounting costs they can't explain.\n\nThis approach creates technical debt from day one. Security teams find gaps in access controls. Finance struggles to allocate costs. Operations can't enforce standards. What started as a simple p"
+  },
+  {
     "title": "Defense-in-Depth in Azure",
     "description": "A comprehensive guide to implementing layered security controls across identity, network, compute, application, and data tiers in Microsoft Azure.",
     "url": "/blog/Defense-in-Depth",
