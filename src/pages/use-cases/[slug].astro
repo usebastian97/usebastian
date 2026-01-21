@@ -1,6 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import DocLayout from '@layouts/DocLayout.astro';
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+
+const categoryLabels = {
+  m365: t('usecases.category_m365'),
+  'power-platform': t('usecases.category_power_platform'),
+  'security-compliance': t('usecases.category_security_compliance'),
+  'copilot-governance': t('usecases.category_copilot_governance'),
+};
 
 export async function getStaticPaths() {
   const useCaseEntries = await getCollection('use-cases');
@@ -31,7 +41,7 @@ const { Content, headings } = await entry.render();
   meta={[
     {
       label: 'Category',
-      value: entry.data.category.charAt(0).toUpperCase() + entry.data.category.slice(1),
+      value: categoryLabels[entry.data.category] ?? entry.data.category,
       icon: '📁',
     },
   ]}

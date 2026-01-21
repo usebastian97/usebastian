@@ -3,11 +3,14 @@ import { getCollection } from 'astro:content';
 import MainLayout from '@layouts/MainLayout.astro';
 import { Icon } from 'astro-icon/components';
 import FumaSearch from '@components/ui/FumaSearch.astro';
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
 
 // Fetch all content collections
 const blogPosts = await getCollection('blog');
 const projects = await getCollection('projects');
-const useCases = await getCollection('use-cases');
+const useCases = await getCollection('use-cases', ({ data }) => (data.lang ?? 'en') === 'en');
 
 // Sort blog posts by date (newest first)
 const sortedBlogs = blogPosts
@@ -21,18 +24,34 @@ const featuredProjects = projects
   .slice(0, 6);
 
 // Get recent use cases
-const recentUseCases = useCases.sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+const recentUseCases = useCases
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .slice(0, 6);
 
 const stats = [
   { label: 'Blog Posts', count: blogPosts.length, icon: 'lucide:book-open', href: '/blog' },
   { label: 'Projects', count: projects.length, icon: 'lucide:briefcase', href: '/projects' },
   { label: 'Use Cases', count: useCases.length, icon: 'lucide:lightbulb', href: '/use-cases' },
 ];
+
+const projectCategoryLabels = {
+  m365: t('projects.filter_m365'),
+  'power-platform': t('projects.filter_power-platform'),
+  'security-compliance': t('projects.filter_security-compliance'),
+  'copilot-governance': t('projects.filter_copilot-governance'),
+};
+
+const useCaseCategoryLabels = {
+  m365: t('usecases.category_m365'),
+  'power-platform': t('usecases.category_power_platform'),
+  'security-compliance': t('usecases.category_security_compliance'),
+  'copilot-governance': t('usecases.category_copilot_governance'),
+};
 ---
 
 <MainLayout
   title="Documentation Hub | Sebastian Georgian Utoiu"
-  description="Explore technical blog posts, cloud architecture projects, and enterprise use cases. Your complete resource for cloud solutions and best practices."
+  description="Explore technical notes, M365 projects, and Microsoft 365 use cases with security and compliance at the core."
 >
   <!-- Hero Section -->
   <section class="border-b border-gray-200 bg-gradient-to-b from-gray-50 to-white">
@@ -46,13 +65,12 @@ const stats = [
         </div>
 
         <h1 class="mb-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-          Cloud Architecture<br />Knowledge Base
+          Microsoft 365<br />Knowledge Base
         </h1>
 
         <p class="mb-8 text-xl leading-relaxed text-gray-600">
-          Comprehensive documentation covering cloud solutions, enterprise architecture patterns,
-          and real-world implementation guides. Learn from practical experience and proven
-          methodologies.
+          Practical documentation covering Microsoft 365 architecture, Power Platform governance,
+          and Copilot adoption for secure, compliant deployments.
         </p>
 
         <!-- Search Bar -->
@@ -142,7 +160,7 @@ const stats = [
         <div class="mb-8 flex items-center justify-between">
           <div>
             <h2 class="text-3xl font-bold text-gray-900">Featured Projects</h2>
-            <p class="mt-2 text-gray-600">Cloud solutions and enterprise implementations</p>
+            <p class="mt-2 text-gray-600">M365, Power Platform, and Copilot governance initiatives</p>
           </div>
           <a
             href="/projects"
@@ -172,7 +190,7 @@ const stats = [
 
                 <div class="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
                   <Icon name="lucide:folder" class="h-3 w-3" />
-                  {project.data.category}
+                  {projectCategoryLabels[project.data.category] ?? project.data.category}
                 </div>
 
                 <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">
@@ -200,8 +218,8 @@ const stats = [
       <section>
         <div class="mb-8 flex items-center justify-between">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900">Enterprise Use Cases</h2>
-            <p class="mt-2 text-gray-600">Real-world solutions and success stories</p>
+            <h2 class="text-3xl font-bold text-gray-900">Microsoft 365 Use Cases</h2>
+            <p class="mt-2 text-gray-600">Security, compliance, and Copilot adoption outcomes</p>
           </div>
           <a
             href="/use-cases"
@@ -221,7 +239,7 @@ const stats = [
               >
                 <div class="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-purple-50 px-3 py-1 text-xs font-medium text-purple-700">
                   <Icon name="lucide:zap" class="h-3 w-3" />
-                  {useCase.data.category}
+                  {useCaseCategoryLabels[useCase.data.category] ?? useCase.data.category}
                 </div>
 
                 <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600">

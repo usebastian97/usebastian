@@ -6,10 +6,10 @@ import EmptyState from '@components/ui/EmptyState.astro';
 const t = useTranslations('en');
 
 // Fetch all use cases for English
-const allUseCases = await getCollection('use-cases');
+const allUseCases = await getCollection('use-cases', ({ data }) => (data.lang ?? 'en') === 'en');
 
 // Sort by order field
-const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
+const sortedUseCases = allUseCases.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
 const categoryLabels = {
   m365: t('usecases.category_m365'),

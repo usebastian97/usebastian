@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 
 // Fetch use cases from MDX files
-const allUseCases = await getCollection('use-cases');
+const allUseCases = await getCollection('use-cases', ({ data }) => (data.lang ?? 'en') === 'en');
 const useCases = allUseCases
   .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
   .slice(0, 3); // Show maximum 3 use cases
@@ -21,7 +21,6 @@ const useCases = allUseCases
     </div>
 
     {useCases.length === 0 && (
-      <!-- Empty State -->
       <div class="mx-auto max-w-md text-center py-16">
         <div class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-200">
           <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +33,6 @@ const useCases = allUseCases
     )}
 
     {useCases.length > 0 && (
-      <!-- Use Cases Grid -->
       <div class="mx-auto max-w-7xl">
         <!-- Carousel Container -->
         <div class="relative">
@@ -82,7 +80,6 @@ const useCases = allUseCases
 
           {useCases.length > 1 && (
             <>
-              <!-- Navigation Buttons -->
               <button
                 id="prev-btn"
                 class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 lg:-translate-x-12 bg-white rounded-full p-2 sm:p-3 shadow-lg border-2 border-gray-200 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed z-10"
@@ -106,7 +103,6 @@ const useCases = allUseCases
         </div>
 
         {useCases.length > 1 && (
-          <!-- Carousel Indicators -->
           <div class="flex justify-center gap-2 mt-8">
             {useCases.map((_, index) => (
               <button
@@ -118,7 +114,6 @@ const useCases = allUseCases
           </div>
         )}
 
-        <!-- CTA to Use Cases -->
         <div class="mt-12 text-center">
           <a
             href="/use-cases"
