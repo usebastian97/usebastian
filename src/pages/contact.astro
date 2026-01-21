@@ -7,7 +7,10 @@ import { useTranslations } from '@i18n/utils';
 const t = useTranslations('en');
 ---
 
-<MainLayout title={`${t('contact.title')} | Sebastian Georgian Utoiu`}>
+<MainLayout
+  title={t('contact.title')}
+  description="Get in touch for Microsoft 365 architecture, Power Platform delivery, and Copilot governance initiatives focused on security and compliance."
+>
   <!-- Hero Section -->
   <section
     class="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-32"

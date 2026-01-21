@@ -9,7 +9,10 @@ import { useTranslations } from '@i18n/utils';
 const t = useTranslations('en');
 ---
 
-<MainLayout title={`${t('about.title')} | Sebastian Georgian Utoiu`}>
+<MainLayout
+  title={t('about.title')}
+  description="Learn about Sebastian Georgian Utoiu, an M365 & Power Platform Architect focused on security, compliance, and Microsoft 365 Copilot adoption and governance."
+>
   <AboutHero />
 
   <!-- Main Content -->

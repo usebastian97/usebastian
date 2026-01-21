@@ -7,7 +7,10 @@ import { useTranslations } from '@i18n/utils';
 const t = useTranslations('en');
 ---
 
-<MainLayout title={`${t('certifications.title')} | Sebastian Georgian Utoiu`}>
+<MainLayout
+  title={t('certifications.title')}
+  description="Certifications across Microsoft 365, Power Platform, security and compliance, and Copilot governance readiness."
+>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
       <CertificationsHero />

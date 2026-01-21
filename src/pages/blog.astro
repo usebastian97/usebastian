@@ -7,7 +7,10 @@ import { useTranslations } from '@i18n/utils';
 const t = useTranslations('en');
 ---
 
-<MainLayout title={`${t('blog.title')} | Sebastian Georgian Utoiu`}>
+<MainLayout
+  title={t('blog.title')}
+  description="Articles on Microsoft 365 architecture, Power Platform governance, security and compliance, and Microsoft 365 Copilot adoption."
+>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
       <BlogHero />

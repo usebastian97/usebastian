@@ -9,12 +9,15 @@ interface Props {
   noIndex?: boolean;
 }
 
-const {
-  title = 'Sebastian Georgian Utoiu - Cloud Engineer | AI | DevOps | Azure Specialist',
-  description = 'Junior Cloud Engineer specializing in Azure, AI solutions, and DevOps practices. Building scalable, secure, and efficient cloud infrastructure.',
-  image = '/og-image.jpg',
-  noIndex = false,
-} = Astro.props;
+const siteTitle =
+  'Sebastian Georgian Utoiu - M365 & Power Platform Architect | Security & Compliance | Microsoft 365 Copilot Adoption & Governance';
+const siteDescription =
+  'M365 & Power Platform Architect focused on security, compliance, and Microsoft 365 Copilot adoption and governance. Designing secure, compliant modern workplaces and automation.';
+
+const { title, description = siteDescription, image = '/og-image.jpg', noIndex = false } =
+  Astro.props;
+
+const resolvedTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
@@ -28,22 +31,22 @@ const schema = {
       '@id': 'https://www.usebastian.com/#person',
       name: 'Sebastian Georgian Utoiu',
       alternateName: 'SGU',
-      jobTitle: 'Junior Cloud Engineer',
-      description: description,
+      jobTitle: 'M365 & Power Platform Architect',
+      description: siteDescription,
       url: 'https://www.usebastian.com',
       image: 'https://www.usebastian.com/og-image.jpg',
       sameAs: ['https://github.com/usebastian97', 'https://linkedin.com/in/usebastian12'],
       knowsAbout: [
-        'Cloud Architecture',
-        'Microsoft Azure',
-        'Artificial Intelligence',
-        'DevOps',
-        'Security',
-        'Kubernetes',
-        'Terraform',
-        'Infrastructure as Code',
-        'CI/CD',
-        'Machine Learning',
+        'Microsoft 365 Architecture',
+        'Power Platform',
+        'Security & Compliance',
+        'Microsoft 365 Copilot',
+        'Governance',
+        'Information Protection',
+        'Identity & Access Management',
+        'Zero Trust',
+        'Power Automate',
+        'Power Apps',
       ],
       worksFor: {
         '@type': 'Organization',
@@ -58,9 +61,8 @@ const schema = {
       '@type': 'WebSite',
       '@id': 'https://www.usebastian.com/#website',
       url: 'https://www.usebastian.com',
-      name: 'Sebastian Georgian Utoiu - Cloud Engineer Portfolio',
-      description:
-        'Professional portfolio showcasing cloud engineering expertise, AI solutions, and DevOps projects',
+      name: 'Sebastian Georgian Utoiu | M365 & Power Platform Architect',
+      description: siteDescription,
       publisher: {
         '@id': 'https://www.usebastian.com/#person',
       },
@@ -78,7 +80,7 @@ const schema = {
       '@type': 'WebPage',
       '@id': canonicalURL.href + '#webpage',
       url: canonicalURL.href,
-      name: title,
+      name: resolvedTitle,
       description: description,
       isPartOf: {
         '@id': 'https://www.usebastian.com/#website',
@@ -106,8 +108,8 @@ const schema = {
     <link rel="author" href="/humans.txt" />
 
     <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
+    <title>{resolvedTitle}</title>
+    <meta name="title" content={resolvedTitle} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
@@ -115,7 +117,7 @@ const schema = {
     <meta name="author" content="Sebastian Georgian Utoiu" />
     <meta
       name="keywords"
-      content="Cloud Engineer, Azure, AI, DevOps, Cloud Architecture, Machine Learning, Kubernetes, Terraform, Security, Automation"
+      content="Microsoft 365, Power Platform, M365 Architect, Security & Compliance, Microsoft 365 Copilot, Governance, Information Protection, Zero Trust, Power Automate, Power Apps, Power BI"
     />
     {
       noIndex ? (
@@ -151,7 +153,7 @@ const schema = {
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={resolvedTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="Sebastian Georgian Utoiu" />
@@ -159,7 +161,7 @@ const schema = {
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
+    <meta property="twitter:title" content={resolvedTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
 
