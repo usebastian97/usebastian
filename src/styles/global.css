@@ -4,17 +4,18 @@
 @plugin '@tailwindcss/forms';
 
 @font-face {
-  font-family: 'FuzzyBubbles';
-  src: url('/fonts/FuzzyBubbles-Regular.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'GoogleSans';
+  src: url('/fonts/GoogleSans.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @theme {
   /* Font Families */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
-  --font-fuzzy: 'FuzzyBubbles', cursive;
+  --font-sans: 'GoogleSans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'GoogleSans', system-ui, -apple-system, sans-serif;
+  --font-fuzzy: 'GoogleSans', system-ui, -apple-system, sans-serif;
 
   /* Primary Colors - Cloud Theme */
   --color-primary-50: #f7f7f5;
@@ -91,6 +92,15 @@
     font-family: var(--font-sans);
     font-weight: 600;
     color: #111827 !important; /* Force dark color */
+  }
+
+  h1,
+  h2 {
+    font-size: 48px;
+    line-height: 58px;
+    letter-spacing: -1px;
+    font-weight: 700;
+    color: rgb(32, 33, 36) !important;
   }
 
   p,
