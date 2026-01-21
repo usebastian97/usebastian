@@ -10,8 +10,16 @@ const techTabs = [
       { name: 'Microsoft Entra ID', icon: '/m365/Microsoft-Entra-ID.svg', level: 'Intermediate' },
       { name: 'Conditional Access', icon: '/m365/entra.svg', level: 'Intermediate' },
       { name: 'Identity Protection', icon: '/m365/entra.svg', level: 'Intermediate' },
-      { name: 'Privileged Identity Management (PIM)', icon: '/m365/entra.svg', level: 'Intermediate' },
-      { name: 'External Identities (B2B / Guests)', icon: '/m365/entra.svg', level: 'Intermediate' },
+      {
+        name: 'Privileged Identity Management (PIM)',
+        icon: '/m365/entra.svg',
+        level: 'Intermediate',
+      },
+      {
+        name: 'External Identities (B2B / Guests)',
+        icon: '/m365/entra.svg',
+        level: 'Intermediate',
+      },
       { name: 'Identity Governance', icon: '/m365/entra.svg', level: 'Intermediate' },
     ],
   },
@@ -26,24 +34,36 @@ const techTabs = [
       },
       { name: 'Microsoft Defender for Endpoint', icon: '/m365/defender.svg', level: 'Basic' },
       { name: 'Microsoft Defender for Identity', icon: '/m365/defender.svg', level: 'Basic' },
-      { name: 'Microsoft Purview (Information Protection)', icon: '/m365/purview.svg', level: 'Basic' },
+      {
+        name: 'Microsoft Purview (Information Protection)',
+        icon: '/m365/purview.svg',
+        level: 'Basic',
+      },
       {
         name: 'Data Loss Prevention (DLP)',
         icon: '/m365/purview.svg',
         level: 'Basic',
       },
-      { name: 'eDiscovery (Standard / Premium)',  icon: '/m365/purview.svg', level: 'Basic' },
+      { name: 'eDiscovery (Standard / Premium)', icon: '/m365/purview.svg', level: 'Basic' },
     ],
   },
   {
     id: 'devops',
     name: 'Modern Workplace & Collaboration',
     technologies: [
-      { name: 'Microsoft Teams (Architecture & Governance)', icon: '/m365/teams.svg', level: 'Basic' },
-      { name: 'SharePoint Online (Information Architecture)', icon: '/m365/SharePoint.svg', level: 'Basic' },
-      { name: 'OneDrive for Business', icon: '/m365/OneDrive.svg', level: 'Basic'},
-      { name: 'Exchange Online', icon: '/m365/outlook.svg', level: 'Basic'},
-      { name: 'Microsoft Viva (Foundations)', icon: '/m365/viva.svg', level: 'Basic'}
+      {
+        name: 'Microsoft Teams (Architecture & Governance)',
+        icon: '/m365/teams.svg',
+        level: 'Basic',
+      },
+      {
+        name: 'SharePoint Online (Information Architecture)',
+        icon: '/m365/SharePoint.svg',
+        level: 'Basic',
+      },
+      { name: 'OneDrive for Business', icon: '/m365/OneDrive.svg', level: 'Basic' },
+      { name: 'Exchange Online', icon: '/m365/outlook.svg', level: 'Basic' },
+      { name: 'Microsoft Viva (Foundations)', icon: '/m365/viva.svg', level: 'Basic' },
     ],
   },
   {
@@ -52,10 +72,10 @@ const techTabs = [
     technologies: [
       { name: 'Microsoft Intune', icon: '/m365/intune.png', level: 'Basic' },
       { name: 'Endpoint Security Policies', icon: '/m365/intune.png', level: 'Basic' },
-      { name: 'Configuration Profiles', icon: '/m365/intune.png', level: 'Basic'},
-      { name: 'Mobile Application Management (MAM)', icon: '/m365/intune.png', level: 'Basic'},
-      { name: 'Tenant Administration', icon: '/m365/intune.png', level: 'Basic'},
-      { name: 'Configuration Devices', icon: '/m365/intune.png', level: 'Basic'}
+      { name: 'Configuration Profiles', icon: '/m365/intune.png', level: 'Basic' },
+      { name: 'Mobile Application Management (MAM)', icon: '/m365/intune.png', level: 'Basic' },
+      { name: 'Tenant Administration', icon: '/m365/intune.png', level: 'Basic' },
+      { name: 'Configuration Devices', icon: '/m365/intune.png', level: 'Basic' },
     ],
   },
   {
@@ -68,8 +88,6 @@ const techTabs = [
       { name: 'Power Pages', icon: '/m365/power-pages.svg', level: 'Basic' },
       { name: 'Dataverse (Architecture)', icon: '/m365/dataverse.svg', level: 'Basic' },
       { name: 'Environment Strategy', icon: '/m365/m365.svg', level: 'Basic' },
-
-
     ],
   },
   {
@@ -82,8 +100,6 @@ const techTabs = [
       { name: 'Copilot Studio (Agents)', icon: '/m365/copilot-studio.svg', level: 'Basic' },
       { name: 'AI Governance & Risk Controls', icon: '/m365/copilot.svg', level: 'Basic' },
       { name: 'AI Builder', icon: '/m365/ai-builder.svg', level: 'Basic' },
-
-
     ],
   },
   {
@@ -98,7 +114,7 @@ const techTabs = [
       { name: 'Cursor IDE', icon: 'simple-icons:cursor', level: 'Basic' },
     ],
   },
-    {
+  {
     id: 'programming',
     name: 'Programming',
     technologies: [
@@ -123,9 +139,7 @@ const techTabs = [
         class="mx-auto mb-6 h-auto w-24 sm:w-24"
         loading="lazy"
       />
-      <h2 class="mb-3">
-        Technology Stack
-      </h2>
+      <h2 class="mb-3">Technology Stack</h2>
       <p class="text-notion-text-secondary mx-auto max-w-2xl">
         I build Microsoft 365 and Power Platform architectures with a strong focus on security,
         compliance, and Copilot adoption governance.

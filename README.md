@@ -89,14 +89,14 @@ npm run preview
 
 ### Available Commands
 
-| Command              | Description                                    |
-| -------------------- | ---------------------------------------------- |
-| `npm run dev`        | Start dev server with hot reload               |
-| `npm run build`      | Production build with optimizations            |
-| `npm run preview`    | Preview production build locally               |
-| `npm run lint`       | Run ESLint + Stylelint checks                  |
-| `npm run format`     | Format code with Prettier                      |
-| `npm run check`      | Type-check Astro components                    |
+| Command           | Description                         |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | Start dev server with hot reload    |
+| `npm run build`   | Production build with optimizations |
+| `npm run preview` | Preview production build locally    |
+| `npm run lint`    | Run ESLint + Stylelint checks       |
+| `npm run format`  | Format code with Prettier           |
+| `npm run check`   | Type-check Astro components         |
 
 ## 📝 Content Management
 

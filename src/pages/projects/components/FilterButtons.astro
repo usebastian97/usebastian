@@ -3,7 +3,13 @@ import { useTranslations } from '@i18n/utils';
 
 const t = useTranslations('en');
 
-const categories = ['all', 'm365', 'power-platform', 'security-compliance', 'copilot-governance'] as const;
+const categories = [
+  'all',
+  'm365',
+  'power-platform',
+  'security-compliance',
+  'copilot-governance',
+] as const;
 ---
 
 <div class="mb-12 flex flex-wrap gap-2" id="filter-container">

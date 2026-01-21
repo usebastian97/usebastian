@@ -80,57 +80,17 @@ This implementation deepened my understanding of:
 ## Complete Security Implementation Diagram
 
 <Diagram>
-```mermaid
-graph TB
-  subgraph "User Layer"
-    A[End User]
-  end
-  subgraph "Application Layer"
-    B[App Service]
-    C[Managed Identity]
-  end
-  subgraph "Security Layer"
-    D[Azure Key Vault]
-    E[Azure AD]
-    F[RBAC Policies]
-  end
-  subgraph "Network Layer"
-    G[Virtual Network]
-    H[Private Endpoint Subnet]
-    I[Private Endpoint]
-  end
-  subgraph "Storage Layer"
-    J[Storage Account]
-    K[Container - Write Access]
-    L[Container - Read Access]
-  end
-  subgraph "Monitoring Layer"
-    M[Diagnostic Settings]
-    N[Log Analytics Workspace]
-    O[Security Alerts]
-    P[Azure Monitor]
-  end
-  A -->|1. Request| B
-  B -->|2. Authenticate| C
-  C -->|3. Get Credentials| D
-  C -->|4. Verify Identity| E
-  E -->|5. Check Permissions| F
-  B -->|6. Internal Traffic| G
-  G -->|7. Route Through| H
-  H -->|8. Connect Via| I
-  I -->|9. Secure Connection| J
-  J -->|10. Write Data| K
-  J -->|11. Read Data| L
-  J -->|12. Send Logs| M
-  M -->|13. Store Logs| N
-  N -->|14. Analyze| P
-  P -->|15. Trigger| O
-  style J fill:#e1f5ff
-  style D fill:#fff4e1
-  style I fill:#e8f5e9
-  style O fill:#ffebee
-  style E fill:#f3e5f5
-```
+  ```mermaid graph TB subgraph "User Layer" A[End User] end subgraph "Application Layer" B[App
+  Service] C[Managed Identity] end subgraph "Security Layer" D[Azure Key Vault] E[Azure AD] F[RBAC
+  Policies] end subgraph "Network Layer" G[Virtual Network] H[Private Endpoint Subnet] I[Private
+  Endpoint] end subgraph "Storage Layer" J[Storage Account] K[Container - Write Access] L[Container
+  - Read Access] end subgraph "Monitoring Layer" M[Diagnostic Settings] N[Log Analytics Workspace]
+  O[Security Alerts] P[Azure Monitor] end A -->|1. Request| B B -->|2. Authenticate| C C -->|3. Get
+  Credentials| D C -->|4. Verify Identity| E E -->|5. Check Permissions| F B -->|6. Internal
+  Traffic| G G -->|7. Route Through| H H -->|8. Connect Via| I I -->|9. Secure Connection| J J
+  -->|10. Write Data| K J -->|11. Read Data| L J -->|12. Send Logs| M M -->|13. Store Logs| N N
+  -->|14. Analyze| P P -->|15. Trigger| O style J fill:#e1f5ff style D fill:#fff4e1 style I
+  fill:#e8f5e9 style O fill:#ffebee style E fill:#f3e5f5 ```
 </Diagram>
 
 ### Step-by-Step Flow
@@ -166,85 +126,76 @@ graph TB
 ### Before: Insecure Default Configuration
 
 <Diagram caption="High-risk architecture with public exposure">
-```mermaid
-graph TB
-  subgraph "Exposed Architecture"
-    A[Internet Users] -->|Public Access| B[Storage Account]
-    C[Application] -->|SAS Token| B
-    D[Developers] -->|Hardcoded Keys| C
-    B -->|No Encryption in Transit| E[Public Blob Container]
-    F[No Monitoring] -.X.- B
-  end
-  style B fill:#ffcccc
-  style E fill:#ffcccc
-  style D fill:#ffe0cc
-  G[Key Risks:]
-  H[❌ Public internet exposure]
-  I[❌ Static credentials in code]
-  J[❌ No access logging]
-  K[❌ Broad permissions]
-  L[❌ No network isolation]
-```
+  ```mermaid
+  graph TB
+    subgraph "Exposed Architecture"
+      A[Internet Users] -->|Public Access| B[Storage Account]
+      C[Application] -->|SAS Token| B
+      D[Developers] -->|Hardcoded Keys| C
+      B -->|No Encryption in Transit| E[Public Blob Container]
+      F[No Monitoring] -.X.- B
+    end
+    style B fill:#ffcccc
+    style E fill:#ffcccc
+    style D fill:#ffe0cc
+    G[Key Risks:]
+    H[❌ Public internet exposure]
+    I[❌ Static credentials in code]
+    J[❌ No access logging]
+    K[❌ Broad permissions]
+    L[❌ No network isolation]
+  ```
 </Diagram>
 
 ### After: Zero Trust Security Model
 
 <Diagram caption="Zero Trust architecture with comprehensive security controls">
-```mermaid
-graph TB
-  subgraph "Secure Architecture"
-    A[Authenticated Users] -->|Azure AD Auth| B[App Service]
-    B -->|Managed Identity| C[Key Vault]
-    B -->|Private Network| D[Virtual Network]
-    D -->|Private Endpoint| E[Storage Account]
-    E -->|RBAC Enforced| F[Private Containers]
-    E -->|Diagnostic Logs| G[Log Analytics]
-    G -->|Real-time Analysis| H[Security Alerts]
-  end
-  style E fill:#ccffcc
-  style C fill:#fff4cc
-  style D fill:#cce5ff
-  style H fill:#ffccff
-  I[Security Controls:]
-  J[✓ Private endpoint only]
-  K[✓ Identity-based auth]
-  L[✓ Full audit trail]
-  M[✓ Least privilege RBAC]
-  N[✓ Network isolation]
-  O[✓ Zero secrets in code]
-```
+  ```mermaid
+  graph TB
+    subgraph "Secure Architecture"
+      A[Authenticated Users] -->|Azure AD Auth| B[App Service]
+      B -->|Managed Identity| C[Key Vault]
+      B -->|Private Network| D[Virtual Network]
+      D -->|Private Endpoint| E[Storage Account]
+      E -->|RBAC Enforced| F[Private Containers]
+      E -->|Diagnostic Logs| G[Log Analytics]
+      G -->|Real-time Analysis| H[Security Alerts]
+    end
+    style E fill:#ccffcc
+    style C fill:#fff4cc
+    style D fill:#cce5ff
+    style H fill:#ffccff
+    I[Security Controls:]
+    J[✓ Private endpoint only]
+    K[✓ Identity-based auth]
+    L[✓ Full audit trail]
+    M[✓ Least privilege RBAC]
+    N[✓ Network isolation]
+    O[✓ Zero secrets in code]
+  ```
 </Diagram>
 
 ### Side-by-Side Comparison
 
 <Diagram caption="Security transformation from high-risk to Zero Trust">
-```mermaid
-graph LR
-  subgraph "BEFORE: High Risk"
-    A1[Public Internet]
-    A2[SAS Tokens]
-    A3[Hardcoded Keys]
-    A4[No Monitoring]
-    A1 --> A5[Storage Account]
-    A2 --> A5
-    A3 --> A5
-    A4 -.X.- A5
-  end
-  subgraph "AFTER: Zero Trust"
-    B1[Azure AD]
-    B2[Managed Identity]
-    B3[Key Vault]
-    B4[Private Endpoint]
-    B5[Log Analytics]
-    B1 --> B6[Storage Account]
-    B2 --> B6
-    B3 --> B6
-    B4 --> B6
-    B6 --> B5
-  end
-  style A5 fill:#ff9999
-  style B6 fill:#99ff99
-```
+  ```mermaid
+  graph LR
+    subgraph "BEFORE: High Risk"
+      A1[Public Internet] --> A5[Storage Account]
+      A2[SAS Tokens] --> A5
+      A3[Hardcoded Keys] --> A5
+      A4[No Monitoring] -.X.- A5
+    end
+    subgraph "AFTER: Zero Trust"
+      B1[Azure AD] --> B6[Storage Account]
+      B2[Managed Identity] --> B6
+      B3[Key Vault] --> B6
+      B4[Private Endpoint] --> B6
+      B6 --> B5[Log Analytics]
+    end
+    style A5 fill:#ff9999
+    style B6 fill:#99ff99
+  ```
 </Diagram>
 
 ### Security Transformation Summary

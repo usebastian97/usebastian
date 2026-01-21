@@ -27,9 +27,9 @@ const featuredProjects = allProjects.sort((a, b) => a.data.order - b.data.order)
         // If there are no featured projects, show a friendly "coming soon" message
         featuredProjects.length === 0 ? (
           <div class="col-span-full flex items-center justify-center py-12">
-            <div class="text-center max-w-2xl">
+            <div class="max-w-2xl text-center">
               <h3 class="mb-3 text-2xl font-semibold text-gray-900">New Projects Coming Soon</h3>
-              <p class="text-gray-600 mb-6">
+              <p class="mb-6 text-gray-600">
                 I'm shaping new M365 and Power Platform projects focused on compliance and Copilot
                 readiness.
               </p>

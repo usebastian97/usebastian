@@ -100,7 +100,8 @@ export const certifications: Certification[] = [
     status: 'Planned',
     date: '2025',
     category: 'Foundation',
-    description: 'AI workloads, machine learning, computer vision, and natural language processing on Azure.',
+    description:
+      'AI workloads, machine learning, computer vision, and natural language processing on Azure.',
   },
   {
     title: 'Microsoft 365 Certified: Fundamentals',
@@ -136,7 +137,8 @@ export const certifications: Certification[] = [
     status: 'Planned',
     date: '2026',
     category: 'Specialization',
-    description: 'Design and implement Azure AI solutions using cognitive services and machine learning.',
+    description:
+      'Design and implement Azure AI solutions using cognitive services and machine learning.',
   },
   {
     title: 'Microsoft Certified: Power Platform Functional Consultant Associate',
@@ -154,7 +156,8 @@ export const certifications: Certification[] = [
     status: 'Planned',
     date: '2026',
     category: 'Specialization',
-    description: 'Build and extend Power Platform solutions, including custom connectors and Dataverse.',
+    description:
+      'Build and extend Power Platform solutions, including custom connectors and Dataverse.',
   },
   {
     title: 'Microsoft Certified: Power Automate RPA Developer Associate',
@@ -208,15 +211,16 @@ export const certifications: Certification[] = [
     status: 'Planned',
     date: '2026',
     category: 'Specialization',
-    description: 'Implement security controls, maintain security posture, and manage identity and access.',
+    description:
+      'Implement security controls, maintain security posture, and manage identity and access.',
   },
 ];
 
 export const statusColors: Record<CertStatus, string> = {
   'In Progress': 'bg-blue-100 text-blue-800',
-  'Planned': 'bg-gray-100 text-gray-800',
-  'Completed': 'bg-green-100 text-green-800',
-  'Next': 'bg-yellow-100 text-yellow-800',
+  Planned: 'bg-gray-100 text-gray-800',
+  Completed: 'bg-green-100 text-green-800',
+  Next: 'bg-yellow-100 text-yellow-800',
 };
 
 export const categoryColors: Record<CertCategory, string> = {
