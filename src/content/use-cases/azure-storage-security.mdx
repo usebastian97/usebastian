@@ -1,22 +1,20 @@
 ---
 title: 'Limiting Public Access and Protecting Sensitive Data in Azure Storage'
 description: 'Implemented enterprise-grade security for Azure Storage to prevent data exposure through private endpoints, Azure AD authentication, and Zero Trust principles.'
-category: 'security'
+category: 'security-compliance'
 problem: 'An internal application using Azure Storage had overly permissive default configurations, creating risk of accidental data exposure through public access and long-lived SAS tokens.'
 solution: 'Implemented a minimal yet robust security configuration with disabled public access, private endpoints, Azure AD authentication with RBAC, centralized secrets management via Key Vault, and comprehensive monitoring.'
 result: 'Achieved zero public exposure of sensitive files, eliminated key sprawl through identity-based access, established real-time visibility into access patterns, and implemented practical Zero Trust architecture.'
 technologies:
-  [
-    'Azure Storage',
-    'Private Endpoints',
-    'Azure AD',
-    'RBAC',
-    'Azure Key Vault',
-    'Managed Identity',
-    'Log Analytics',
-    'Virtual Network',
-    'Security Alerts',
-  ]
+  - Azure Storage
+  - Private Endpoints
+  - Azure AD
+  - RBAC
+  - Azure Key Vault
+  - Managed Identity
+  - Log Analytics
+  - Virtual Network
+  - Security Alerts
 relatedProjects: []
 order: 1
 lang: 'en'

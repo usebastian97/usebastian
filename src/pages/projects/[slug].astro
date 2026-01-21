@@ -1,6 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import DocLayout from '@layouts/DocLayout.astro';
+import { useTranslations } from '@i18n/utils';
+
+const t = useTranslations('en');
+
+const categoryLabels = {
+  'm365': t('projects.filter_m365'),
+  'power-platform': t('projects.filter_power-platform'),
+  'security-compliance': t('projects.filter_security-compliance'),
+  'copilot-governance': t('projects.filter_copilot-governance'),
+};
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects');
@@ -51,7 +61,7 @@ if (entry.data.githubUrl) {
   meta={[
     {
       label: 'Category',
-      value: entry.data.category.charAt(0).toUpperCase() + entry.data.category.slice(1),
+      value: categoryLabels[entry.data.category] ?? entry.data.category,
       icon: '📁',
     },
   ]}

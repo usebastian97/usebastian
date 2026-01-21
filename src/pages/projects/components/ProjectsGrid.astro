@@ -8,13 +8,20 @@ const t = useTranslations('en');
 const allProjects = await getCollection('projects');
 
 const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
+
+const categoryLabels = {
+  'm365': t('projects.filter_m365'),
+  'power-platform': t('projects.filter_power-platform'),
+  'security-compliance': t('projects.filter_security-compliance'),
+  'copilot-governance': t('projects.filter_copilot-governance'),
+};
 ---
 
 {projects.length === 0 ? (
   <EmptyState
     icon="🚀"
     title="No projects yet"
-    description="We're building something awesome! Stay tuned for exciting projects coming soon."
+    description="New Microsoft 365, Power Platform, and Copilot governance projects are on the way."
     actionText="View Blog"
     actionUrl="/blog"
   />
@@ -37,7 +44,7 @@ const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
         <!-- Category Badge -->
         <div class="mb-3">
           <span class="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
-            {project.data.category}
+            {categoryLabels[project.data.category] ?? project.data.category}
           </span>
         </div>
 
@@ -55,7 +62,9 @@ const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
 
         <!-- View Details Link -->
         <div class="mt-auto flex items-center justify-between border-t border-gray-200 pt-4">
-          <span class="text-xs font-medium text-gray-500">{project.data.category}</span>
+          <span class="text-xs font-medium text-gray-500">
+            {categoryLabels[project.data.category] ?? project.data.category}
+          </span>
           <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700">
             {t('projects.viewDetails')}
             <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -18,7 +18,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['cloud', 'ai', 'fullstack', 'tools']),
+    category: z.enum(['m365', 'power-platform', 'security-compliance', 'copilot-governance']),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     projectUrl: z.string().url().optional(),
@@ -33,7 +33,7 @@ const useCases = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['enterprise', 'ai-ops', 'cloud-native', 'security', 'automation']),
+    category: z.enum(['m365', 'power-platform', 'security-compliance', 'copilot-governance']),
     problem: z.string(),
     solution: z.string(),
     result: z.string(),

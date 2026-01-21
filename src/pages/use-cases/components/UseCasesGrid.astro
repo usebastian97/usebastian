@@ -10,13 +10,20 @@ const allUseCases = await getCollection('use-cases');
 
 // Sort by order field
 const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
+
+const categoryLabels = {
+  m365: t('usecases.category_m365'),
+  'power-platform': t('usecases.category_power_platform'),
+  'security-compliance': t('usecases.category_security_compliance'),
+  'copilot-governance': t('usecases.category_copilot_governance'),
+};
 ---
 
 {sortedUseCases.length === 0 ? (
   <EmptyState
     icon="💼"
     title="No use cases yet"
-    description="We're working on documenting real-world use cases and success stories. Come back soon!"
+    description="New Microsoft 365, Power Platform, and Copilot governance stories are in progress."
     actionText="Explore Projects"
     actionUrl="/projects"
   />
@@ -27,7 +34,7 @@ const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
       <!-- Category Badge -->
       <div class="mb-3">
         <span class="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-800">
-          {useCase.data.category}
+          {categoryLabels[useCase.data.category] ?? useCase.data.category}
         </span>
       </div>
 
@@ -66,7 +73,9 @@ const sortedUseCases = allUseCases.sort((a, b) => a.data.order - b.data.order);
 
       <!-- View Details Link -->
       <div class="mt-auto flex items-center justify-between border-t border-gray-200 pt-4">
-        <span class="text-xs font-medium text-gray-500">{useCase.data.category}</span>
+        <span class="text-xs font-medium text-gray-500">
+          {categoryLabels[useCase.data.category] ?? useCase.data.category}
+        </span>
         <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700">
           {t('usecases.viewDetails')}
           <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -57,10 +57,10 @@
   "projects": {
     "title": "Projects",
     "filter_all": "All",
-    "filter_cloud": "Cloud",
-    "filter_ai": "AI",
-    "filter_fullstack": "Full-stack",
-    "filter_tools": "Tools",
+    "filter_m365": "Microsoft 365",
+    "filter_power-platform": "Power Platform",
+    "filter_security-compliance": "Security & Compliance",
+    "filter_copilot-governance": "Copilot Governance",
     "technologies": "Technologies",
     "viewDetails": "View Details"
   },
@@ -81,10 +81,14 @@
   },
   "usecases": {
     "title": "Use Cases",
-    "description": "Explore real-world applications and solutions that demonstrate how I solve complex business challenges with cloud architecture, AI, and DevOps practices.",
+    "description": "Explore outcomes from Microsoft 365, Power Platform, and Copilot adoption with security and compliance built in.",
     "problem": "Challenge",
     "solution": "Solution",
     "result": "Outcome",
+    "category_m365": "Microsoft 365",
+    "category_power_platform": "Power Platform",
+    "category_security_compliance": "Security & Compliance",
+    "category_copilot_governance": "Copilot Governance",
     "technologies": "Technologies",
     "viewDetails": "View Details",
     "noUseCases": "No use cases available for this language yet."
