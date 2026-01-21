@@ -4,67 +4,86 @@ import { Icon } from 'astro-icon/components';
 // Technology tabs data
 const techTabs = [
   {
-    id: 'programming',
-    name: 'Programming',
-    technologies: [
-      { name: 'Python', icon: 'simple-icons:python', level: 'Basic' },
-      { name: 'Next.js', icon: 'simple-icons:nextdotjs', level: 'Intermediate' },
-      { name: 'TypeScript', icon: 'simple-icons:typescript', level: 'Intermediate' },
-      { name: 'JavaScript', icon: 'simple-icons:javascript', level: 'Intermediate' },
-      { name: 'Kotlin', icon: 'simple-icons:kotlin', level: 'Intermediate' },
-      { name: 'Bash', icon: 'simple-icons:gnubash', level: 'Basic' },
-    ],
-  },
-  {
     id: 'cloud',
-    name: 'Cloud & Infrastructure',
+    name: 'Identity & Access',
     technologies: [
-      { name: 'Azure', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Storage Services', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Networking Services', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Compute Services', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Management', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Governance', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Microsoft Entra ID', icon: '/m365/Microsoft-Entra-ID.svg', level: 'Intermediate' },
+      { name: 'Conditional Access', icon: '/m365/entra.svg', level: 'Intermediate' },
+      { name: 'Identity Protection', icon: '/m365/entra.svg', level: 'Intermediate' },
+      { name: 'Privileged Identity Management (PIM)', icon: '/m365/entra.svg', level: 'Intermediate' },
+      { name: 'External Identities (B2B / Guests)', icon: '/m365/entra.svg', level: 'Intermediate' },
+      { name: 'Identity Governance', icon: '/m365/entra.svg', level: 'Intermediate' },
     ],
   },
   {
     id: 'containers',
-    name: 'Containers & Orchestration',
+    name: 'Security & Compliance',
     technologies: [
       {
-        name: 'Azure Kubernetes Services',
-        icon: '/stacks/kubernetes-services.svg',
+        name: 'Microsoft Defender for Office 365',
+        icon: '/m365/defender.svg',
         level: 'Basic',
       },
-      { name: 'Docker', icon: 'simple-icons:docker', level: 'Basic' },
-      { name: 'Azure Container Apps', icon: '/stacks/container-apps.svg', level: 'Basic' },
-      { name: 'Azure Batch', icon: 'simple-icons:microsoftazure', level: 'Basic' },
+      { name: 'Microsoft Defender for Endpoint', icon: '/m365/defender.svg', level: 'Basic' },
+      { name: 'Microsoft Defender for Identity', icon: '/m365/defender.svg', level: 'Basic' },
+      { name: 'Microsoft Purview (Information Protection)', icon: '/m365/purview.svg', level: 'Basic' },
       {
-        name: 'Azure Container Instances (ACI)',
-        icon: '/stacks/container-instances.svg',
+        name: 'Data Loss Prevention (DLP)',
+        icon: '/m365/purview.svg',
         level: 'Basic',
       },
-      { name: 'Azure Container Registry', icon: '/stacks/container-registry.svg', level: 'Basic' },
+      { name: 'eDiscovery (Standard / Premium)',  icon: '/m365/purview.svg', level: 'Basic' },
     ],
   },
   {
     id: 'devops',
-    name: 'DevOps & CI/CD',
+    name: 'Modern Workplace & Collaboration',
     technologies: [
-      { name: 'GitHub Actions', icon: 'simple-icons:githubactions', level: 'Basic' },
-      { name: 'GitLab CI', icon: 'simple-icons:gitlab', level: 'Basic' },
+      { name: 'Microsoft Teams (Architecture & Governance)', icon: '/m365/teams.svg', level: 'Basic' },
+      { name: 'SharePoint Online (Information Architecture)', icon: '/m365/SharePoint.svg', level: 'Basic' },
+      { name: 'OneDrive for Business', icon: '/m365/OneDrive.svg', level: 'Basic'},
+      { name: 'Exchange Online', icon: '/m365/outlook.svg', level: 'Basic'},
+      { name: 'Microsoft Viva (Foundations)', icon: '/m365/viva.svg', level: 'Basic'}
     ],
   },
   {
     id: 'databases',
-    name: 'Databases & Storage',
+    name: 'Device & Endpoint Management',
     technologies: [
-      { name: 'Azure SQL Database', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Cosmos DB', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Blob Storage', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Azure Table Storage', icon: 'simple-icons:microsoftazure', level: 'Basic' },
-      { name: 'Supabase', icon: 'simple-icons:supabase', level: 'Intermediate' },
-      { name: 'Toad Oracle', icon: 'simple-icons:oracle', level: 'Intermediate' },
+      { name: 'Microsoft Intune', icon: '/m365/intune.png', level: 'Basic' },
+      { name: 'Endpoint Security Policies', icon: '/m365/intune.png', level: 'Basic' },
+      { name: 'Configuration Profiles', icon: '/m365/intune.png', level: 'Basic'},
+      { name: 'Mobile Application Management (MAM)', icon: '/m365/intune.png', level: 'Basic'},
+      { name: 'Tenant Administration', icon: '/m365/intune.png', level: 'Basic'},
+      { name: 'Configuration Devices', icon: '/m365/intune.png', level: 'Basic'}
+    ],
+  },
+  {
+    id: 'power',
+    name: 'Automation & Power Platform',
+    technologies: [
+      { name: 'Power Automate', icon: '/m365/power-automate.svg', level: 'Basic' },
+      { name: 'Power Apps', icon: '/m365/power-apps.svg', level: 'Basic' },
+      { name: 'Power Platform Governance', icon: '/m365/power-apps.svg', level: 'Basic' },
+      { name: 'Power Pages', icon: '/m365/power-pages.svg', level: 'Basic' },
+      { name: 'Dataverse (Architecture)', icon: '/m365/dataverse.svg', level: 'Basic' },
+      { name: 'Environment Strategy', icon: '/m365/m365.svg', level: 'Basic' },
+
+
+    ],
+  },
+  {
+    id: 'copilot',
+    name: 'Copilot & AI Architecture',
+    technologies: [
+      { name: 'Microsoft 365 Copilot', icon: '/m365/copilot.svg', level: 'Basic' },
+      { name: 'Copilot Security & Data Boundaries', icon: '/m365/copilot.svg', level: 'Basic' },
+      { name: 'Purview for Copilot', icon: '/m365/purview.svg', level: 'Basic' },
+      { name: 'Copilot Studio (Agents)', icon: '/m365/copilot-studio.svg', level: 'Basic' },
+      { name: 'AI Governance & Risk Controls', icon: '/m365/copilot.svg', level: 'Basic' },
+      { name: 'AI Builder', icon: '/m365/ai-builder.svg', level: 'Basic' },
+
+
     ],
   },
   {
@@ -77,6 +96,18 @@ const techTabs = [
       { name: 'Android Studio', icon: 'simple-icons:androidstudio', level: 'Advanced' },
       { name: 'Atom', icon: 'simple-icons:atom', level: 'Intermediate' },
       { name: 'Cursor IDE', icon: 'simple-icons:cursor', level: 'Basic' },
+    ],
+  },
+    {
+    id: 'programming',
+    name: 'Programming',
+    technologies: [
+      { name: 'Python', icon: 'simple-icons:python', level: 'Basic' },
+      { name: 'Next.js', icon: 'simple-icons:nextdotjs', level: 'Intermediate' },
+      { name: 'TypeScript', icon: 'simple-icons:typescript', level: 'Intermediate' },
+      { name: 'JavaScript', icon: 'simple-icons:javascript', level: 'Intermediate' },
+      { name: 'Kotlin', icon: 'simple-icons:kotlin', level: 'Intermediate' },
+      { name: 'Bash', icon: 'simple-icons:gnubash', level: 'Basic' },
     ],
   },
 ];
