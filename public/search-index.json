@@ -14,6 +14,20 @@
     "content": "\n## Introduction\n\nMost Azure beginners start the same way: they open the portal, click \"Create a resource,\" and deploy a virtual machine or web app. Within weeks, they have resources scattered across multiple subscriptions, no consistent naming, unclear ownership, and mounting costs they can't explain.\n\nThis approach creates technical debt from day one. Security teams find gaps in access controls. Finance struggles to allocate costs. Operations can't enforce standards. What started as a simple p"
   },
   {
+    "title": "Microsoft Entra ID in the Zero Trust Era: What Identity Architects Must Get Right in 2026",
+    "description": "Identity architecture priorities for 2026, from Zero Trust access to governance and Copilot readiness.",
+    "url": "/blog/what-identity-architects-must-get-right-in-2026",
+    "category": "blog",
+    "tags": [
+      "Identity",
+      "Microsoft Entra ID",
+      "Zero Trust",
+      "Security",
+      "Conditional Access"
+    ],
+    "content": "\n## Introduction\n\nFor more than a decade, enterprise security strategies were built around the network perimeter. Firewalls, VPNs, and trusted internal networks defined who could access what they could do. That model is now obsolete.\n\nToday, identity is the control plane.\n\nAs cloud adoption accelerates, work becomes location agnostic, and AI tools like Microsoft Copilot gain access to vast amounts of organizational data; the identity layer determines whether your environment is secure or dangero"
+  },
+  {
     "title": "Defense-in-Depth in Azure",
     "description": "A comprehensive guide to implementing layered security controls across identity, network, compute, application, and data tiers in Microsoft Azure.",
     "url": "/blog/Defense-in-Depth",
@@ -43,6 +57,6 @@
       "Virtual Network",
       "Security Alerts"
     ],
-    "content": "\nimport FumaCallout from '@components/mdx/FumaCallout.astro';\nimport FumaCodeBlock from '@components/mdx/FumaCodeBlock.astro';\nimport Diagram from '@components/mdx/Diagram.astro';\nimport Paragraph from '@components/mdx/Paragraph.astro';\n\n## The Challenge\n\nI encountered a common security risk: an internal application using Azure Storage to store user-generated files with overly permissive default configurations. The main threat was accidental data exposure through public access or long-lived SAS "
+    "content": "import FumaCallout from '@components/mdx/FumaCallout.astro';\nimport FumaCodeBlock from '@components/mdx/FumaCodeBlock.astro';\nimport Diagram from '@components/mdx/Diagram.astro';\nimport Paragraph from '@components/mdx/Paragraph.astro';\n\n## The Challenge\n\nI encountered a common security risk: an internal application using Azure Storage to store user-generated files with overly permissive default configurations. The main threat was accidental data exposure through public access or long-lived SAS t"
   }
 ]

@@ -14,8 +14,12 @@ const siteTitle =
 const siteDescription =
   'M365 & Power Platform Architect focused on security, compliance, and Microsoft 365 Copilot adoption and governance. Designing secure, compliant modern workplaces and automation.';
 
-const { title, description = siteDescription, image = '/og-image.jpg', noIndex = false } =
-  Astro.props;
+const {
+  title,
+  description = siteDescription,
+  image = '/og-image.jpg',
+  noIndex = false,
+} = Astro.props;
 
 const resolvedTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 
