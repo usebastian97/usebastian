@@ -1,28 +1,41 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import BlogHero from './blog/components/BlogHero.astro';
-import BlogGrid from './blog/components/BlogGrid.astro';
+import BlogHero from '../components/BlogHero.astro';
+import BlogGrid from '../components/BlogGrid.astro';
 import { useTranslations } from '@i18n/utils';
 import { getCollection } from 'astro:content';
-import { blogCategories } from '../data/blogCategories';
+import { blogCategories } from '../../../data/blogCategories';
 
 const t = useTranslations('en');
+
+export async function getStaticPaths() {
+  return blogCategories.map((category) => ({
+    params: { category: category.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props as {
+  category: (typeof blogCategories)[number];
+};
+
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const posts = allPosts.sort(
-  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
-);
-const postsPerPage = 9;
+const posts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .filter((post) => post.data.tags?.some((tag) => category.tags.includes(tag)));
+
+const postsPerPage = Math.max(posts.length, 1);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const blogListSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: t('blog.title'),
+  name: `${category.label} Articles`,
   description:
     'Articles on Microsoft 365 architecture, Power Platform governance, security and compliance, and Microsoft 365 Copilot adoption.',
   url: canonicalURL.href,
   mainEntity: {
     '@type': 'ItemList',
-    itemListElement: posts.slice(0, postsPerPage).map((post, index) => {
+    itemListElement: posts.map((post, index) => {
       const postUrl = new URL(`/blog/${post.slug}`, Astro.site).href;
       const postImage = post.data.image
         ? new URL(post.data.image, Astro.site).href
@@ -44,7 +57,7 @@ const blogListSchema = {
 ---
 
 <MainLayout
-  title={t('blog.title')}
+  title={`${category.label} | ${t('blog.title')}`}
   description="Articles on Microsoft 365 architecture, Power Platform governance, security and compliance, and Microsoft 365 Copilot adoption."
 >
   <head>
@@ -80,12 +93,17 @@ const blogListSchema = {
               <h2 class="mb-2">Topics</h2>
               <nav class="space-y-1">
                 {
-                  blogCategories.map((category) => (
+                  blogCategories.map((item) => (
                     <a
-                      href={`/blog/category/${category.slug}`}
-                      class="block rounded-md px-2 py-1.5 text-sm text-gray-700 transition-colors hover:bg-gray-100"
+                      href={`/blog/category/${item.slug}`}
+                      class:list={[
+                        'block rounded-md px-2 py-1.5 text-sm transition-colors',
+                        item.slug === category.slug
+                          ? 'bg-gray-100 text-gray-900'
+                          : 'text-gray-700 hover:bg-gray-100',
+                      ]}
                     >
-                      {category.label}
+                      {item.label}
                     </a>
                   ))
                 }

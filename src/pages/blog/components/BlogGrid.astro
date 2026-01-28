@@ -1,18 +1,29 @@
 ---
 import Card from '@components/cards/Card.astro';
 import EmptyState from '@components/ui/EmptyState.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const allPosts = await getCollection('blog', ({ data }) => {
-  return !data.draft;
-});
+interface Props {
+  posts?: CollectionEntry<'blog'>[];
+  currentPage?: number;
+  postsPerPage?: number;
+}
+
+const { posts: providedPosts, currentPage = 1, postsPerPage = 9 } = Astro.props;
+
+const allPosts =
+  providedPosts ??
+  (await getCollection('blog', ({ data }) => {
+    return !data.draft;
+  }));
 
 const posts = allPosts.sort(
   (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
 );
 
-const postsPerPage = 9;
 const totalPages = Math.ceil(posts.length / postsPerPage);
+const startIndex = (currentPage - 1) * postsPerPage;
+const pagedPosts = posts.slice(startIndex, startIndex + postsPerPage);
 ---
 
 {posts.length === 0 ? (
@@ -28,7 +39,7 @@ const totalPages = Math.ceil(posts.length / postsPerPage);
     <!-- Posts Grid -->
     <div class="mb-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {
-        posts.slice(0, postsPerPage).map((post) => (
+        pagedPosts.map((post) => (
           <Card
             title={post.data.title}
             description={post.data.description}
@@ -48,7 +59,12 @@ const totalPages = Math.ceil(posts.length / postsPerPage);
           {Array.from({ length: totalPages }, (_, i) => (
             <a
               href={i === 0 ? '/blog' : `/blog/${i + 1}`}
-              class="rounded-lg border border-gray-300 px-4 py-2 transition-colors hover:border-blue-600 hover:text-blue-600"
+              class:list={[
+                'rounded-lg border px-4 py-2 transition-colors',
+                i + 1 === currentPage
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-gray-300 hover:border-blue-600 hover:text-blue-600',
+              ]}
             >
               {i + 1}
             </a>

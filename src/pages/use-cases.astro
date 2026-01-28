@@ -3,14 +3,49 @@ import MainLayout from '@layouts/MainLayout.astro';
 import UseCasesHero from './use-cases/components/UseCasesHero.astro';
 import UseCasesGrid from './use-cases/components/UseCasesGrid.astro';
 import { useTranslations } from '@i18n/utils';
+import { getCollection } from 'astro:content';
 
 const t = useTranslations('en');
+const allUseCases = await getCollection('use-cases', ({ data }) => (data.lang ?? 'en') === 'en');
+const useCases = allUseCases.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const useCasesListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t('usecases.title'),
+  description:
+    'Real-world outcomes for Microsoft 365, Power Platform, and Copilot adoption with security and compliance at the core.',
+  url: canonicalURL.href,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: useCases.map((useCase, index) => {
+      const useCaseUrl = new URL(`/use-cases/${useCase.slug}`, Astro.site).href;
+      const useCaseImage = useCase.data.image
+        ? new URL(useCase.data.image, Astro.site).href
+        : undefined;
+
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Article',
+          name: useCase.data.title,
+          url: useCaseUrl,
+          image: useCaseImage ? [useCaseImage] : undefined,
+        },
+      };
+    }),
+  },
+};
 ---
 
 <MainLayout
   title={t('usecases.title')}
   description="Real-world outcomes for Microsoft 365, Power Platform, and Copilot adoption with security and compliance at the core."
 >
+  <head>
+    <script type="application/ld+json" set:html={JSON.stringify(useCasesListSchema)} />
+  </head>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <UseCasesHero />

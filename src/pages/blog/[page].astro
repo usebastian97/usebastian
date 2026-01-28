@@ -1,17 +1,40 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import BlogHero from './blog/components/BlogHero.astro';
-import BlogGrid from './blog/components/BlogGrid.astro';
+import BlogHero from './components/BlogHero.astro';
+import BlogGrid from './components/BlogGrid.astro';
 import { useTranslations } from '@i18n/utils';
 import { getCollection } from 'astro:content';
-import { blogCategories } from '../data/blogCategories';
+import { blogCategories } from '../../data/blogCategories';
 
 const t = useTranslations('en');
+const POSTS_PER_PAGE = 9;
+
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const posts = allPosts.sort(
   (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
 );
-const postsPerPage = 9;
+const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+export async function getStaticPaths() {
+  const postsPerPage = 9;
+  const entries = await getCollection('blog', ({ data }) => !data.draft);
+  const total = Math.ceil(entries.length / postsPerPage);
+
+  if (total <= 1) {
+    return [];
+  }
+
+  return Array.from({ length: total - 1 }, (_, index) => {
+    const page = index + 2;
+    return {
+      params: { page: String(page) },
+      props: { page },
+    };
+  });
+}
+
+const { page } = Astro.props as { page: number };
+const currentPage = Math.min(Math.max(2, Number(page)), Math.max(totalPages, 2));
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const blogListSchema = {
   '@context': 'https://schema.org',
@@ -22,23 +45,25 @@ const blogListSchema = {
   url: canonicalURL.href,
   mainEntity: {
     '@type': 'ItemList',
-    itemListElement: posts.slice(0, postsPerPage).map((post, index) => {
-      const postUrl = new URL(`/blog/${post.slug}`, Astro.site).href;
-      const postImage = post.data.image
-        ? new URL(post.data.image, Astro.site).href
-        : undefined;
+    itemListElement: posts
+      .slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE)
+      .map((post, index) => {
+        const postUrl = new URL(`/blog/${post.slug}`, Astro.site).href;
+        const postImage = post.data.image
+          ? new URL(post.data.image, Astro.site).href
+          : undefined;
 
-      return {
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'BlogPosting',
-          name: post.data.title,
-          url: postUrl,
-          image: postImage ? [postImage] : undefined,
-        },
-      };
-    }),
+        return {
+          '@type': 'ListItem',
+          position: index + 1 + (currentPage - 1) * POSTS_PER_PAGE,
+          item: {
+            '@type': 'BlogPosting',
+            name: post.data.title,
+            url: postUrl,
+            image: postImage ? [postImage] : undefined,
+          },
+        };
+      }),
   },
 };
 ---
@@ -96,7 +121,7 @@ const blogListSchema = {
 
         <!-- Main Content -->
         <div class="flex-1">
-          <BlogGrid posts={posts} currentPage={1} postsPerPage={postsPerPage} />
+          <BlogGrid posts={posts} currentPage={currentPage} postsPerPage={POSTS_PER_PAGE} />
         </div>
       </div>
     </div>

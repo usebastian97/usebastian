@@ -28,6 +28,34 @@
     "content": "\n## Introduction\n\nFor more than a decade, enterprise security strategies were built around the network perimeter. Firewalls, VPNs, and trusted internal networks defined who could access what they could do. That model is now obsolete.\n\nToday, identity is the control plane.\n\nAs cloud adoption accelerates, work becomes location agnostic, and AI tools like Microsoft Copilot gain access to vast amounts of organizational data; the identity layer determines whether your environment is secure or dangero"
   },
   {
+    "title": "Microsoft 365 Premium: Your AI and Productivity Powerhouse (What You Actually Get)",
+    "description": "Microsoft 365 Premium combines Microsoft 365 Family and Copilot Pro into one plan. Here is what is included, who it is for, pricing, and how it compares.",
+    "url": "/blog/microsoft-365-premium-your-ai-and-productivity-powerhouse",
+    "category": "blog",
+    "tags": [
+      "Microsoft 365",
+      "Microsoft 365 Premium",
+      "Copilot",
+      "AI",
+      "Productivity"
+    ],
+    "content": "\n## Introduction\n\nMicrosoft is reshaping its personal and family subscriptions around Copilot and higher AI usage limits. The headline change is **Microsoft 365 Premium**, which Microsoft positions as the most powerful subscription for individuals, combining what used to be split across **Microsoft 365 Family** and **Copilot Pro**. [microsoft](https://www.microsoft.com/en-us/microsoft-365/blog/2025/10/01/meet-microsoft-365-premium-your-ai-and-productivity-powerhouse/)\n\nIf you already live in Wor"
+  },
+  {
+    "title": "GPT-5.2 in Microsoft 365 Copilot: What Changed for Copilot Chat and Copilot Studio",
+    "description": "Microsoft 365 Copilot now includes GPT-5.2. Learn what changed in Copilot Chat and Copilot Studio, the rollout timeline, and how teams can get value.",
+    "url": "/blog/gpt-52-in-microsoft-365-copilot",
+    "category": "blog",
+    "tags": [
+      "Microsoft 365 Copilot",
+      "Copilot Studio",
+      "GPT-5.2",
+      "AI",
+      "Productivity"
+    ],
+    "content": "\n## Introduction\n\nOn December 11, 2025, Microsoft announced GPT-5.2 for Microsoft 365 Copilot and Copilot Studio. This is a real capability upgrade, not a cosmetic refresh. GPT-5.2 is OpenAI's newest model series for professional knowledge work, and Microsoft is making it available inside Copilot experiences used for drafting, analysis, planning, and agent-driven workflows. Official details are available on the [Microsoft 365 blog](https://www.microsoft.com/en-us/microsoft-365/blog/2025/12/11/av"
+  },
+  {
     "title": "Defense-in-Depth in Azure",
     "description": "A comprehensive guide to implementing layered security controls across identity, network, compute, application, and data tiers in Microsoft Azure.",
     "url": "/blog/Defense-in-Depth",

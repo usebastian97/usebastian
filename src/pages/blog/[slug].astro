@@ -20,7 +20,40 @@ const formattedDate = new Intl.DateTimeFormat('en', {
   month: 'long',
   day: 'numeric',
 }).format(entry.data.publishDate);
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = entry.data.image ? new URL(entry.data.image, Astro.site).href : undefined;
+const blogPostingSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: entry.data.publishDate.toISOString(),
+  dateModified: (entry.data.updatedDate ?? entry.data.publishDate).toISOString(),
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalURL.href,
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Sebastian Georgian Utoiu',
+    url: new URL('/', Astro.site).href,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Sebastian Georgian Utoiu',
+    url: new URL('/', Astro.site).href,
+  },
+};
+
+if (imageUrl) {
+  blogPostingSchema.image = [imageUrl];
+}
 ---
+
+<head>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+</head>
 
 <DocLayout
   title={entry.data.title}
