@@ -1,8 +1,8 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import ProjectsHero from './projects/components/ProjectsHero.astro';
-import FilterButtons from './projects/components/FilterButtons.astro';
-import ProjectsGrid from './projects/components/ProjectsGrid.astro';
+import ProjectsHero from '@components/pages/projects/ProjectsHero.astro';
+import FilterButtons from '@components/pages/projects/FilterButtons.astro';
+import ProjectsGrid from '@components/pages/projects/ProjectsGrid.astro';
 import { useTranslations } from '@i18n/utils';
 import { getCollection } from 'astro:content';
 import JsonLd from '@components/seo/JsonLd.astro';
@@ -45,7 +45,7 @@ const projectsListSchema =
 ---
 
 <MainLayout
-  title={t('projects.title')}
+  title="M365 & Power Platform Projects | Sebastian Georgian Utoiu"
   description="Projects spanning Microsoft 365 architecture, Power Platform solutions, and Copilot governance with security and compliance built in."
 >
   {projectsListSchema && (

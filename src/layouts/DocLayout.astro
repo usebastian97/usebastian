@@ -5,6 +5,7 @@ import FumaTOC from '@components/ui/FumaTOC.astro';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   headings: MarkdownHeading[];
   breadcrumb: {
@@ -31,7 +32,19 @@ interface Props {
   showTOC?: boolean;
 }
 
-const { title, description, headings, breadcrumb, backLink, meta, tags, image, actions, showTOC = true } = Astro.props;
+const {
+  title,
+  seoTitle,
+  description,
+  headings,
+  breadcrumb,
+  backLink,
+  meta,
+  tags,
+  image,
+  actions,
+  showTOC = true,
+} = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const breadcrumbSchema = {
@@ -60,7 +73,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout title={title} seoTitle={seoTitle} description={description}>
   <head>
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </head>

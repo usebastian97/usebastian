@@ -1,14 +1,14 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import CertificationsHero from './certifications/components/CertificationsHero.astro';
-import CertificationsGrid from './certifications/components/CertificationsGrid.astro';
+import CertificationsHero from '@components/pages/certifications/CertificationsHero.astro';
+import CertificationsGrid from '@components/pages/certifications/CertificationsGrid.astro';
 import { useTranslations } from '@i18n/utils';
 
 const t = useTranslations('en');
 ---
 
 <MainLayout
-  title={t('certifications.title')}
+  title="M365 & Security Certifications | Sebastian Georgian Utoiu"
   description="Certifications across Microsoft 365, Power Platform, security and compliance, and Copilot governance readiness."
 >
   <section class="bg-white py-20">

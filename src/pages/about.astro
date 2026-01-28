@@ -1,16 +1,16 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import AboutHero from './about/components/AboutHero.astro';
-import ProfessionalSummary from './about/components/ProfessionalSummary.astro';
-import ExperienceTimeline from './about/components/ExperienceTimeline.astro';
-import EducationTimeline from './about/components/EducationTimeline.astro';
+import AboutHero from '@components/pages/about/AboutHero.astro';
+import ProfessionalSummary from '@components/pages/about/ProfessionalSummary.astro';
+import ExperienceTimeline from '@components/pages/about/ExperienceTimeline.astro';
+import EducationTimeline from '@components/pages/about/EducationTimeline.astro';
 import { useTranslations } from '@i18n/utils';
 
 const t = useTranslations('en');
 ---
 
 <MainLayout
-  title={t('about.title')}
+  title="About M365 & Copilot Architect | Sebastian Georgian Utoiu"
   description="Learn about Sebastian Georgian Utoiu, an M365 & Power Platform Architect focused on security, compliance, and Microsoft 365 Copilot adoption and governance."
 >
   <AboutHero />

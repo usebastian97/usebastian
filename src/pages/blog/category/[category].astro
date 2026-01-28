@@ -1,7 +1,7 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import BlogHero from '../components/BlogHero.astro';
-import BlogGrid from '../components/BlogGrid.astro';
+import BlogHero from '@components/pages/blog/BlogHero.astro';
+import BlogGrid from '@components/pages/blog/BlogGrid.astro';
 import { useTranslations } from '@i18n/utils';
 import { getCollection } from 'astro:content';
 import { blogCategories } from '../../../data/blogCategories';
@@ -57,7 +57,7 @@ const blogListSchema = {
 ---
 
 <MainLayout
-  title={`${category.label} | ${t('blog.title')}`}
+  title={`${category.label} Articles & Guides | Sebastian Georgian Utoiu`}
   description="Articles on Microsoft 365 architecture, Power Platform governance, security and compliance, and Microsoft 365 Copilot adoption."
 >
   <head>

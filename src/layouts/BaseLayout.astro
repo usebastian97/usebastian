@@ -4,24 +4,25 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
+  seoTitle?: string;
   description?: string;
   image?: string;
   noIndex?: boolean;
 }
 
-const siteTitle =
-  'Sebastian Georgian Utoiu - M365 & Power Platform Architect | Security & Compliance | Microsoft 365 Copilot Adoption & Governance';
+const siteTitle = 'Sebastian Georgian Utoiu';
 const siteDescription =
   'M365 & Power Platform Architect focused on security, compliance, and Microsoft 365 Copilot adoption and governance. Designing secure, compliant modern workplaces and automation.';
 
 const {
   title,
+  seoTitle,
   description = siteDescription,
   image = '/og-image.jpg',
   noIndex = false,
 } = Astro.props;
 
-const resolvedTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+const resolvedTitle = seoTitle ?? title ?? siteTitle;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);

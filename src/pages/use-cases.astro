@@ -1,7 +1,7 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import UseCasesHero from './use-cases/components/UseCasesHero.astro';
-import UseCasesGrid from './use-cases/components/UseCasesGrid.astro';
+import UseCasesHero from '@components/pages/use-cases/UseCasesHero.astro';
+import UseCasesGrid from '@components/pages/use-cases/UseCasesGrid.astro';
 import { useTranslations } from '@i18n/utils';
 import { getCollection } from 'astro:content';
 
@@ -40,7 +40,7 @@ const useCasesListSchema = {
 ---
 
 <MainLayout
-  title={t('usecases.title')}
+  title="M365 & Copilot Use Cases | Sebastian Georgian Utoiu"
   description="Real-world outcomes for Microsoft 365, Power Platform, and Copilot adoption with security and compliance at the core."
 >
   <head>

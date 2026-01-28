@@ -1,14 +1,14 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
-import ContactHero from './contact/components/ContactHero.astro';
-import ContactInfo from './contact/components/ContactInfo.astro';
+import ContactHero from '@components/pages/contact/ContactHero.astro';
+import ContactInfo from '@components/pages/contact/ContactInfo.astro';
 import { useTranslations } from '@i18n/utils';
 
 const t = useTranslations('en');
 ---
 
 <MainLayout
-  title={t('contact.title')}
+  title="Contact M365 & Copilot Architect | Sebastian Georgian Utoiu"
   description="Get in touch for Microsoft 365 architecture, Power Platform delivery, and Copilot governance initiatives focused on security and compliance."
 >
   <!-- Hero Section -->
