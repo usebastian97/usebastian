@@ -103,6 +103,14 @@
     color: rgb(32, 33, 36) !important;
   }
 
+  @media (max-width: 640px) {
+    h1, h2 {
+      font-size: 30px;
+      line-height: 40px;
+      letter-spacing: -0.5px;
+    }
+  }
+
   p,
   span,
   a,
