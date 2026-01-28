@@ -91,10 +91,6 @@ const jsonLd = [useCaseSchema, faqSchema, howToSchema].filter(Boolean) as Record
 >[];
 ---
 
-<head>
-  <JsonLd data={jsonLd} />
-</head>
-
 <DocLayout
   title={entry.data.title}
   description={entry.data.description}
@@ -111,6 +107,9 @@ const jsonLd = [useCaseSchema, faqSchema, howToSchema].filter(Boolean) as Record
     },
   ]}
 >
+  <Fragment slot="head">
+    <JsonLd data={jsonLd} />
+  </Fragment>
   <!-- Challenge / Solution / Outcome cards -->
   <Fragment slot="header">
     <div class="not-prose mb-8 grid gap-3 sm:mb-10 sm:gap-4 md:grid-cols-3">

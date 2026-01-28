@@ -43,9 +43,9 @@ const useCasesListSchema = {
   title="M365 & Copilot Use Cases | Sebastian Georgian Utoiu"
   description="Real-world outcomes for Microsoft 365, Power Platform, and Copilot adoption with security and compliance at the core."
 >
-  <head>
+  <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(useCasesListSchema)} />
-  </head>
+  </Fragment>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <UseCasesHero />

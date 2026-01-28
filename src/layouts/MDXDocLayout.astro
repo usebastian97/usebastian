@@ -37,9 +37,9 @@ const jsonLdPayload = jsonLd ?? articleSchema;
 ---
 
 {jsonLdPayload && (
-  <head>
+  <Fragment slot="head">
     <JsonLd data={jsonLdPayload as Record<string, unknown> | Record<string, unknown>[]} />
-  </head>
+  </Fragment>
 )}
 
 <DocLayout {...mergedProps}>

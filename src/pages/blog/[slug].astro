@@ -86,10 +86,6 @@ const jsonLd = [blogPostingSchema, faqSchema, howToSchema].filter(Boolean) as Re
 >[];
 ---
 
-<head>
-  <JsonLd data={jsonLd} />
-</head>
-
 <DocLayout
   title={entry.data.title}
   description={entry.data.description}
@@ -103,5 +99,8 @@ const jsonLd = [blogPostingSchema, faqSchema, howToSchema].filter(Boolean) as Re
     { label: 'Reading time', value: `${readingTime} min read`, icon: '⏱️' },
   ]}
 >
+  <Fragment slot="head">
+    <JsonLd data={jsonLd} />
+  </Fragment>
   <Content />
 </DocLayout>

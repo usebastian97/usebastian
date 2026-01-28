@@ -75,10 +75,6 @@ if (entry.data.githubUrl) {
 }
 ---
 
-<head>
-  <JsonLd data={projectSchema} />
-</head>
-
 <DocLayout
   title={entry.data.title}
   description={entry.data.description}
@@ -96,5 +92,8 @@ if (entry.data.githubUrl) {
     },
   ]}
 >
+  <Fragment slot="head">
+    <JsonLd data={projectSchema} />
+  </Fragment>
   <Content />
 </DocLayout>

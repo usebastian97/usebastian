@@ -72,9 +72,9 @@ const blogListSchema = {
   title={`M365 Architecture Blog - Page ${currentPage} | Sebastian Georgian Utoiu`}
   description="Articles on Microsoft 365 architecture, Power Platform governance, security and compliance, and Microsoft 365 Copilot adoption."
 >
-  <head>
+  <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(blogListSchema)} />
-  </head>
+  </Fragment>
   <section class="bg-white py-20">
     <div class="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
       <BlogHero />

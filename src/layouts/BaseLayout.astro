@@ -113,6 +113,16 @@ const schema = {
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CDSKE5QDR0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: unknown[]): void {window.dataLayer?.push(args);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-CDSKE5QDR0');
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -185,17 +195,7 @@ const schema = {
     <!-- JSON-LD Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CDSKE5QDR0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(...args: unknown[]) {
-        window.dataLayer.push(args);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'G-CDSKE5QDR0');
-    </script>
+    <slot name="head" />
 
     <ViewTransitions />
   </head>
@@ -203,10 +203,8 @@ const schema = {
     <slot />
     <script>
       (function () {
-        const sendEvent = (name, params) => {
-          if (typeof window.gtag === 'function') {
-            window.gtag('event', name, params);
-          }
+        const sendEvent = (name: string, params: Record<string, unknown> = {}): void => {
+          window.gtag?.('event', name, params);
         };
 
         const path = window.location.pathname || '/';
@@ -224,7 +222,7 @@ const schema = {
 
         sendEvent('seo_page_type', { page_type: pageType, page_path: path });
 
-        document.addEventListener('click', (event) => {
+        const handleClick = (event: MouseEvent): void => {
           const target = event.target instanceof Element ? event.target : null;
           const link = target?.closest('[data-kpi]');
           if (!link) return;
@@ -233,7 +231,9 @@ const schema = {
             href: link.getAttribute('href') || '',
             page_path: path,
           });
-        });
+        };
+
+        document.addEventListener('click', handleClick);
 
         if (!('PerformanceObserver' in window)) return;
 
@@ -264,17 +264,26 @@ const schema = {
           const lcpObserver = new PerformanceObserver((list) => {
             const entries = list.getEntries();
             if (entries.length) {
-              lcpValue = entries[entries.length - 1].startTime;
+              const lastEntry = entries[entries.length - 1];
+              if (lastEntry) {
+                lcpValue = lastEntry.startTime;
+              }
             }
           });
           lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (_) {}
 
         try {
           const clsObserver = new PerformanceObserver((list) => {
             list.getEntries().forEach((entry) => {
-              if (!entry.hadRecentInput) {
-                clsValue += entry.value;
+              if ('value' in entry && typeof entry.value === 'number') {
+                const hadRecentInput =
+                  'hadRecentInput' in entry &&
+                  Boolean(/** @type {{ hadRecentInput?: boolean }} */ (entry).hadRecentInput);
+                if (!hadRecentInput) {
+                  clsValue += entry.value;
+                }
               }
             });
           });
@@ -284,12 +293,12 @@ const schema = {
         try {
           const inpObserver = new PerformanceObserver((list) => {
             list.getEntries().forEach((entry) => {
-              if (entry.interactionId) {
+              if ('interactionId' in entry && typeof entry.interactionId === 'number') {
                 inpValue = Math.max(inpValue, entry.duration);
               }
             });
           });
-          inpObserver.observe({ type: 'event', buffered: true, durationThreshold: 40 });
+          inpObserver.observe({ type: 'event', buffered: true });
         } catch (_) {}
 
         window.addEventListener('pagehide', reportVitals);

@@ -49,9 +49,9 @@ const projectsListSchema =
   description="Projects spanning Microsoft 365 architecture, Power Platform solutions, and Copilot governance with security and compliance built in."
 >
   {projectsListSchema && (
-    <head>
+    <Fragment slot="head">
       <JsonLd data={projectsListSchema} />
-    </head>
+    </Fragment>
   )}
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

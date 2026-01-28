@@ -74,9 +74,10 @@ const breadcrumbSchema = {
 ---
 
 <MainLayout title={title} seoTitle={seoTitle} description={description}>
-  <head>
+  <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  </head>
+    <slot name="head" />
+  </Fragment>
   <!-- Header with gradient background -->
   <div class="border-b border-gray-200 bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
@@ -229,14 +230,14 @@ const breadcrumbSchema = {
         {showTOC && (
           <aside class="hidden lg:block">
             <div class="sticky top-24 space-y-6">
-              <!-- Table of Contents -->
+              {/* Table of Contents */}
               {
                 headings.length > 0 && (
                   <FumaTOC headings={headings} />
                 )
               }
 
-              <!-- Back link -->
+              {/* Back link */}
               {
                 backLink && (
                   <a
@@ -251,7 +252,7 @@ const breadcrumbSchema = {
                 )
               }
 
-              <!-- Additional sidebar slot -->
+              {/* Additional sidebar slot */}
               <slot name="sidebar" />
             </div>
           </aside>
