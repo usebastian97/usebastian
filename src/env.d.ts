@@ -23,5 +23,7 @@ declare module 'alpinejs' {
 declare global {
   interface Window {
     Alpine: import('alpinejs').default;
+    dataLayer: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }

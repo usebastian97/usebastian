@@ -149,7 +149,7 @@ const techTabs = [
     <!-- Tabs -->
     <div class="mx-auto max-w-7xl">
       <!-- Tab Navigation -->
-      <div class="mb-8 flex flex-wrap justify-center gap-2 border-b border-gray-200 pb-4">
+      <div class="tab-nav mb-8 flex flex-wrap justify-center gap-2 border-b border-gray-200 pb-4">
         {
           techTabs.map((tab, index) => (
             <button
@@ -171,7 +171,7 @@ const techTabs = [
             data-tab-content={tab.id}
             style={index === 0 ? '' : 'display: none;'}
           >
-            <div class="grid grid-cols-3 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6">
+            <div class="tech-grid grid gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6">
               {tab.technologies.map((tech) => (
                 <div class="tech-card group flex flex-col items-center justify-center gap-2 p-4 sm:p-5">
                   <div class="flex h-12 w-12 items-center justify-center sm:h-14 sm:w-14">
@@ -392,6 +392,42 @@ const techTabs = [
 
     .tech-card {
       min-height: 130px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .tab-nav {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      scroll-snap-type: x proximity;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .tab-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tech-grid {
+      grid-auto-flow: column;
+      grid-auto-columns: calc(50% - 0.5rem);
+      grid-template-columns: unset;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .tech-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tech-card {
+      scroll-snap-align: start;
     }
   }
 </style>
