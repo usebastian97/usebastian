@@ -13,6 +13,38 @@ const allPosts = await getCollection('blog', ({ data }) => {
 const latestPosts = allPosts
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
   .slice(0, 3);
+
+const normalizeTags = (tags: string[]) => tags.map((tag) => tag.toLowerCase());
+const relatedPostsBySlug = new Map<string, typeof latestPosts>();
+
+allPosts.forEach((post) => {
+  const postTags = new Set(normalizeTags(post.data.tags ?? []));
+  if (postTags.size === 0) {
+    relatedPostsBySlug.set(post.slug, []);
+    return;
+  }
+
+  const related = allPosts
+    .filter((candidate) => candidate.slug !== post.slug)
+    .map((candidate) => {
+      const candidateTags = normalizeTags(candidate.data.tags ?? []);
+      const score = candidateTags.reduce(
+        (count, tag) => count + (postTags.has(tag) ? 1 : 0),
+        0
+      );
+      return { candidate, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        b.candidate.data.publishDate.getTime() - a.candidate.data.publishDate.getTime()
+    )
+    .slice(0, 2)
+    .map((item) => item.candidate);
+
+  relatedPostsBySlug.set(post.slug, related);
+});
 ---
 
 <section
@@ -28,21 +60,46 @@ const latestPosts = allPosts
 
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
-        latestPosts.map((post) => (
-          <Card
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.slug}`}
-            image={post.data.image ?? ''}
-            tags={post.data.tags}
-            date={post.data.publishDate}
-          />
-        ))
+        latestPosts.map((post) => {
+          const related = relatedPostsBySlug.get(post.slug) ?? [];
+
+          return (
+            <div class="space-y-3">
+              <Card
+                title={post.data.title}
+                description={post.data.description}
+                href={`/blog/${post.slug}`}
+                image={post.data.image ?? ''}
+                tags={post.data.tags}
+                date={post.data.publishDate}
+              />
+              {
+                related.length > 0 && (
+                  <div class="rounded-lg border border-gray-200 bg-white px-4 py-3 text-xs text-gray-600">
+                    <div class="text-gray-500">Related posts</div>
+                    <div class="mt-1 flex flex-col gap-1">
+                      {related.map((relatedPost) => (
+                        <a
+                          href={`/blog/${relatedPost.slug}`}
+                          class="text-blue-600 hover:text-blue-700"
+                        >
+                          {relatedPost.data.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          );
+        })
       }
     </div>
 
     <div class="mt-12 text-center">
-      <Button href="/blog" variant="secondary"> Read All Posts </Button>
+      <Button href="/blog" variant="secondary" data-kpi="cta_read_all_posts">
+        Read All Posts
+      </Button>
     </div>
   </div>
 </section>

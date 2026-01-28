@@ -18,6 +18,21 @@ technologies:
 relatedProjects: []
 order: 1
 lang: 'en'
+howTo:
+  name: 'Secure Azure Storage with Private Access and Azure AD'
+  steps:
+    - name: 'Disable public access'
+      text: 'Set Allow Blob Public Access to Disabled at the storage account level.'
+    - name: 'Force private connectivity'
+      text: 'Create a Private Endpoint and route storage traffic through a dedicated VNet subnet.'
+    - name: 'Adopt Azure AD authentication'
+      text: 'Use Azure AD with RBAC roles like Storage Blob Data Contributor instead of SAS tokens.'
+    - name: 'Enforce least privilege'
+      text: 'Grant write access only to the app and read-only access to users at the container scope.'
+    - name: 'Centralize secrets'
+      text: 'Store connection strings in Key Vault and authenticate with Managed Identity.'
+    - name: 'Monitor and alert'
+      text: 'Send diagnostics to Log Analytics and configure alerts for anomalous access.'
 
 ---
 import FumaCallout from '@components/mdx/FumaCallout.astro';

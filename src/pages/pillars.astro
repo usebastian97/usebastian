@@ -1,0 +1,91 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+
+const pillars = [
+  {
+    title: 'Microsoft 365 Architecture',
+    description:
+      'Core identity, collaboration, and security patterns that keep M365 environments resilient and scalable.',
+    href: '/pillars/microsoft-365',
+    kpi: 'pillar_microsoft_365',
+  },
+  {
+    title: 'Security & Compliance',
+    description:
+      'Defense‑in‑depth controls, policy baselines, and data protection practices that reduce risk.',
+    href: '/pillars/security-compliance',
+    kpi: 'pillar_security_compliance',
+  },
+  {
+    title: 'Copilot Governance',
+    description:
+      'Guardrails for AI adoption: data boundaries, permissions hygiene, and safe‑use frameworks.',
+    href: '/pillars/copilot-governance',
+    kpi: 'pillar_copilot_governance',
+  },
+  {
+    title: 'Power Platform',
+    description:
+      'Automation and app platform patterns with governance, ALM, and tenant‑scale controls.',
+    href: '/pillars/power-platform',
+    kpi: 'pillar_power_platform',
+  },
+];
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pillarsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Pillar Guides',
+  description:
+    'Pillar pages that define the architecture and governance foundations across M365, Security & Compliance, Copilot, and Power Platform.',
+  url: canonicalURL.href,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: pillars.map((pillar, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Article',
+        name: pillar.title,
+        url: new URL(pillar.href, Astro.site).href,
+      },
+    })),
+  },
+};
+---
+
+<MainLayout
+  title="Pillar Guides"
+  description="Pillar pages that define the architecture and governance foundations across M365, Security & Compliance, Copilot, and Power Platform."
+>
+  <head>
+    <JsonLd data={pillarsSchema} />
+  </head>
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h1 class="mb-4">Pillar Guides</h1>
+        <p class="text-lg text-gray-600">
+          High‑level reference pages that organize my best practices, frameworks, and checklists.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {pillars.map((pillar) => (
+          <a
+            href={pillar.href}
+            data-kpi={pillar.kpi}
+            class="group rounded-xl border-2 border-gray-200 bg-gray-50 p-6 transition-all hover:border-gray-900 hover:bg-white hover:shadow-lg"
+          >
+            <h2 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-gray-900">
+              {pillar.title}
+            </h2>
+            <p class="text-sm text-gray-600">{pillar.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,11 +1,17 @@
 ---
 import EmptyState from '@components/ui/EmptyState.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { useTranslations } from '@i18n/utils';
 
 const t = useTranslations('en');
 
-const allProjects = await getCollection('projects');
+interface Props {
+  projects?: CollectionEntry<'projects'>[];
+}
+
+const { projects: providedProjects } = Astro.props;
+
+const allProjects = providedProjects ?? (await getCollection('projects'));
 
 const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
 

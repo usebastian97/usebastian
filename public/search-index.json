@@ -42,6 +42,20 @@
     "content": "\n## Introduction\n\nMicrosoft is reshaping its personal and family subscriptions around Copilot and higher AI usage limits. The headline change is **Microsoft 365 Premium**, which Microsoft positions as the most powerful subscription for individuals, combining what used to be split across **Microsoft 365 Family** and **Copilot Pro**. [microsoft](https://www.microsoft.com/en-us/microsoft-365/blog/2025/10/01/meet-microsoft-365-premium-your-ai-and-productivity-powerhouse/)\n\nIf you already live in Wor"
   },
   {
+    "title": "Microsoft 365 Governance Framework + Checklists (Linkable Assets)",
+    "description": "A curated set of governance assets: framework overview, security baselines, Copilot data controls, and rollout templates you can reuse.",
+    "url": "/blog/m365-governance-framework-checklists",
+    "category": "blog",
+    "tags": [
+      "Microsoft 365",
+      "Governance",
+      "Security",
+      "Copilot",
+      "Productivity"
+    ],
+    "content": "\n## Why these assets exist\n\nMost governance programs stall because teams move straight to tooling without a shared operating model. These assets are meant to be reused in workshops, architecture reviews, and implementation sprints.\n\nThey are intentionally lightweight so teams can adapt them quickly.\n\n## Linkable assets (frameworks, checklists, templates)\n\n### 1) Microsoft 365 Governance Framework (one‑page overview)\n\nA concise model that defines the *what*, *who*, and *how* across identity, data"
+  },
+  {
     "title": "GPT-5.2 in Microsoft 365 Copilot: What Changed for Copilot Chat and Copilot Studio",
     "description": "Microsoft 365 Copilot now includes GPT-5.2. Learn what changed in Copilot Chat and Copilot Studio, the rollout timeline, and how teams can get value.",
     "url": "/blog/gpt-52-in-microsoft-365-copilot",
@@ -68,6 +82,22 @@
       "Cloud Architecture"
     ],
     "content": "\n## Introduction to Defense-in-Depth\n\nDefense-in-depth represents a cardinal security philosophy wherein multiple protective mechanisms are layered throughout an environment to impede adversaries at every conceivable juncture. Rather than relying on a solitary control, this strategy assumes that any single defense can fail. Azure provides a robust constellation of services engineered to implement this paradigm at scale.\n\nThe principle originates from military doctrine. Successive barriers slow a"
+  },
+  {
+    "title": "Copilot Governance Readiness for Sensitive Departments",
+    "description": "Built a readiness framework to enable Copilot safely across legal, finance, and HR with data boundary checks, labeling, and policy controls.",
+    "url": "/use-cases/copilot-governance-readiness",
+    "category": "use-case",
+    "tags": [
+      "Microsoft 365 Copilot",
+      "Microsoft Purview",
+      "Sensitivity Labels",
+      "DLP",
+      "SharePoint Online",
+      "Teams",
+      "Conditional Access"
+    ],
+    "content": "\n## The Challenge\n\nCopilot adoption was moving faster than governance. Sensitive legal and HR data lived in sites and Teams with inconsistent permissions and labeling. The risk was accidental exposure, not malicious intent.\n\n## What I Built\n\nA Copilot governance readiness framework that aligns people, data, and policy before enabling Copilot at scale.\n\n## Implementation Highlights\n\n- **Data boundary review**: identified high‑risk locations and owners\n- **Labeling baseline**: standardized sensiti"
   },
   {
     "title": "Limiting Public Access and Protecting Sensitive Data in Azure Storage",

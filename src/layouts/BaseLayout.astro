@@ -53,13 +53,20 @@ const schema = {
         'Power Apps',
       ],
       worksFor: {
-        '@type': 'Organization',
-        name: 'Freelance',
+        '@id': 'https://www.usebastian.com/#organization',
       },
       alumniOf: {
         '@type': 'EducationalOrganization',
         name: 'Technical University',
       },
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.usebastian.com/#organization',
+      name: 'Sebastian Georgian Utoiu',
+      url: 'https://www.usebastian.com',
+      logo: 'https://www.usebastian.com/my-logo.svg',
+      sameAs: ['https://github.com/usebastian97', 'https://linkedin.com/in/usebastian12'],
     },
     {
       '@type': 'WebSite',
@@ -70,6 +77,8 @@ const schema = {
       publisher: {
         '@id': 'https://www.usebastian.com/#person',
       },
+      logo: 'https://www.usebastian.com/my-logo.svg',
+      sameAs: ['https://github.com/usebastian97', 'https://linkedin.com/in/usebastian12'],
       inLanguage: 'en-US',
       potentialAction: {
         '@type': 'SearchAction',
@@ -191,5 +200,102 @@ const schema = {
   </head>
   <body class="antialiased">
     <slot />
+    <script>
+      (function () {
+        const sendEvent = (name, params) => {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', name, params);
+          }
+        };
+
+        const path = window.location.pathname || '/';
+        let pageType = 'page';
+        if (path === '/') pageType = 'home';
+        else if (path === '/blog') pageType = 'blog_index';
+        else if (path.startsWith('/blog/category/')) pageType = 'blog_category';
+        else if (path.startsWith('/blog/')) pageType = 'blog_post';
+        else if (path === '/use-cases') pageType = 'use_cases_index';
+        else if (path.startsWith('/use-cases/')) pageType = 'use_case';
+        else if (path === '/pillars') pageType = 'pillars_index';
+        else if (path.startsWith('/pillars/')) pageType = 'pillar';
+        else if (path === '/projects') pageType = 'projects_index';
+        else if (path.startsWith('/projects/')) pageType = 'project';
+
+        sendEvent('seo_page_type', { page_type: pageType, page_path: path });
+
+        document.addEventListener('click', (event) => {
+          const target = event.target instanceof Element ? event.target : null;
+          const link = target?.closest('[data-kpi]');
+          if (!link) return;
+          sendEvent('seo_kpi_click', {
+            kpi: link.getAttribute('data-kpi') || '',
+            href: link.getAttribute('href') || '',
+            page_path: path,
+          });
+        });
+
+        if (!('PerformanceObserver' in window)) return;
+
+        let clsValue = 0;
+        let lcpValue = 0;
+        let inpValue = 0;
+        let reported = false;
+
+        const reportVitals = () => {
+          if (reported) return;
+          reported = true;
+          if (lcpValue) {
+            sendEvent('seo_cwv', { metric: 'LCP', value: Math.round(lcpValue), page_path: path });
+          }
+          if (clsValue) {
+            sendEvent('seo_cwv', {
+              metric: 'CLS',
+              value: Math.round(clsValue * 1000) / 1000,
+              page_path: path,
+            });
+          }
+          if (inpValue) {
+            sendEvent('seo_cwv', { metric: 'INP', value: Math.round(inpValue), page_path: path });
+          }
+        };
+
+        try {
+          const lcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            if (entries.length) {
+              lcpValue = entries[entries.length - 1].startTime;
+            }
+          });
+          lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+        } catch (_) {}
+
+        try {
+          const clsObserver = new PerformanceObserver((list) => {
+            list.getEntries().forEach((entry) => {
+              if (!entry.hadRecentInput) {
+                clsValue += entry.value;
+              }
+            });
+          });
+          clsObserver.observe({ type: 'layout-shift', buffered: true });
+        } catch (_) {}
+
+        try {
+          const inpObserver = new PerformanceObserver((list) => {
+            list.getEntries().forEach((entry) => {
+              if (entry.interactionId) {
+                inpValue = Math.max(inpValue, entry.duration);
+              }
+            });
+          });
+          inpObserver.observe({ type: 'event', buffered: true, durationThreshold: 40 });
+        } catch (_) {}
+
+        window.addEventListener('pagehide', reportVitals);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'hidden') reportVitals();
+        });
+      })();
+    </script>
   </body>
 </html>

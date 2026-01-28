@@ -1,5 +1,26 @@
 import { defineCollection, z } from 'astro:content';
 
+const faqSchema = z
+  .array(
+    z.object({
+      question: z.string(),
+      answer: z.string(),
+    })
+  )
+  .optional();
+
+const howToSchema = z
+  .object({
+    name: z.string(),
+    steps: z.array(
+      z.object({
+        name: z.string().optional(),
+        text: z.string(),
+      })
+    ),
+  })
+  .optional();
+
 const blog = defineCollection({
   type: 'content',
   schema: z.object({
@@ -10,6 +31,8 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     draft: z.boolean().default(false),
+    faq: faqSchema,
+    howTo: howToSchema,
   }),
 });
 
@@ -42,6 +65,8 @@ const useCases = defineCollection({
     image: z.string().optional(),
     order: z.number().default(0),
     lang: z.string().default('en'),
+    faq: faqSchema,
+    howTo: howToSchema,
   }),
 });
 

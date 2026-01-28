@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import DocLayout from '@layouts/DocLayout.astro';
 import { useTranslations } from '@i18n/utils';
+import JsonLd from '@components/seo/JsonLd.astro';
 
 const t = useTranslations('en');
 
@@ -29,6 +30,31 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = entry.data.image ? new URL(entry.data.image, Astro.site).href : undefined;
+const projectSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: entry.data.title,
+  description: entry.data.description,
+  url: canonicalURL.href,
+  author: {
+    '@type': 'Person',
+    name: 'Sebastian Georgian Utoiu',
+    url: new URL('/', Astro.site).href,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Sebastian Georgian Utoiu',
+    url: new URL('/', Astro.site).href,
+  },
+  keywords: entry.data.tags?.join(', '),
+};
+
+if (imageUrl) {
+  projectSchema.image = [imageUrl];
+}
+
 // Build actions array
 const actions = [];
 if (entry.data.projectUrl) {
@@ -48,6 +74,10 @@ if (entry.data.githubUrl) {
   });
 }
 ---
+
+<head>
+  <JsonLd data={projectSchema} />
+</head>
 
 <DocLayout
   title={entry.data.title}

@@ -1,0 +1,47 @@
+---
+import DocLayout from './DocLayout.astro';
+import JsonLd from '@components/seo/JsonLd.astro';
+
+const { headings, frontmatter = {}, ...rest } = Astro.props;
+const { schemaType, jsonLd, ...docProps } = frontmatter as Record<string, unknown>;
+const mergedProps = { ...docProps, ...rest, headings };
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const articleSchema =
+  schemaType === 'Article'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: docProps.title,
+        description: docProps.description,
+        url: canonicalURL.href,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonicalURL.href,
+        },
+        author: {
+          '@type': 'Person',
+          name: 'Sebastian Georgian Utoiu',
+          url: new URL('/', Astro.site).href,
+        },
+        publisher: {
+          '@type': 'Person',
+          name: 'Sebastian Georgian Utoiu',
+          url: new URL('/', Astro.site).href,
+        },
+      }
+    : null;
+
+const jsonLdPayload = jsonLd ?? articleSchema;
+---
+
+{jsonLdPayload && (
+  <head>
+    <JsonLd data={jsonLdPayload as Record<string, unknown> | Record<string, unknown>[]} />
+  </head>
+)}
+
+<DocLayout {...mergedProps}>
+  <slot />
+</DocLayout>

@@ -4,19 +4,60 @@ import ProjectsHero from './projects/components/ProjectsHero.astro';
 import FilterButtons from './projects/components/FilterButtons.astro';
 import ProjectsGrid from './projects/components/ProjectsGrid.astro';
 import { useTranslations } from '@i18n/utils';
+import { getCollection } from 'astro:content';
+import JsonLd from '@components/seo/JsonLd.astro';
 
 const t = useTranslations('en');
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const projectsListSchema =
+  projects.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: t('projects.title'),
+        description:
+          'Projects spanning Microsoft 365 architecture, Power Platform solutions, and Copilot governance with security and compliance built in.',
+        url: canonicalURL.href,
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: projects.map((project, index) => {
+            const projectUrl = new URL(`/projects/${project.slug}`, Astro.site).href;
+            const projectImage = project.data.image
+              ? new URL(project.data.image, Astro.site).href
+              : undefined;
+
+            return {
+              '@type': 'ListItem',
+              position: index + 1,
+              item: {
+                '@type': 'CreativeWork',
+                name: project.data.title,
+                url: projectUrl,
+                image: projectImage ? [projectImage] : undefined,
+              },
+            };
+          }),
+        },
+      }
+    : null;
 ---
 
 <MainLayout
   title={t('projects.title')}
   description="Projects spanning Microsoft 365 architecture, Power Platform solutions, and Copilot governance with security and compliance built in."
 >
+  {projectsListSchema && (
+    <head>
+      <JsonLd data={projectsListSchema} />
+    </head>
+  )}
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <ProjectsHero />
       <FilterButtons />
-      <ProjectsGrid />
+      <ProjectsGrid projects={projects} />
     </div>
   </section>
 </MainLayout>

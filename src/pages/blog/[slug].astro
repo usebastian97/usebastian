@@ -2,12 +2,14 @@
 import { getCollection } from 'astro:content';
 import DocLayout from '@layouts/DocLayout.astro';
 import { calculateReadingTime } from '@utils/helpers';
+import JsonLd from '@components/seo/JsonLd.astro';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
   return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
+    lastmod: entry.data.updatedDate ?? entry.data.publishDate,
   }));
 }
 
@@ -49,10 +51,43 @@ const blogPostingSchema: Record<string, unknown> = {
 if (imageUrl) {
   blogPostingSchema.image = [imageUrl];
 }
+
+const faqSchema = entry.data.faq?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: entry.data.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    }
+  : null;
+
+const howToSchema = entry.data.howTo
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: entry.data.howTo.name,
+      step: entry.data.howTo.steps.map((step) => ({
+        '@type': 'HowToStep',
+        name: step.name,
+        text: step.text,
+      })),
+    }
+  : null;
+
+const jsonLd = [blogPostingSchema, faqSchema, howToSchema].filter(Boolean) as Record<
+  string,
+  unknown
+>[];
 ---
 
 <head>
-  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+  <JsonLd data={jsonLd} />
 </head>
 
 <DocLayout
